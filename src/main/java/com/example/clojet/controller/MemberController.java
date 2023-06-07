@@ -3,6 +3,7 @@ package com.example.clojet.controller;
 import com.example.clojet.domain.Member;
 import com.example.clojet.repository.MemberRepository;
 import com.example.clojet.service.MemberService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,6 +47,7 @@ public class MemberController {
         List<Member> members = memberService.findMembers();
         model.addAttribute("members", members);
         return "members/memberlist";
+
     }
 
 }
