@@ -20,9 +20,9 @@ function CategoryN() {
                         <Link to={'/'}>아우터</Link>
                         <Link to={'/'}>아우터</Link>
                     </div>
-                    <div className='side_item2'>
+                    <div className='side_item'>
                         <div className='side_title'>
-                            <h2>성별</h2>
+                            <h3>성별</h3>
                             <ArrowDropDownRoundedIcon className='icon' />
                         </div>
                         <div>
@@ -34,9 +34,9 @@ function CategoryN() {
                             <span>woman</span>
                         </div>
                     </div>
-                    <div className='side_item3'>
+                    <div className='side_item'>
                         <div className='side_title'>
-                            <h2>가격대</h2>
+                            <h3>가격대</h3>
                             <ArrowDropDownRoundedIcon className='icon' />
                         </div>
                         <div>
@@ -60,9 +60,9 @@ function CategoryN() {
                             <span> 400,000 - 500,000 원</span>
                         </div>
                     </div>
-                    <div className='side_item4'>
+                    <div className='side_item'>
                         <div className='side_title'>
-                            <h2>색상</h2>
+                            <h3>색상</h3>
                             <ArrowDropDownRoundedIcon className='icon' />
                         </div>
                         <div className='pallet'>
@@ -72,9 +72,9 @@ function CategoryN() {
                             </div>
                         </div>
                     </div>
-                    <div className='side_item5'>
+                    <div className='side_item'>
                         <div className='side_title'>
-                            <h2>사이즈</h2>
+                            <h3>사이즈</h3>
                             <ArrowDropDownRoundedIcon className='icon' />
                         </div>
                         <div className='size_list'>
@@ -111,34 +111,32 @@ function CategoryN() {
                 <div className='category_item'>
                     <h1>아이템</h1>
                 </div>
+                {/* <div className='container'>
+                    {cNdata.map((product, index) => (
+                        <div key={product.id} className='pd_box'>
+                            <div className='pd_img'>
+                                <a href='/'>
+                                    <img
+                                        src={require(`../../image/product${
+                                            index + 1
+                                        }.jpg`)}
+                                        alt={`product${index + 1}`}
+                                    />
+                                </a>
+                            </div>
+                            <div className='pd_info'>
+                                <p>{product.title}</p>
+                                <p>{product.PercentS}</p>
+                                <p>
+                                    <del>{product.basicP}</del>{' '}
+                                    <strong>{product.saleP}</strong>
+                                </p>
+                            </div>
+                        </div>
+                    ))}
+                </div> */}
             </div>
         </div>
-
-        /* <h1>NEW</h1>
-            <div className='container'>
-                {cNdata.map((product,index) => (
-                    <div key={product.id} className='pd_box'>
-                        <div className='pd_img'>
-                            <a href='/'>
-                                <img
-                                    src={require(`../../image/product${
-                                        index + 1
-                                    }.jpg`)}
-                                    alt={`product${index + 1}`}
-                                />
-                            </a>
-                        </div>
-                        <div className='pd_info'>
-                            <p>{product.title}</p>
-                            <p>{product.PercentS}</p>
-                            <p>
-                                <del>{product.basicP}</del>{' '}
-                                <strong>{product.saleP}</strong>
-                            </p>
-                        </div>
-                    </div>
-                ))}
-            </div> */
     );
 }
 
