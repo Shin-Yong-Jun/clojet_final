@@ -1,0 +1,91 @@
+plugins {
+    id 'java'
+    id 'war'
+    id 'org.springframework.boot' version '3.0.6'
+    id 'io.spring.dependency-management' version '1.1.0'
+}
+
+group = 'com.ccc'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly 'org.projectlombok:lombok:1.18.26'
+    annotationProcessor 'org.projectlombok:lombok:1.18.26'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:3.0.4'
+    implementation 'org.springframework.boot:spring-boot-starter-web:3.1.0'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools:3.0.4'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:3.1.0'
+    runtimeOnly 'org.mariadb.jdbc:mariadb-java-client:3.1.2'
+//    implementation 'org.springframework.boot:spring-boot-starter-security:3.0.4'
+
+    implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.5'
+    runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.5'
+    runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.5'
+
+//	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.1' //mybatis사용시 활성화
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+// frontend 디렉토리 경로 변수 설정
+def frontendDir = "$projectDir/src/main/frontapp"
+
+// main 소스셋에서 리소스 경로를 지정해줌
+sourceSets {
+    main {
+        resources { srcDirs = ["$projectDir/src/main/resources"] }
+    }
+}
+
+// 리소스 처리 이전에 리액트 빌드 파일을 복사하는 작업에 의존
+processResources { dependsOn "copyReactBuildFiles" }
+
+// 리액트 프론트엔드 설치를 위한 task 설정
+tasks.register('installReact', Exec) {
+    workingDir "$frontendDir" // 작업 디렉토리 설정
+    inputs.dir "$frontendDir" // input 디렉토리 설정
+    group = BasePlugin.BUILD_GROUP // Gradle 빌드 그룹 설정
+
+    // 운영체제별로 npm 명령어 실행 방식을 다르게 설정
+    if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
+        commandLine "npm.cmd", "audit", "fix"
+        commandLine 'npm.cmd', 'install'
+    } else {
+        commandLine "npm", "audit", "fix" commandLine 'npm', 'install'
+    }
+}
+
+// 리액트 빌드를 위한 task 설정
+tasks.register('buildReact', Exec) {
+    dependsOn "installReact" // installReact 작업이 선행되어야 함
+    workingDir "$frontendDir" // 작업 디렉토리 설정
+    inputs.dir "$frontendDir" // input 디렉토리 설정
+    group = BasePlugin.BUILD_GROUP // Gradle 빌드 그룹 설정
+
+    // 운영체제별로 npm 명령어 실행 방식을 다르게 설정
+    if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
+        commandLine "npm.cmd", "run-script", "build"
+    } else {
+        commandLine "npm", "run-script", "build"
+    }
+}
+
+// 리액트 빌드 파일을 프로젝트 리소스 디렉토리로 복사하는 작업
+tasks.register('copyReactBuildFiles', Copy) {
+    dependsOn "buildReact" // buildReact 작업이 선행되어야 함
+    from "$frontendDir/build" // 복사할 파일 경로 설정
+    into "$projectDir/src/main/resources/static" // 복사된 파일이 저장될 경로 설정
+}

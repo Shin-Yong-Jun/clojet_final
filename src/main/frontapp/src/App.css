@@ -1,0 +1,21 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* 글자 호버시, li 박스가 움직임을 방지하기 위함 */
+  font-family: 'Nanum Gothic', sans-serif;
+  -ms-user-select: none;
+  -moz-user-select: -moz-none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  user-select: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}

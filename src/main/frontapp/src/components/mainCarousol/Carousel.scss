@@ -1,0 +1,139 @@
+a {
+  color: black;
+}
+
+
+/* =========== 특가 products  ========== */
+
+.main_products1, .main_products2, .main_products3 {
+  text-align: center;
+}
+
+main h4 {
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.main_products1 li, .main_products2 li, .main_products3 li {
+  display: inline-block;
+  margin: 0 20px;
+  font-weight: 700;
+}
+
+.main_products1 li a, .main_products2 li a, .main_products3 li a {
+  color: #d6d6d6;
+}
+
+.main_products1 li .Men, .main_products2 li .Men, .main_products3 li .Men {
+  color: black;
+}
+
+/* =========== 특가 item_list ========== */
+
+.item_list {
+  position: relative;
+  overflow: hidden;
+  padding: 10px 0 50px 10px;
+  width: 100%;
+
+  ul {
+    position: relative;
+    padding-left: 50px;
+    width: 200%;
+    left: 100%;
+    transform: translateX(-50%);
+    transition: 0.5s;
+  }
+  
+  li {
+    display: inline-block;
+    margin-top: 30px;
+    margin-right: 60px;
+    vertical-align: top;
+  }
+
+  .item_img a {
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.item_name a, .item_info .disCount, .item_name del {
+  font-size: 0.9rem;
+}
+
+.item_info {
+  .price:not(del) {
+    font-size: 1.1rem;
+  }
+
+  .item_name {
+    color: black;
+    font-size: 1.1rem;
+  }
+}
+
+// .item_name a {
+//   color: black;
+// }
+
+.disCount {
+  color: red;
+  font-weight: 700;
+}
+
+/* =========== 특가 item_list 핸들 ========== */
+
+.item_container1, .item_container2, .item_container3 {
+  position: relative;
+  width: 100%;
+}
+
+.sales_lady, .weather_lady, .new_lady {
+  display: none;
+}
+
+.item_container1 > a, .item_container2 > a, .item_container3 > a {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-100%);
+  z-index: 2;
+  opacity: 0.3;
+  transition: 0.2s;
+}
+
+.item_container1 > .btn_back, .item_container2 > .btn_back, .item_container3 > .btn_back {
+  left: -5%;
+}
+
+.item_container1 > .btn_back:hover, .item_container2 > .btn_back:hover, .item_container3 > .btn_back:hover {
+  left: -5%;
+  opacity: 1;
+}
+
+.item_container1 > .btn_forward, .item_container2 > .btn_forward, .item_container3 > .btn_forward {
+  right: -5.5%;
+}
+
+.item_container1 > .btn_forward:hover, .item_container2 > .btn_forward:hover, .item_container3 > .btn_forward:hover {
+  right: -5.5%;
+  opacity: 1;
+}
+
+.btn_forward > img {
+  width: 50px;
+  display: block;
+}
+
+.btn_back > img {
+  width: 50px;
+  display: none;
+  
+}

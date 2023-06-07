@@ -1,0 +1,124 @@
+.sidebar {
+    $primary_color: #005f92;
+    position: fixed;
+    overflow: auto;
+    width: 200px;
+    height: 100%;
+    border-right: 0.5px solid rgba(211, 211, 211, 0.5);
+    background-color: white;
+
+    z-index: 999;
+    transition: 0.5s;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    .sidebarBtn {
+        position: absolute;
+        display: none;
+        top: 0;
+        right: 0;
+        color: $primary_color;
+        cursor: pointer;
+    }
+
+    .top {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+
+        .logo {
+            margin-top: 25px;
+            font-size: 2em;
+            color: $primary_color;
+        }
+    }
+
+    .center {
+        ul {
+            margin: 0;
+            padding: 0;
+
+            li {
+                transition: 0.2s;
+                &.check {
+                    background-color: #33333333;
+                }
+                .title,
+                a {
+                    display: flex;
+                    align-items: center;
+                    padding-left: 5px;
+                    padding-bottom: 10px;
+                    transition: 0.5s;
+                    height: 35px;
+                    word-break: keep-all;
+                }
+                svg{
+                    margin-right: 10px;
+                }
+
+                .title {
+                    margin: 25px 5px 5px 5px;
+                    font-size: 1em;
+                    font-weight: bold;
+                    color: #999;
+                    word-break: keep-all;
+                    text-align: center;
+                    border-bottom: 1px solid #33333333;
+                }
+
+                a {
+                    font-size: 1.5em;
+                    gap: 5px;
+                    padding: 5px 0 5px 16px;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: #ece8ff;
+                    }
+
+                    .icon {
+                        font-size: 1em;
+                        color: $primary_color;
+                    }
+
+                    span {
+                        font-size: 0.8em;
+                        color: #333;
+                        word-break: keep-all;
+                    }
+                }
+            }
+        }
+    }
+
+    &.active {
+        width: 55px;
+        .top {
+            .logo {
+                font-size: 0.8em;
+            }
+        }
+        .center {
+            ul{
+                li{
+                    .title{
+                        font-size: 0.5em;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@media (max-width: 1024px) {
+    .sidebar {
+        .sidebarBtn {
+            display: block;
+        }
+    }
+}

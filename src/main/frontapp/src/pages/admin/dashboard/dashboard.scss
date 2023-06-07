@@ -1,0 +1,56 @@
+.dashBoard * {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.dashBoard {
+    display: grid;
+    grid-template: 1fr/ 200px 1fr;
+    transition: 0.3s;
+    .dashBoardContainer {
+        display: grid;
+        grid-column: 2/-1;
+        height: 100vh;
+        align-content: start;
+
+        .widgets,
+        .charts {
+            display: flex;
+            padding: 20px;
+            gap: 20px;
+        }
+        .charts {
+            padding: 5px 20px;
+        }
+    }
+}
+
+// 테블릿
+@media (max-width: 1024px) {
+    .dashBoard {
+        grid-template: 1fr/ 55px 1fr;
+
+        .dashBoardContainer {
+            .charts {
+                flex-direction: column;
+            }
+        }
+    }
+}
+
+// 모바일
+@media (max-width: 768px) {
+    .dashBoard {
+        grid-template: 1fr/ 55px 1fr;
+
+        .dashBoardContainer {
+            .widgets,
+            .charts {
+                flex-direction: column;
+            }
+
+            .listContainer {
+                display: none;
+            }
+        }
+    }
+}

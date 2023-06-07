@@ -1,0 +1,55 @@
+.myOrderFlow {
+  margin-top: 40px;
+  width: 100%;
+  position: relative;
+  
+  
+  .oStepList {
+    display: flex;
+    height: auto;
+    gap: 100px;
+    width: 100%;
+    padding: 0 20px;
+    .oStep {
+      padding: 20px 0;
+      display: block;
+      p {
+        font-weight: bold;
+        font-size: 15px;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+      a {
+        display: inline-block;
+        background-color: black;
+        width: 80px;
+        height: 80px;
+        border-radius: 100%;
+        position: relative;
+        .circle {
+          color: white;
+          font-size: 30px;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+    }
+
+    .arrow {
+      width: 100px;
+      position: relative;
+      .material-symbols-outlined {
+        font-size: 80px;
+        color: #d1d1d1;
+        position: absolute;
+        left: 50%;
+        top: 25%;
+        transform: translateX(-50%);
+      }
+    }
+
+  }
+
+}

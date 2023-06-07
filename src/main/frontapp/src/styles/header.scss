@@ -1,0 +1,464 @@
+header {
+  position: sticky;
+  left: 0;
+  top: 0;
+  margin: 0 auto;
+  width: 100%;
+  z-index: 2;
+  display: block;
+
+  .headerTopContainer {
+    background-color: black;
+    
+  }
+  .top {
+    background-color: rgba(255, 255, 255, 0.9);
+    transition: 0.5s;
+    background-color: black;
+    display: block;
+    visibility: visible;
+    height: 30px;
+    padding: 5px 0;
+    position: relative;
+    max-width: 85rem;
+    margin: 0 auto;
+
+    .comment {
+      color: white;
+      font-size: 1rem;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .inner_submenu_right {
+      li {
+        a {
+          display: block;
+          font-size: 0.8rem;
+          color: white;
+          line-height: 1.1;
+          position: relative;
+          line-height: 2;
+        }
+
+        margin-left: 20px;
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+        width: auto;
+
+        &::before {
+          content: '';
+          display: block;
+          background-color: #797979;
+          width: 1px;
+          height: 12px;
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: -10px;
+          margin: auto;
+        }
+
+        &:first-child:before {
+          display: none;
+        }
+      }
+
+      text-align: right;
+      display: inline-block;
+      position: absolute;
+      right: 0;
+      margin-right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  .headerBottomContainer {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-bottom: 1px solid #ececec;
+  }
+
+
+
+  .bottom {
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.9);
+    height: 55px;
+    display: flex;
+    position: relative;
+    max-width: 85rem;
+    min-width: 38rem;
+    margin: 0 auto;
+
+    .left {
+      position: absolute;
+      z-index: 2;
+      text-align: left;
+      left: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .material-symbols-outlined {
+      font-size: 30px;
+      color: black;
+    }
+
+    .left {
+      > a {
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      .logo {
+        display: inline-block;
+        height: 55px;
+        margin-left: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+          display: block;
+          height: 35px;
+        }
+      }
+    }
+
+    .center {
+      /* width: 100%; */
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+
+      > ul {
+        text-align: center;
+
+        > li {
+          display: inline-block;
+          margin: 0 20px;
+          position: relative;
+          box-sizing: border-box;
+          
+          a {
+            font-size: 1.2rem;
+            color: black;
+            text-align: center;
+            line-height: 55px;
+            box-sizing: border-box;
+            transition: 0.2s;
+          }
+
+          &:hover {
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+
+  .top .inner li:hover {
+    font-weight: bold;
+  }
+
+
+  .bottom {
+    .center > ul > li {
+      &:before {
+        content: '';
+        display: block;
+        background-color: #797979;
+        width: 1px;
+        margin-top: 1px;
+        top: 50%;
+        left: -20px;
+        transform: translateY(-50%);
+        height: 15px;
+        position: absolute;
+      }
+
+      &:first-child::before {
+        content: '';
+        display: none;
+      }
+    }
+
+    .right {
+      position: absolute;
+      right: 10px;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      align-items: center;
+
+      /* margin-right: 10px; */
+
+      ul {
+        position: relative;
+        left: 25px;
+        text-align: right;
+        box-sizing: border-box;
+
+        li {
+          margin-right: 20px;
+          display: inline-block;
+          top: 2px;
+          position: relative;
+          transition: 0.2s;
+        }
+      }
+    }
+
+    .center .logo_hidden {
+      display: none;
+    }
+  }
+
+  .badges {
+    position: absolute;
+    top: 145%;
+    right: 12px;
+    transition: 0.5s;
+
+    .badge {
+      position: relative;
+      opacity: 1;
+      visibility: visible;
+      width: 100%;
+
+      .close {
+        position: absolute;
+        width: 20px;
+        right: 80%;
+        top: 3%;
+        opacity: 0.3;
+        transition: 0.2s;
+        cursor: pointer;
+
+        &:hover {
+          opacity: 1;
+          width: 25px;
+          right: 77%;
+        }
+      }
+
+      .badgeImg {
+        transition: 0.4s;
+        border-radius: 15px;
+        overflow: hidden;
+        margin-bottom: 12px;
+        filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.25));
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+/* ======= HEADER TOP ======= */
+
+/* 현재페이지 시점 표시 */
+
+/* .location {
+  font-weight: bold;
+  font-size: 1rem;
+} */
+
+/* 로그인/사인업 수직정렬을 위한 처리 */
+
+/* ======= HEADER BOTTOM ======= */
+
+/* ======= CENTER ======= */
+
+/* 메인메뉴 호버 굵게*/
+
+/* 메인메뉴 사이 구분선 */
+
+/* ======= SIDE-BADGE ======= */
+
+/* 백스크롤 버튼 */
+
+.btn_scrollBack {
+  position: absolute;
+  right: 5vw;
+  top: 80vh;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s ease-in-out;
+  filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.15));
+  cursor: pointer;
+
+  img {
+    width: 50px;
+  }
+}
+
+/* ======= 검색창 ======= */
+
+.right ul li:first-of-type {
+  position: relative;
+}
+
+.search input {
+  position: absolute;
+  display: inline-block;
+  outline: 1px solid #000;
+  border-radius: 5px;
+  background-color: #000;
+  border: 0;
+  width: 0px;
+  color: white;
+  height: 30px;
+  right: 50px;
+  opacity: 0;
+  font-size: 12px;
+  transition: 0.4s;
+  box-shadow: none;
+  padding-left: 10px;
+  visibility: hidden;
+
+  &::-webkit-input-placeholder {
+    position: absolute;
+    font-size: 1.2em;
+    vertical-align: text-bottom;
+    color: white;
+    top: 50%;
+    transform: translateY(-55%);
+  }
+}
+
+/* 검색창 placeholder 블랙 */
+
+input:-ms-input-placeholder {
+  color: white;
+}
+
+textarea {
+  &::-webkit-input-placeholder, &:-ms-input-placeholder {
+    color: white;
+  }
+}
+
+.left .material-symbols-outlined {
+  display: none;
+  transition: 0.4s;
+}
+
+/* =============   사이드 메뉴    ============== */
+
+.sideMenu {
+  width: 400px;
+  height: 100vh;
+  padding: 100px 0 130px 80px;
+  background-color: white;
+  position: fixed;
+  box-sizing: border-box;
+  border-right: 1px solid #ececec;
+  top: 0;
+  left: -400px;
+  z-index: 4;
+  transition: 0.3s;
+}
+
+.close_Side {
+  margin-left: -5px;
+
+  span {
+    color: #797979;
+    font-size: 35px;
+  }
+}
+
+.sideMenu ul li {
+  font-size: 1.5rem;
+  font-weight: normal;
+  margin-top: 40px;
+
+  a {
+    color: black;
+    position: relative;
+
+    &:hover::after {
+      display: block;
+      content: '';
+      position: absolute;
+      height: 2px;
+      background-color: black;
+      left: 0px;
+      width: 0%;
+      bottom: -3px;
+      transition: width 0.3s ease-in-out;
+    }
+  }
+}
+
+/* ========================================= */
+/* =============    반응형    ============== */
+/* ========================================= */
+
+/* 모바일 사이즈 */
+@media (max-width: 768px) {
+  
+  header {
+    .top, .myListContainer {
+      display: none;
+    }
+
+    .bottom {
+      .left {
+        .material-symbols-outlined {
+          display: block;
+        }
+
+        img {
+          visibility: hidden;
+          position: absolute;
+          left: 50%;
+        }
+      }
+
+      .center ul {
+        display: none;
+      }
+    }
+
+    .badges {
+      display: none;
+    }
+
+    .bottom .center .logo_hidden {
+      display: block;
+      height: 55px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .center .logo_hidden img {
+      height: 35px;
+    }
+
+    .bottom .right ul {
+      margin-right: 10px;
+
+      li {
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+/* 타블렛 사이즈 */
+@media (max-width: 1024px) {
+  header .bottom .center > ul > li {
+    margin: 0 0.5rem;
+
+    &:before {
+      left: -10px;
+    }
+  }
+}

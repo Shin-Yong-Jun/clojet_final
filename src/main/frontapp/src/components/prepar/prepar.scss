@@ -1,0 +1,14 @@
+.prepar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    height: 95vh;
+    .icon{
+        font-size: 100px;
+    }
+    p{
+        font-size: 24px;
+    }
+}

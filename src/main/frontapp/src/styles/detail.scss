@@ -1,0 +1,63 @@
+main {
+  margin-top: 20px;
+  .detail {
+    position: relative;
+    width: 100%;
+    .detail_img_box {
+      display: inline-block;
+      width: 70%;
+      text-align: center;
+      .detail_thum,
+      .detail_img {
+        padding-right: 5%;
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+
+/* ******************************************** */
+/* 썸네일 */
+
+.detail_thum {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #ececec;
+  margin-bottom: 20px;
+  height: 800px;
+}
+.thum {
+  min-height: 85%;
+  margin-bottom: 20px;
+}
+.detail_thum .thum img {
+  height: 100%;
+}
+.detail_thum ul {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 10px;
+  height: 15%;
+  width: 100%;
+  padding: 10px;
+}
+.detail_thum ul li {
+  height: 100%;
+  width: 90px;
+  transition: 0.3s;
+}
+.detail_thum ul .show_now {
+  box-sizing: content-box;
+  height: 120%;
+  width: 90px;
+}
+.detail_thum ul li img {
+  height: 100%;
+  width: 100%;
+}

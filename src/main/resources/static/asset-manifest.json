@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/static/css/main.ef6ab05b.css",
+    "main.js": "/static/js/main.2ecdd2a0.js",
+    "static/media/clojet-mainss-slider3.png": "/static/media/clojet-mainss-slider3.cfe8a1f5af09cc813d16.png",
+    "static/media/clojet-mainss-slider2.png": "/static/media/clojet-mainss-slider2.8f1de4962370a822f973.png",
+    "static/media/clojet-mainss-slider1.png": "/static/media/clojet-mainss-slider1.cc6955d6dad90959c611.png",
+    "static/media/clojet-mainfw-foot_banner.png": "/static/media/clojet-mainfw-foot_banner.4c98d5ac4c73348380b4.png",
+    "static/media/clojet-mainfw-middle_banner.png": "/static/media/clojet-mainfw-middle_banner.f99369bd1a5e114093b9.png",
+    "static/media/clojet-category-new-banner.png": "/static/media/clojet-category-new-banner.25db47bc53c1baf354f9.png",
+    "static/media/clojet_logo_final_black.png": "/static/media/clojet_logo_final_black.329e727d1930b7db2a83.png",
+    "index.html": "/index.html",
+    "static/media/left-arrow.svg": "/static/media/left-arrow.da21225bcf530088451874c9e21c215a.svg",
+    "static/media/right-arrow.svg": "/static/media/right-arrow.d19ce8f87764b5901ed2ca6f0ff22d03.svg",
+    "static/media/arrow_forward_ios_FILL0_wght400_GRAD0_opsz48.svg": "/static/media/arrow_forward_ios_FILL0_wght400_GRAD0_opsz48.7b13c9ac5e7c53fc2f3af0ae9afcc4d1.svg",
+    "static/media/arrow_back_ios_FILL0_wght400_GRAD0_opsz48.svg": "/static/media/arrow_back_ios_FILL0_wght400_GRAD0_opsz48.bc24e9e3061ccb03a6e13a55760da701.svg",
+    "main.ef6ab05b.css.map": "/static/css/main.ef6ab05b.css.map",
+    "main.2ecdd2a0.js.map": "/static/js/main.2ecdd2a0.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ef6ab05b.css",
+    "static/js/main.2ecdd2a0.js"
+  ]
+}

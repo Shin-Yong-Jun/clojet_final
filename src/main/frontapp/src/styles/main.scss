@@ -1,0 +1,60 @@
+main {
+  
+  width: 1350px;
+  margin: 0 auto;
+  position: relative;
+  // .inner {
+  // }
+
+  margin: 0 auto;
+  padding: 0px 0 0 0;
+  box-sizing: border-box;
+}
+
+/* ========================== BODY_MAIN ========================== */
+/* =========== 특가 banner  ========== */
+
+.main_banner_box1 {
+  position: relative;
+
+  img {
+    width: 100%;
+    height: auto;
+    vertical-align: bottom;
+  }
+}
+
+
+.empty {
+  width: auto;
+  height: 50px;
+}
+
+/* =========== 계절,신상 큐레이션 banner  ========== */
+
+.main_banner_box2 {
+  width: 1350px;
+  height: 350p;
+  margin: 0 auto;
+}
+
+/* 
+/* === 상단 이미지 슬라이더 관련 코드=== */
+
+.main_banner_box1 img {
+  width: 1350px;
+  vertical-align: bottom;
+  height: auto;
+}
+
+/* ========================================= */
+/* =============    반응형    ============== */
+/* ========================================= */
+
+/* 모바일 사이즈 */
+@media (max-width: 768px) {
+.myListContainer {
+  display: none;
+}
+
+}
