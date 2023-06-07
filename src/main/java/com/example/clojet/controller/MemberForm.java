@@ -1,30 +1,13 @@
-package com.example.clojet.domain;
+package com.example.clojet.controller;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.*;
-
-@Entity
-@Table(name = "member")
-@Getter
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-public class Member {
-
-    @Id
+public class MemberForm {
     private String user_email;
 
     private String user_pw;
 
-    @Column(name="user_gender")
-    private Character user_gender;
+    private char user_gender;
 
-    @Column(name="user_phone")
     private String user_phone;
-
 
     public String getUser_email() {
         return user_email;
@@ -42,11 +25,11 @@ public class Member {
         this.user_pw = user_pw;
     }
 
-    public Character getUser_gender() {
+    public char getUser_gender() {
         return user_gender;
     }
 
-    public void setUser_gender(Character user_gender) {
+    public void setUser_gender(char user_gender) {
         this.user_gender = user_gender;
     }
 

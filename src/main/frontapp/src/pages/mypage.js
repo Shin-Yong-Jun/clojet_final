@@ -18,6 +18,8 @@ const sideMenu_askPages = [
 
 const sideMenu_myInfo = [{ id: 1, title: "회원정보 수정", url: "/" }];
 
+//마이페이지 HTML 구성
+
   return (
     <div className="mpContainer">
       <Sidemenu />
@@ -114,8 +116,6 @@ const sideMenu_myInfo = [{ id: 1, title: "회원정보 수정", url: "/" }];
     return (
       <>
         <ul className="statusBox">
-          <li className="box"><p>{statusData.coupon}</p><p>쿠폰</p></li>
-          <li className="box"><p>{makeDot(statusData.point)}M</p><p>나의 포인트</p></li>
           <li className="box"><p>{statusData.request}</p><p>문의</p></li>
           <li className="box"><p>{statusData.wish}</p><p>위시리스트</p></li>
         </ul>

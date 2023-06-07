@@ -9,6 +9,13 @@ import java.util.List;
 public class MemberService {
     private MemberRepository memberRepository;
 
+    public String join(Member member) {
+//        validateDuplicateMember(member);
+        memberRepository.save(member);
+        return "가입완료";
+    }
+
+
     @Autowired
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
