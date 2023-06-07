@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.ef6ab05b.css",
-    "main.js": "/static/js/main.2ecdd2a0.js",
+    "main.js": "/static/js/main.6426c574.js",
     "static/media/clojet-mainss-slider3.png": "/static/media/clojet-mainss-slider3.cfe8a1f5af09cc813d16.png",
     "static/media/clojet-mainss-slider2.png": "/static/media/clojet-mainss-slider2.8f1de4962370a822f973.png",
     "static/media/clojet-mainss-slider1.png": "/static/media/clojet-mainss-slider1.cc6955d6dad90959c611.png",
@@ -15,10 +15,10 @@
     "static/media/arrow_forward_ios_FILL0_wght400_GRAD0_opsz48.svg": "/static/media/arrow_forward_ios_FILL0_wght400_GRAD0_opsz48.7b13c9ac5e7c53fc2f3af0ae9afcc4d1.svg",
     "static/media/arrow_back_ios_FILL0_wght400_GRAD0_opsz48.svg": "/static/media/arrow_back_ios_FILL0_wght400_GRAD0_opsz48.bc24e9e3061ccb03a6e13a55760da701.svg",
     "main.ef6ab05b.css.map": "/static/css/main.ef6ab05b.css.map",
-    "main.2ecdd2a0.js.map": "/static/js/main.2ecdd2a0.js.map"
+    "main.6426c574.js.map": "/static/js/main.6426c574.js.map"
   },
   "entrypoints": [
     "static/css/main.ef6ab05b.css",
-    "static/js/main.2ecdd2a0.js"
+    "static/js/main.6426c574.js"
   ]
 }
