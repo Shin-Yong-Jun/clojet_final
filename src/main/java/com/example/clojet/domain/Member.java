@@ -8,11 +8,7 @@ import lombok.*;
 
 @Entity
 @Table(name = "MEMBER")
-@ToString
-@Getter
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
+@Data
 public class Member {
 
     @Id
@@ -27,38 +23,4 @@ public class Member {
 
     @Column(name="USER_PHONE")
     private String USER_PHONE;
-
-    public String getUSER_EMAIL() {
-        return USER_EMAIL;
-    }
-
-    public void setUSER_EMAIL(String USER_EMAIL) {
-        this.USER_EMAIL = USER_EMAIL;
-    }
-
-    public String getUSER_PW() {
-        return USER_PW;
-    }
-
-    public void setUSER_PW(String USER_PW) {
-        this.USER_PW = USER_PW;
-    }
-
-    public Character getUSER_GENDER() {
-        return USER_GENDER;
-    }
-
-    public void setUSER_GENDER(Character USER_GENDER) {
-        this.USER_GENDER = USER_GENDER;
-    }
-
-    public String getUSER_PHONE() {
-        return USER_PHONE;
-    }
-
-    public void setUSER_PHONE(String USER_PHONE) {
-        this.USER_PHONE = USER_PHONE;
-    }
-
-
 }
