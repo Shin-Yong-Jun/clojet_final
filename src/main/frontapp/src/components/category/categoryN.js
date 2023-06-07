@@ -4,7 +4,6 @@ import './categoryN.scss';
 import { Link } from 'react-router-dom';
 import { Check, CheckBox } from '@mui/icons-material';
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
-import ArrowDropUpRoundedIcon from '@mui/icons-material/ArrowDropUpRounded';
 
 function CategoryN() {
     return (
@@ -24,7 +23,7 @@ function CategoryN() {
                     <div className='side_item2'>
                         <div className='side_title'>
                             <h2>성별</h2>
-                            <ArrowDropDownRoundedIcon />
+                            <ArrowDropDownRoundedIcon className='icon' />
                         </div>
                         <div>
                             <input type='checkbox' />
@@ -36,15 +35,66 @@ function CategoryN() {
                         </div>
                     </div>
                     <div className='side_item3'>
-                        <h2>색상</h2>
+                        <div className='side_title'>
+                            <h2>가격대</h2>
+                            <ArrowDropDownRoundedIcon className='icon' />
+                        </div>
                         <div>
-                            <div>
-                                <div>동그라미</div>
-                                <div>색상1</div>
+                            <input type='checkbox' />
+                            <span> 0 - 100,000 원</span>
+                        </div>
+                        <div>
+                            <input type='checkbox' />
+                            <span> 100,000 - 200,000 원</span>
+                        </div>
+                        <div>
+                            <input type='checkbox' />
+                            <span> 200,000 - 300,000 원</span>
+                        </div>
+                        <div>
+                            <input type='checkbox' />
+                            <span> 300,000 - 400,000 원</span>
+                        </div>
+                        <div>
+                            <input type='checkbox' />
+                            <span> 400,000 - 500,000 원</span>
+                        </div>
+                    </div>
+                    <div className='side_item4'>
+                        <div className='side_title'>
+                            <h2>색상</h2>
+                            <ArrowDropDownRoundedIcon className='icon' />
+                        </div>
+                        <div className='pallet'>
+                            <div className='color_box'>
+                                <div className='color'>{'동그라미'}</div>
+                                <div className='color_name'>{'색상'}</div>
                             </div>
-                            <div>
-                                <div>동그라미</div>
-                                <div>색상2</div>
+                        </div>
+                    </div>
+                    <div className='side_item5'>
+                        <div className='side_title'>
+                            <h2>사이즈</h2>
+                            <ArrowDropDownRoundedIcon className='icon' />
+                        </div>
+                        <div className='size_list'>
+                            <div className='size'>
+                                <span>XS</span>
+                            </div>
+                            <div className='size'>
+                                <span>S</span>
+                            </div>
+                            <div className='size'>
+                                <span>M</span>
+                            </div>
+                            <div className='size'>
+                                <span>L</span>
+                            </div>
+                            <div className='size'>
+                                <span>XL</span>
+                            </div>
+                            <div className='size'>
+                                <span>2XL</span>
                             </div>
                         </div>
                     </div>

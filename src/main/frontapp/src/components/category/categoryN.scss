@@ -11,6 +11,11 @@
 
         .category_side {
             background-color: deeppink;
+            .side_title {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
             .side_item {
                 background-color: chartreuse;
                 a {
@@ -18,18 +23,50 @@
                 }
             }
             .side_item2 {
-                .side_title{
-                    display: flex;
-                    justify-content: stretch;
-                    align-items: center;
-                }
-
                 background-color: darkkhaki;
             }
             .side_item3 {
+                background-color: gold;
+            }
+            .side_item4 {
                 background-color: crimson;
-                > div {
+                .pallet {
                     display: flex;
+                    justify-content: center;
+                    flex-wrap: wrap;
+
+                    .color_box {
+                        text-align: center;
+                        .color {
+                            background-color: black;
+                            border-radius: 50%;
+                            width: 33px;
+                            height: 33px;
+                            text-indent: -9999rem;
+                        }
+                        .color_name {
+                            font-size: small;
+                        }
+                    }
+                }
+            }
+            .side_item5 {
+                background-color: darkgrey;
+                .size_list {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 10px;
+                    flex-wrap: wrap;
+                    .size {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        border: 1px solid black;
+                        border-radius: 10%;
+                        width: 70px;
+                        height: 40px;
+                    }
                 }
             }
         }
