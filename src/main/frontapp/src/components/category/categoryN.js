@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import cNdata from './cNdata';
 import './categoryN.scss';
 import { Link } from 'react-router-dom';
@@ -6,6 +6,19 @@ import { Check, CheckBox } from '@mui/icons-material';
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 
 function CategoryN() {
+    const size = ['XS', 'S', 'M', 'L', 'XL', '2XL'];
+    const [first, setfirst] = useState(Array(size.length).fill(false));
+
+    function clickE(index) {
+        console.log(first);
+        setfirst((prevS) => {
+            const new1 = [...prevS];
+            new1[index] = !new1[index];
+            return new1;
+        });
+        console.log(first);
+    }
+
     return (
         <div className='category'>
             <div className='category_left'>
@@ -27,11 +40,11 @@ function CategoryN() {
                         </div>
                         <div>
                             <input type='checkbox' />
-                            <span>man</span>
+                            <span> man</span>
                         </div>
                         <div>
                             <input type='checkbox' />
-                            <span>woman</span>
+                            <span> woman</span>
                         </div>
                     </div>
                     <div className='side_item'>
@@ -78,24 +91,17 @@ function CategoryN() {
                             <ArrowDropDownRoundedIcon className='icon' />
                         </div>
                         <div className='size_list'>
-                            <div className='size'>
-                                <span>XS</span>
-                            </div>
-                            <div className='size'>
-                                <span>S</span>
-                            </div>
-                            <div className='size'>
-                                <span>M</span>
-                            </div>
-                            <div className='size'>
-                                <span>L</span>
-                            </div>
-                            <div className='size'>
-                                <span>XL</span>
-                            </div>
-                            <div className='size'>
-                                <span>2XL</span>
-                            </div>
+                            {size.map((sizeV, index) => {
+                                return (
+                                    <div
+                                        key={sizeV}
+                                        onClick={() => clickE(index)}
+                                        className={`size ${first && 'active'}`}
+                                    >
+                                        <span>{sizeV}</span>
+                                    </div>
+                                );
+                            })}
                         </div>
                     </div>
                 </div>
