@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import cNdata from './cNdata';
 import './categoryN.scss';
 import { Link } from 'react-router-dom';
@@ -6,6 +6,19 @@ import { Check, CheckBox } from '@mui/icons-material';
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 
 function CategoryN() {
+    const size = ['XS', 'S', 'M', 'L', 'XL', '2XL'];
+    const [first, setfirst] = useState(Array(size.length).fill(false));
+
+    function clickE(index) {
+        console.log(first);
+        setfirst((prevS) => {
+            const new1 = [...prevS];
+            new1[index] = !new1[index];
+            return new1;
+        });
+        console.log(first);
+    }
+
     return (
         <div className='category'>
             <div className='category_left'>
@@ -20,23 +33,23 @@ function CategoryN() {
                         <Link to={'/'}>아우터</Link>
                         <Link to={'/'}>아우터</Link>
                     </div>
-                    <div className='side_item2'>
+                    <div className='side_item'>
                         <div className='side_title'>
-                            <h2>성별</h2>
+                            <h3>성별</h3>
                             <ArrowDropDownRoundedIcon className='icon' />
                         </div>
                         <div>
                             <input type='checkbox' />
-                            <span>man</span>
+                            <span> man</span>
                         </div>
                         <div>
                             <input type='checkbox' />
-                            <span>woman</span>
+                            <span> woman</span>
                         </div>
                     </div>
-                    <div className='side_item3'>
+                    <div className='side_item'>
                         <div className='side_title'>
-                            <h2>가격대</h2>
+                            <h3>가격대</h3>
                             <ArrowDropDownRoundedIcon className='icon' />
                         </div>
                         <div>
@@ -60,9 +73,9 @@ function CategoryN() {
                             <span> 400,000 - 500,000 원</span>
                         </div>
                     </div>
-                    <div className='side_item4'>
+                    <div className='side_item'>
                         <div className='side_title'>
-                            <h2>색상</h2>
+                            <h3>색상</h3>
                             <ArrowDropDownRoundedIcon className='icon' />
                         </div>
                         <div className='pallet'>
@@ -72,30 +85,23 @@ function CategoryN() {
                             </div>
                         </div>
                     </div>
-                    <div className='side_item5'>
+                    <div className='side_item'>
                         <div className='side_title'>
-                            <h2>사이즈</h2>
+                            <h3>사이즈</h3>
                             <ArrowDropDownRoundedIcon className='icon' />
                         </div>
                         <div className='size_list'>
-                            <div className='size'>
-                                <span>XS</span>
-                            </div>
-                            <div className='size'>
-                                <span>S</span>
-                            </div>
-                            <div className='size'>
-                                <span>M</span>
-                            </div>
-                            <div className='size'>
-                                <span>L</span>
-                            </div>
-                            <div className='size'>
-                                <span>XL</span>
-                            </div>
-                            <div className='size'>
-                                <span>2XL</span>
-                            </div>
+                            {size.map((sizeV, index) => {
+                                return (
+                                    <div
+                                        key={sizeV}
+                                        onClick={() => clickE(index)}
+                                        className={`size ${first && 'active'}`}
+                                    >
+                                        <span>{sizeV}</span>
+                                    </div>
+                                );
+                            })}
                         </div>
                     </div>
                 </div>
@@ -111,34 +117,32 @@ function CategoryN() {
                 <div className='category_item'>
                     <h1>아이템</h1>
                 </div>
+                {/* <div className='container'>
+                    {cNdata.map((product, index) => (
+                        <div key={product.id} className='pd_box'>
+                            <div className='pd_img'>
+                                <a href='/'>
+                                    <img
+                                        src={require(`../../image/product${
+                                            index + 1
+                                        }.jpg`)}
+                                        alt={`product${index + 1}`}
+                                    />
+                                </a>
+                            </div>
+                            <div className='pd_info'>
+                                <p>{product.title}</p>
+                                <p>{product.PercentS}</p>
+                                <p>
+                                    <del>{product.basicP}</del>{' '}
+                                    <strong>{product.saleP}</strong>
+                                </p>
+                            </div>
+                        </div>
+                    ))}
+                </div> */}
             </div>
         </div>
-
-        /* <h1>NEW</h1>
-            <div className='container'>
-                {cNdata.map((product,index) => (
-                    <div key={product.id} className='pd_box'>
-                        <div className='pd_img'>
-                            <a href='/'>
-                                <img
-                                    src={require(`../../image/product${
-                                        index + 1
-                                    }.jpg`)}
-                                    alt={`product${index + 1}`}
-                                />
-                            </a>
-                        </div>
-                        <div className='pd_info'>
-                            <p>{product.title}</p>
-                            <p>{product.PercentS}</p>
-                            <p>
-                                <del>{product.basicP}</del>{' '}
-                                <strong>{product.saleP}</strong>
-                            </p>
-                        </div>
-                    </div>
-                ))}
-            </div> */
     );
 }
 

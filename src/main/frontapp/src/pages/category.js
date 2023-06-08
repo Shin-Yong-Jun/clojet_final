@@ -2,7 +2,6 @@ import React from 'react';
 import CategoryN from '../components/category/categoryN';
 import { Route, Routes } from 'react-router-dom';
 
-
 function Categoryacc() {
     return <div>Categoryacc</div>;
 }
@@ -22,8 +21,6 @@ function Categorymens() {
 function CategoryNew() {
     return (
         <>
-            <div>CategoryNew페이지입니다.</div>
-
             <CategoryN />
         </>
     );
@@ -45,5 +42,5 @@ export default function Category() {
                 <Route path='/new' element={<CategoryNew />} />
             </Routes>
         </>
-    )
+    );
 }
