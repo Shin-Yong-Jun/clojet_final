@@ -7,12 +7,13 @@ a {
 
 .main_products1, .main_products2, .main_products3 {
   text-align: center;
+  h4{
+    font-size: 30px;
+    margin-bottom: 10px;
+
+  }
 }
 
-main h4 {
-  font-size: 30px;
-  margin-bottom: 10px;
-}
 
 .main_products1 li, .main_products2 li, .main_products3 li {
   display: inline-block;
