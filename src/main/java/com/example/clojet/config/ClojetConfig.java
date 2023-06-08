@@ -9,8 +9,11 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ClojetConfig {
 
+    private MemberRepository memberRepository;
+
     @Autowired
     public ClojetConfig(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
     }
 
 }
