@@ -10,13 +10,11 @@ function CategoryN() {
     const [first, setfirst] = useState(Array(size.length).fill(false));
 
     function clickE(index) {
-        console.log(first);
         setfirst((prevS) => {
             const new1 = [...prevS];
             new1[index] = !new1[index];
             return new1;
         });
-        console.log(first);
     }
 
     return (
@@ -96,7 +94,9 @@ function CategoryN() {
                                     <div
                                         key={sizeV}
                                         onClick={() => clickE(index)}
-                                        className={`size ${first && 'active'}`}
+                                        className={`size ${
+                                            first[index] && 'active'
+                                        }`}
                                     >
                                         <span>{sizeV}</span>
                                     </div>
