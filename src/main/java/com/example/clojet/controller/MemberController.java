@@ -32,10 +32,10 @@ public class MemberController {
     @PostMapping("/members/new")
     public String create(MemberForm form) {
         Member member = Member.builder()
-                .user_email(form.getUser_email())
-                .user_pw(form.getUser_pw())
-                .user_gender(form.getUser_gender())
-                .user_phone(form.getUser_phone())
+                .userEmail(form.getUserEmail())
+                .userPw(form.getUserPw())
+                .userGender(form.getUserGender())
+                .userPhone(form.getUserPhone())
                 .build();
         memberService.join(member);
         return "redirect:/";

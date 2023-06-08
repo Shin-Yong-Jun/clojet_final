@@ -10,9 +10,7 @@ import java.util.Optional;
 @Repository
 public interface MemberRepository extends JpaRepository<Member, String> {
 
-//    Optional<Member> findByUser_email(String user_email);
+    Optional<Member> findByUserEmail(String userEmail);
 
 
-    @Override
-    List<Member> findAll();
 }
