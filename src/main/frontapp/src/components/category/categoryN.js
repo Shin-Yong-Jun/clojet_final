@@ -133,7 +133,7 @@ function CategoryN() {
                 </div>
                 <div className='category_item'>
                     <h1>아이템</h1>
-                    <div className='container'>
+                    <div className='containerC'>
                         {cNdata.map((product, index) => (
                             <div key={product.id} className='pd_box'>
                                 <div className='pd_img'>
