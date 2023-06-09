@@ -3,6 +3,7 @@ package com.example.clojet.controller;
 import com.example.clojet.domain.Member;
 import com.example.clojet.repository.MemberRepository;
 import com.example.clojet.service.MemberService;
+import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/member")
@@ -19,11 +21,29 @@ import java.util.List;
 public class MemberController {
 
     private final MemberRepository memberRepository;
+    private final HttpSession session;
 
     //Create
     @PostMapping("/create")
     public ResponseEntity<?> createMember(@RequestBody Member member) {
         return ResponseEntity.ok(memberRepository.save(member));
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> loginMember(@RequestBody Member memberLogin, HttpSession session) {
+        Optional<Member> memberOptional =
+                memberRepository.findByUserEmailAndUserPw(
+                        memberLogin.getUserEmail(),
+                        memberLogin.getUserPw());
+        if (memberOptional.isPresent()) {
+            // 로그인 성공
+            Member loginMember = memberOptional.get();
+            session.setAttribute("loggedInMember", loginMember);
+            return ResponseEntity.ok().build();
+        } else {
+            // 로그인 실패
+            return ResponseEntity.badRequest().body("로그인 정보가 일치하지 않습니다.");
+        }
     }
 
 
@@ -42,7 +62,7 @@ public class MemberController {
 
 
     //Update
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public void updateMember(@PathVariable Long id, String userEmail) {
         memberRepository.findById(id)
                 .map(member -> {
@@ -52,7 +72,7 @@ public class MemberController {
     }
 
     //Delete
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public void deleteMember(@PathVariable Long id) {
         memberRepository.deleteById(id);
     }

@@ -9,7 +9,7 @@ export default Cart;
 function Cart() {
   return (
     <>
-      <Container component="main" maxWidth="xl" className="container">
+      <Container component="main" maxWidth="xl" className="cartContainer">
         <Box className="cartBox">
           <Typography className="title">
             <strong>CART</strong>
@@ -109,7 +109,7 @@ function Cart() {
     ]
 
     return (
-      <Container className="container">
+      <Container className="cartContainer">
         <TableContainer component={Paper} className="cartTable">
           <Table aria-label="simple table">
             <TableHead>
