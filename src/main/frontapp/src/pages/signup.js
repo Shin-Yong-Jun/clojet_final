@@ -151,44 +151,33 @@ function Signup() {
         alert("개인정보 제공에 동의해주세요.")
       }
       else {
-        alert("회원가입을 축하합니다. 로그인하세요")
-        console.log({
-          email: data.get("userEmail"),
-          password: data.get("userPw"),
-          password2: data.get("userPw2"),
-          phoneNumber: data.get("userPhone"),
-          infoCheck: data.get("infoCheck"),
-          gender: data.get("userGender"),
-          name: data.get("userName"),
-          
-        });
-        navigate("/");
-      }
-      try {
-        // 회원 데이터 생성을 위한 요청 본문 생성
-        const memberData = {
-          userEmail: email,
-          userPw: password,
-          userGender: gender,
-          userName: name,
-          userPhone: phoneNumber,
-          // 필요한 추가 데이터는 여기에 포함시키세요
-        };
-    
-        // 회원 데이터 생성 요청
-        const response = await axios.post('/member/create', memberData);
-    
-        // 응답 처리
-        if (response.status === 200) {
-          alert('회원가입을 축하합니다. 로그인하세요');
-          navigate('/');
-        } else {
+        try {
+          // 회원 데이터 생성을 위한 요청 본문 생성
+          const memberData = {
+            userEmail: email,
+            userPw: password,
+            userGender: gender,
+            userName: name,
+            userPhone: phoneNumber,
+            // 필요한 추가 데이터는 여기에 포함시키세요
+          };
+      
+          // 회원 데이터 생성 요청
+          const response = await axios.post('/member/create', memberData);
+      
+          // 응답 처리
+          if (response.status === 200) {
+            alert('회원가입을 축하합니다. 로그인하세요');
+            navigate('/');
+          } else {
+            alert('회원가입에 실패했습니다.');
+          }
+        } catch (error) {
           alert('회원가입에 실패했습니다.');
+          console.error(error);
         }
-      } catch (error) {
-        alert('회원가입에 실패했습니다.');
-        console.error(error);
       }
+
   };
 
 
