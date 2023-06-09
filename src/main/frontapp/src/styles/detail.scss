@@ -1,63 +1,126 @@
-main {
-  margin-top: 20px;
-  .detail {
-    position: relative;
-    width: 100%;
-    .detail_img_box {
-      display: inline-block;
-      width: 70%;
-      text-align: center;
-      .detail_thum,
-      .detail_img {
-        padding-right: 5%;
-        img {
-          width: 100%;
-        }
-      }
+.detail {
+    .text-red {
+        color: red;
     }
-  }
+    .text-gray {
+        color: gray;
+    }
+    .border-top {
+        border-top: 1px solid #000;
+    }
 }
 
+.detail {
+    background-color: aqua;
+    height: 100vh;
+    margin-top: 20px;
 
-/* ******************************************** */
-/* 썸네일 */
+    .detail_top {
+        background-color: chartreuse;
 
-.detail_thum {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding-bottom: 30px;
-  border-bottom: 1px solid #ececec;
-  margin-bottom: 20px;
-  height: 800px;
-}
-.thum {
-  min-height: 85%;
-  margin-bottom: 20px;
-}
-.detail_thum .thum img {
-  height: 100%;
-}
-.detail_thum ul {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 10px;
-  height: 15%;
-  width: 100%;
-  padding: 10px;
-}
-.detail_thum ul li {
-  height: 100%;
-  width: 90px;
-  transition: 0.3s;
-}
-.detail_thum ul .show_now {
-  box-sizing: content-box;
-  height: 120%;
-  width: 90px;
-}
-.detail_thum ul li img {
-  height: 100%;
-  width: 100%;
+        display: flex;
+        justify-content: center;
+        // align-items: center;
+        flex-wrap: nowrap;
+
+        .detail_top_thumnail {
+            background-color: rgb(104, 70, 58);
+            width: 70%;
+            text-align: center;
+
+            .detail_top_main_thumnail {
+                background-color: brown;
+                img {
+                    height: 600px;
+                }
+            }
+            .detail_top_sub_thumnail {
+                background-color: coral;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 5px;
+
+                img {
+                    height: 200px;
+                }
+            }
+        }
+        .detail_top_information {
+            background-color: rgb(14, 37, 37);
+            width: 30%;
+
+            .event_logo {
+                span {
+                    border: 2px solid red;
+                    border-radius: 10px;
+                    margin-right: 5px;
+                }
+            }
+            .hashTag {
+                span {
+                    margin-right: 5px;
+                }
+            }
+            .title {
+                word-break: keep-all;
+            }
+            .price_area {
+                .won {
+                    font-size: 50%;
+                }
+                strong {
+                    margin-right: 5px;
+                    font-size: 30px;
+                }
+                small {
+                    font-size: 20px;
+                }
+            }
+            .about_rating {
+                display: flex;
+                align-items: center;
+
+                .rating_star {
+                    display: flex;
+                }
+            }
+            .delivery_info {
+                dl {
+                    display: inline-flex;
+                    padding-right: 15px;
+                    margin-right: 15px;
+                    border-right: 1px solid black;
+                    dt {
+                        margin-right: 5px;
+                    }
+
+                    &:last-of-type {
+                        border-right: none;
+                    }
+                }
+            }
+        }
+    }
+    .detail_bottom {
+        .detail_bottom_header {
+            background-color: white;
+        }
+
+        .detail_bottom_information {
+            background-color: bisque;
+        }
+
+        .detail_bottom_review {
+            background-color: blue;
+        }
+
+        .detail_bottom_Inquiry {
+            background-color: crimson;
+        }
+
+        .detail_bottom_etc_info {
+            background-color: cadetblue;
+        }
+    }
 }

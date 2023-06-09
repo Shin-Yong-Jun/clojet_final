@@ -26,9 +26,9 @@ $table-width: 75rem;
 }
 
 .cartTable {
-  min-width: 62.5rem;
-  width: $table-width;
-  margin: 0 auto;
+  // min-width: 62.5rem;
+  // width: $table-width;
+  // margin: 0 auto;
   
   .chkhd {
     background-color: rgb(238, 238, 238);
@@ -43,6 +43,7 @@ $table-width: 75rem;
   .tableHead {
     background-color: rgb(238, 238, 238);
     font-weight: bold;
+    font-size: 16px;
   }
   
   .tableCell {
@@ -74,7 +75,7 @@ $table-width: 75rem;
 
 .briefTable {
   margin-top: 2.5rem;
-  width: 31.25rem;
+  width: 100%;
   align-items: right;
   
 

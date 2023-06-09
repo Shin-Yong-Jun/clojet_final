@@ -232,20 +232,20 @@
   }
 
   .btn_back {
-    left: -5%;
+    right: -1%;
   }
-
+  
   .btn_back:hover {
-    left: -5%;
+    right: -1%;
     opacity: 1;
   }
 
   .btn_forward {
-    right: -5.5%;
+    right: 0%;
   }
 
   .btn_forward:hover {
-    right: -5.5%;
+    right: 0%;
     opacity: 1;
   }
 
@@ -253,7 +253,7 @@
     width: 50px;
     display: block;
   }
-
+  
   .btn_back > img {
     width: 50px;
     display: none;
@@ -332,20 +332,20 @@
   }
 
   .btn_back {
-    left: -5%;
+    right: -1%;
   }
-
+  
   .btn_back:hover {
-    left: -5%;
+    right: -1%;
     opacity: 1;
   }
 
   .btn_forward {
-    right: -5.5%;
+    right: 0%;
   }
-
+  
   .btn_forward:hover {
-    right: -5.5%;
+    right: 0%;
     opacity: 1;
   }
 

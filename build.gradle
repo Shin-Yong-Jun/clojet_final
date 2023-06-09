@@ -33,6 +33,10 @@ dependencies {
     runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.5'
     runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.5'
 
+    // thymeLeaf 잠시 임시페이지 확인용도
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
+
 //	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.1' //mybatis사용시 활성화
 }
 

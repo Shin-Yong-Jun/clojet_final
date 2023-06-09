@@ -82,8 +82,8 @@ function Cart() {
       const newData = [...data];
       newData[index].ea += 1;
       newData[index].price = EditCartData[index].ea * userCartData[index].price;
-      newData[index].point =
-        EditCartData[index].ea * userCartData[index].price * 0.01;
+      // newData[index].point =
+      //   EditCartData[index].ea * userCartData[index].price * 0.01;
       newData[index].sum = EditCartData[index].ea * userCartData[index].price;
       setData(newData);
     };
@@ -97,12 +97,16 @@ function Cart() {
         newData[index].ea -= 1;
         newData[index].price =
           EditCartData[index].ea * userCartData[index].price;
-        newData[index].point =
-          EditCartData[index].ea * userCartData[index].price * 0.01;
+        // newData[index].point =
+        //   EditCartData[index].ea * userCartData[index].price * 0.01;
         newData[index].sum = EditCartData[index].ea * userCartData[index].price;
         setData(newData);
       }
     };
+
+    const thTitlesExceptInfo = [
+      {title: "컬러"}, {title: "사이즈"}, {title: "수량"}, {title: "상품금액"}, {title: "합계금액"}, 
+    ]
 
     return (
       <Container className="container">
@@ -124,24 +128,11 @@ function Cart() {
                 <TableCell align="center" className="tableHead" colSpan={2}>
                   상품/옵션 정보
                 </TableCell>
-                <TableCell align="center" className="tableHead">
-                  컬러
+                {thTitlesExceptInfo.map((obj,idx) => (
+                  <TableCell key={idx} align="center" className="tableHead">
+                  {obj.title}
                 </TableCell>
-                <TableCell align="center" className="tableHead">
-                  사이즈
-                </TableCell>
-                <TableCell align="center" className="tableHead">
-                  수량
-                </TableCell>
-                <TableCell align="center" className="tableHead">
-                  상품금액
-                </TableCell>
-                <TableCell align="center" className="tableHead">
-                  적립 포인트
-                </TableCell>
-                <TableCell align="center" className="tableHead">
-                  합계금액
-                </TableCell>
+                ))}
               </TableRow>
             </TableHead>
 
@@ -191,9 +182,9 @@ function Cart() {
                   <TableCell align="center" className="tableCell">
                     {makeDot(row.price)}원
                   </TableCell>
-                  <TableCell align="center" className="tableCell">
+                  {/* <TableCell align="center" className="tableCell">
                     {row.point}p
-                  </TableCell>
+                  </TableCell> */}
                   <TableCell align="center" className="tableCell bold">
                     {makeDot(row.sum)}원
                   </TableCell>
@@ -215,13 +206,13 @@ function Cart() {
     const checkedRowsSum = {
       ea: 0,
       price: 0,
-      point: 0,
+      // point: 0,
     };
     checkedRows.forEach((index) => {
       const row = data[index];
       checkedRowsSum.ea += parseInt(row.ea);
       checkedRowsSum.price += parseInt(row.price);
-      checkedRowsSum.point += parseInt(row.point);
+      // checkedRowsSum.point += parseInt(row.point);
     });
 
     function makeDot(n) {
@@ -248,24 +239,22 @@ function Cart() {
       return true;
     };
 
+    const sumCartThTitles = [
+      {title: "총 상품개수"}, {title: "배송비"}, {title: "총 합계"}, 
+    ]
+
     return (
       <>
         <TableContainer component={Paper} className="briefTable">
           <Table aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell align="center" className="breifHead">
-                  총 상품개수
+
+                {sumCartThTitles.map((obj) => (
+                  <TableCell align="center" className="breifHead">
+                  {obj.title}
                 </TableCell>
-                <TableCell align="center" className="breifHead">
-                  총 적립포인트
-                </TableCell>
-                <TableCell align="center" className="breifHead">
-                  배송비
-                </TableCell>
-                <TableCell align="center" className="breifHead">
-                  총 합계
-                </TableCell>
+                ))}
               </TableRow>
             </TableHead>
             <TableBody>
@@ -273,9 +262,9 @@ function Cart() {
                 <TableCell align="center" className="tableCell">
                   {makeDot(checkedRowsSum.ea)}개
                 </TableCell>
-                <TableCell align="center" className="tableCell">
+                {/* <TableCell align="center" className="tableCell">
                   {makeDot(checkedRowsSum.point)}p
-                </TableCell>
+                </TableCell> */}
                 <TableCell align="center" className="tableCell">
                   무료배송
                 </TableCell>
@@ -353,11 +342,11 @@ const pureCartData = [
 
 const userCartData = pureCartData.map((item) => {
   const sum = item.ea * item.price;
-  const point = item.ea * item.price * 0.01;
+  // const point = item.ea * item.price * 0.01;
   return {
     ...item,
     sum,
-    point,
+    // point,
   };
 });
 

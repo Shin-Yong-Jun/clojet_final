@@ -8,15 +8,12 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class ClojetConfig {
-    private final MemberRepository memberRepository;
+
+    private MemberRepository memberRepository;
 
     @Autowired
     public ClojetConfig(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
 
-    @Bean
-    public MemberService memberService() {
-        return new MemberService(memberRepository);
-    }
 }
