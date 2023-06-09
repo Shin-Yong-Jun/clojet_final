@@ -12,17 +12,24 @@ import Detail from "./pages/detail";
 import Category from "./pages/category";
 import Dashboard from "./pages/admin/dashboard/dashboard";
 import { Route, Routes } from "react-router-dom";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function App() {
-  const [checkLogin, setCheckLogin] = useState(
-    {
-      userName: "이학로",
-      address: "hakro125@gmail.com",
-      phoneNumber: "010-8828-4608"
-    }
-  );
+  const [checkLogin, setCheckLogin] = useState(null);
 
+  useEffect(() => {
+    const loginMember = sessionStorage.getItem('loginMember');
+    if(loginMember) {
+      const parsedMemberLogin = JSON.parse(loginMember);
+      const {userName, userEmail, userPhone} = parsedMemberLogin;
+      setCheckLogin({
+        userName : userName,
+        userEmail : userEmail,
+        userPhone : userPhone,
+      });
+      console.log(checkLogin);
+    }
+  },[])
 
   return (
     <>
