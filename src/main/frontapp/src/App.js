@@ -11,6 +11,7 @@ import Mypage from "./pages/mypage";
 import Detail from "./pages/detail";
 import Category from "./pages/category";
 import Dashboard from "./pages/admin/dashboard/dashboard";
+import AxiosTest from "./pages/axtest";
 import { Route, Routes } from "react-router-dom";
 import { useState } from 'react';
 
