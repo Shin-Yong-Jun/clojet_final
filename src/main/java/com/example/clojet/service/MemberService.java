@@ -9,7 +9,47 @@ import java.util.List;
 
 @Service
 public class MemberService {
-    private MemberRepository memberRepository;
+
+    private final MemberRepository memberRepository;
+//
+//    public MemberService(MemberRepository memberRepository) {
+//        this.memberRepository = memberRepository;
+//    }
+//-------------------------------------------------
+//    public List<Member> findMembers() {
+//        List<Member> Members = memberRepository.findAll();
+//
+//        if(!findMembers().isEmpty()) return memberRepository.findAll();
+//        else throw new IllegalStateException("no such data");
+//    }
+//
+//    public Member findByUserEmail(final String userEmail) {
+//        return memberRepository.findByUserEmail(userEmail).orElseThrow(() -> new IllegalArgumentException("no such data"));
+//    }
+//    public Member createMember(final Member createMember) {
+//        if(createMember == null) throw new IllegalStateException("member item cannot be null");
+//        return memberRepository.save(createMember);
+//    }
+//
+//    public Member updateMember(final String userEmail, final Member updateMember) {
+//        Member member = findByUserEmail(userEmail);
+//        member.setUserPw(updateMember.getUserPw());
+//        member.setUserPhone(updateMember.getUserPhone());
+//
+//        return memberRepository.save(member);
+//    }
+//
+//    public void deleteMemberByUserEmail(final String userEmail) {
+//        memberRepository.deleteById(userEmail);
+//    }
+
+
+
+    //-------------------------------------------------
+
+    public List<Member> findMembers() {
+        return memberRepository.findAll();
+    }
 
     @Autowired
     public MemberService(MemberRepository memberRepository) {
@@ -30,9 +70,7 @@ public class MemberService {
     }
 
 
-    public List<Member> findMembers() {
-        return memberRepository.findAll();
-    }
+
 
 
 }
