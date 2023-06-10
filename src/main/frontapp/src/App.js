@@ -14,22 +14,27 @@ import Dashboard from "./pages/admin/dashboard/dashboard";
 import { Route, Routes } from "react-router-dom";
 import { useState, useEffect } from 'react';
 
-function App() {
-  const [checkLogin, setCheckLogin] = useState(null);
 
-  useEffect(() => {
+function App() {
+  const [checkLogin, setCheckLogin] = useState(false);
+
     const loginMember = sessionStorage.getItem('loginMember');
     if(loginMember) {
-      const parsedMemberLogin = JSON.parse(loginMember);
-      const {userName, userEmail, userPhone} = parsedMemberLogin;
-      setCheckLogin({
-        userName : userName,
-        userEmail : userEmail,
-        userPhone : userPhone,
-      });
-      console.log(checkLogin);
+      console.log("데이터있다")
+      // const parsedMemberLogin = JSON.parse(loginMember);
+      // const {userName, userEmail} = parsedMemberLogin;
+      setCheckLogin(true);
+      // setCheckLogin({
+      //   userName : userName,
+      //   userEmail : userEmail,
+      // });
     }
-  },[])
+    else {
+      console.log("데이터 없다");
+      setCheckLogin(false);
+    }
+
+
 
   return (
     <>
