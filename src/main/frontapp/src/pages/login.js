@@ -107,8 +107,6 @@ function Login({ setCheckLogin }) {
             const loginMember = response.data;
             sessionStorage.setItem("loginMember", JSON, stringify(loginMember));
 
-            console.log(JSON.parse(sessionStorage.getItem(loginMember)));
-
             // loginMember = sessionStorage.getItem("loginMember");
 
             // if (loginMember) {
@@ -117,10 +115,22 @@ function Login({ setCheckLogin }) {
              *const parsedMemberLogin = JSON.parse(loginMember);
              *const { userName, userEmail } = parsedMemberLogin;
              */
-            setCheckLogin({
-              userName: "test",
-              userEmail: email,
-            });
+            const userInfo = new XMLHttpRequest();
+            userInfo.open("GET", "/member/list", true);
+
+            userInfo.responseType = "json";
+            userInfo.onreadystatechange = function () {
+              if (this.status === 200 && this.readyState === this.DONE) {
+                setCheckLogin({
+                  userName: userInfo.response.filter(
+                    (i) => i.userEmail === email
+                  )[0].userName,
+                  userEmail: email,
+                });
+              }
+            };
+
+            userInfo.send();
             // }
 
             navigate("/");
