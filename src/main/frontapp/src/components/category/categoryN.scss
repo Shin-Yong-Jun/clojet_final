@@ -24,8 +24,11 @@
     .category_left {
         position: fixed;
         width: 300px;
+        height: 90vh;
+        overflow: auto;
 
         .category_side {
+            height: 100%;
             width: 90%;
             .side_item {
                 border-bottom: 1px solid rgb(209, 208, 208);
@@ -36,6 +39,19 @@
                 .item_type {
                     font-size: 23px;
                     font-style: italic;
+                }
+                .contents {
+                    min-height: 50px;
+                    // background-color: #bc3131;
+                    transition: 1s;
+                    transform: scaleY(1);
+                    transform-origin: top;
+                    &.close {
+                        // background-color: #fed533;
+                        min-height: 0;
+                        height: 0;
+                        transform: scaleY(0);
+                    }
                 }
             }
             .side_title {
@@ -53,7 +69,7 @@
                 &:hover {
                     color: rgb(142, 141, 141);
                 }
-                .price_slider{
+                .price_slider {
                     width: 80%;
                 }
                 .priceC {

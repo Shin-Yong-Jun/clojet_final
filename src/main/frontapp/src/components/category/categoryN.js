@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import cNdata from './cNdata';
 import './categoryN.scss';
 import { Link } from 'react-router-dom';
@@ -17,23 +17,39 @@ const marks = [
     },
 ];
 
-
 function CategoryN() {
     const size = ['XS', 'S', 'M', 'L', 'XL', '2XL'];
-    const color = ['red', 'orange', 'yellow', 'green', 'blue'];
+    const color = [
+        'red',
+        'red',
+        'red',
+        'red',
+        'red',
+        'red',
+        'red',
+        'orange',
+        'yellow',
+        'green',
+        'blue',
+    ];
     const item = ['outer', 'top', 'pants'];
-    
 
+    const [value, setValue] = useState([0, 1000000]);
+    const [foldState, setFoldState] = useState(Array(4).fill(false));
     const [sizeState, setSizeState] = useState(Array(size.length).fill(false));
     const [colorState, setColorState] = useState(
         Array(color.length).fill(false),
     );
 
-    const [value, setValue] = useState([0, 1000000]);
+    useEffect(() => {
+        
+        return () => {};
+    }, []);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
+
 
     function clickE(setState, index) {
         setState((prevS) => {
@@ -60,48 +76,70 @@ function CategoryN() {
                     <div className='side_item'>
                         <div className='side_title'>
                             <h3>성별</h3>
-                            <ArrowDropDownRoundedIcon className='icon' />
+                            <div
+                                onClick={() => {
+                                    clickE(setFoldState, 0);
+                                }}
+                            >
+                                <ArrowDropDownRoundedIcon className='icon' />
+                            </div>
                         </div>
-                        <div>
-                            <input type='checkbox' />
-                            <span> man</span>
-                        </div>
-                        <div>
-                            <input type='checkbox' />
-                            <span> woman</span>
-                        </div>
-                        <div>
-                            <input type='checkbox' />
-                            <span> unisex</span>
+                        <div className={`contents ${foldState[0] && 'close'}`}>
+                            <div>
+                                <input type='checkbox' />
+                                <span> man</span>
+                            </div>
+                            <div>
+                                <input type='checkbox' />
+                                <span> woman</span>
+                            </div>
+                            <div>
+                                <input type='checkbox' />
+                                <span> unisex</span>
+                            </div>
                         </div>
                     </div>
                     <div className='side_item'>
                         <div className='side_title'>
                             <h3>가격대</h3>
-                            <ArrowDropDownRoundedIcon className='icon' />
+                            <div
+                                onClick={() => {
+                                    clickE(setFoldState, 1);
+                                }}
+                            >
+                                <ArrowDropDownRoundedIcon className='icon' />
+                            </div>
                         </div>
 
-                        <div className='price_box'>
-                            <Slider
-                                className='price_slider'
-                                getAriaLabel={() => 'Temperature range'}
-                                valueLabelDisplay='auto'
-                                marks={marks}
-                                max={1000000}
-                                step={10000}
-                                value={value}
-                                onChange={handleChange}
-                            />
-                            <p className='priceC'>
-                                선택가격 : <span>{value[0]}</span> 원 ~{' '}
-                                <span>{value[1]}</span> 원
-                            </p>
+                        <div className='close'>
+                            <div className='price_box'>
+                                <Slider
+                                    className='price_slider'
+                                    getAriaLabel={() => 'Temperature range'}
+                                    valueLabelDisplay='auto'
+                                    marks={marks}
+                                    max={1000000}
+                                    step={10000}
+                                    value={value}
+                                    onChange={handleChange}
+                                />
+                                <p className='priceC'>
+                                    선택가격 : <span>{value[0]}</span> 원 ~{' '}
+                                    <span>{value[1]}</span> 원
+                                </p>
+                            </div>
                         </div>
                     </div>
                     <div className='side_item'>
                         <div className='side_title'>
                             <h3>색상</h3>
-                            <ArrowDropDownRoundedIcon className='icon' />
+                            <div
+                                onClick={() => {
+                                    clickE(setFoldState, 2);
+                                }}
+                            >
+                                <ArrowDropDownRoundedIcon className='icon' />
+                            </div>
                         </div>
                         <div className='pallet'>
                             {color.map((colorV, index) => {
@@ -126,7 +164,13 @@ function CategoryN() {
                     <div className='side_item'>
                         <div className='side_title'>
                             <h3>사이즈</h3>
-                            <ArrowDropDownRoundedIcon className='icon' />
+                            <div
+                                onClick={() => {
+                                    clickE(setFoldState, 3);
+                                }}
+                            >
+                                <ArrowDropDownRoundedIcon className='icon' />
+                            </div>
                         </div>
                         <div className='size_list'>
                             {size.map((sizeV, index) => {
