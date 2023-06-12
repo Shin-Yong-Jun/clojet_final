@@ -171,8 +171,8 @@ function Signup() {
             navigate('/');
           }
         } catch (error) {
-          alert(error);
-          // console.error(error);
+          alert("이미 등록되어있는 회원입니다.")
+          console.error(error);
         }
       }
 

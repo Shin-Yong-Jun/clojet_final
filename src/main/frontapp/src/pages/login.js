@@ -177,7 +177,7 @@ function Login({ setCheckLogin }) {
           fullWidth
         />
 
-        <FormControlLabel
+        {/* <FormControlLabel
           control={
             <Checkbox
               value="remember"
@@ -186,14 +186,14 @@ function Login({ setCheckLogin }) {
           }
           label="계정 기억하기"
           sx={{ ml: -32, mt: 1 }}
-        />
+        /> */}
 
         <ThemeProvider theme={theme}>
           <Button
             type="submit"
             fullWidth
             variant="contained"
-            sx={{ mt: 1, width: 400 }}
+            sx={{ mt: 3, width: 400 }}
             color="primary"
           >
             로그인

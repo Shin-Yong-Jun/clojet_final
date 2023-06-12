@@ -52,6 +52,18 @@ public class MemberController {
         }
     }
 
+    @PostMapping("/findPw")
+    public ResponseEntity<?> findMember(@RequestBody Member memberFindPw) {
+        Optional<Member> memberOptional =
+                memberRepository.findByUserEmailAndUserPhone(
+                        memberFindPw.getUserEmail(),
+                        memberFindPw.getUserPhone()
+                );
+        if (memberOptional.isPresent()) {
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.badRequest().body("비밀번호 찾기 에러");
+    }
 
     //ReadAll
     @GetMapping("/list")

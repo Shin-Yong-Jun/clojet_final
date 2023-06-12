@@ -134,9 +134,12 @@ const navigateToMain = () => {
               return (
                 <li key={index}>
                   <Link to={e.src} onClick={() => {
-                    alert("로그아웃 하시겠습니까?")
-                    setCheckLogin(false)
-                    navigateToMain()
+                    if(checkLogin) {
+                      alert("로그아웃 하시겠습니까?");
+                      sessionStorage.clear();
+                      setCheckLogin(false);
+                      navigateToMain();
+                    }
                     }}> {e.loginOut} </Link>
                 </li>
               );
