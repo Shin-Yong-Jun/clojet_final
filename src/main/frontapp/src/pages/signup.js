@@ -169,10 +169,10 @@ function Signup() {
           if (response.status === 200) {
             alert('회원가입을 축하합니다. 로그인하세요');
             navigate('/');
-          } 
+          }
         } catch (error) {
-          alert('이미 존재하는 계정입니다.');
-          console.error(error);
+          alert(error);
+          // console.error(error);
         }
       }
 
