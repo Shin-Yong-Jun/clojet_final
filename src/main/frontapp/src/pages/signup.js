@@ -169,11 +169,9 @@ function Signup() {
           if (response.status === 200) {
             alert('회원가입을 축하합니다. 로그인하세요');
             navigate('/');
-          } else {
-            alert('회원가입에 실패했습니다.');
-          }
+          } 
         } catch (error) {
-          alert('회원가입에 실패했습니다.');
+          alert('이미 존재하는 계정입니다.');
           console.error(error);
         }
       }
