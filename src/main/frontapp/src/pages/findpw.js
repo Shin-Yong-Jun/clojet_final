@@ -75,7 +75,8 @@ function Findpw() {
           const response = await axios.post("/member/findPw", memberFindPw);
 
           if (response.status === 200) {
-            alert("새로운 비밀번호를 이메일에서 확인 후 재로그인 요망");
+            const newRandomPw = response.data; // 서버 랜덤 패스워드
+            alert("임시 비밀번호 : " + newRandomPw + "\n 임시 비밀번호로 재로그인 요망 ");
             navigate("/login");
           } 
         } 

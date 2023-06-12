@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.apache.commons.lang3.RandomStringUtils;
 
 import java.util.List;
 import java.util.Optional;
@@ -52,6 +53,20 @@ public class MemberController {
         }
     }
 
+    private String generateRandomPassword() {
+        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()";
+        StringBuilder password = new StringBuilder();
+
+        // 영어 대문자, 영어 소문자, 숫자, 특수문자 각각 1개씩 추가
+        for (int i = 0; i < 4; i++) {
+            password.append(RandomStringUtils.random(1, characters));
+        }
+        // 나머지 길이의 문자열 추가
+        password.append(RandomStringUtils.random(4, characters));
+        // 문자열 섞기
+        return RandomStringUtils.random(8, password.toString().toCharArray());
+    }
+
     @PostMapping("/findPw")
     public ResponseEntity<?> findMember(@RequestBody Member memberFindPw) {
         Optional<Member> memberOptional =
@@ -60,7 +75,11 @@ public class MemberController {
                         memberFindPw.getUserPhone()
                 );
         if (memberOptional.isPresent()) {
-            return ResponseEntity.ok().build();
+            Member member = memberOptional.get();
+            String newRandomPw = generateRandomPassword();
+            member.setUserPw(newRandomPw);
+            memberRepository.save(member);
+            return ResponseEntity.ok(newRandomPw);
         }
         return ResponseEntity.badRequest().body("비밀번호 찾기 에러");
     }
