@@ -18,22 +18,19 @@ import { useState, useEffect } from 'react';
 function App() {
   const [checkLogin, setCheckLogin] = useState(false);
 
-    useEffect(() => {
-      const loginMember = sessionStorage.getItem('loginMember');
-      if (loginMember) {
-        const parsedMemberLogin = JSON.parse(loginMember);
-        const { userName, userEmail } = parsedMemberLogin;
-        setCheckLogin({
-          userName: userName,
-          userEmail: userEmail,
-        });
-      }
-    }, []);
+    // useEffect(() => {
+    //   const loginMember = sessionStorage.getItem('loginMember');
+    //   if (loginMember) {
+    //     const parsedMemberLogin = JSON.parse(loginMember);
+    //     const { userName, userEmail } = parsedMemberLogin;
+    //     setCheckLogin({
+    //       userName: userName,
+    //       userEmail: userEmail,
+    //     });
+    //   }
+    // }, []);
     
-    useEffect(() => {
-      console.log(checkLogin);
-    }, [checkLogin]);
-
+    // console.log(checkLogin);
 
 
   return (
@@ -44,7 +41,7 @@ function App() {
         <Routes>
           <Route index element={<Main />} />
           <Route path="/category/*" element={<Category />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login setCheckLogin={setCheckLogin}/>} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/findpw" element={<Findpw />} />
           <Route path="/cart" element={<Cart />} />

@@ -34,7 +34,8 @@ public class MemberController {
         Optional<Member> memberOptional =
                 memberRepository.findByUserEmailAndUserPw(
                         memberLogin.getUserEmail(),
-                        memberLogin.getUserPw());
+                        memberLogin.getUserPw()
+                );
         if (memberOptional.isPresent()) {
             // 로그인 성공
             Member loginMember = memberOptional.get();
@@ -42,7 +43,7 @@ public class MemberController {
             return ResponseEntity.ok().build();
         } else {
             // 로그인 실패
-            return ResponseEntity.badRequest().body("로그인 정보가 일치하지 않습니다.");
+            return ResponseEntity.badRequest().body("로그인 정보가 일치하지 않습니다.1");
         }
     }
 
