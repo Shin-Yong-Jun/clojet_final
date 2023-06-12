@@ -3,16 +3,40 @@ import cNdata from './cNdata';
 import './categoryN.scss';
 import { Link } from 'react-router-dom';
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
+import Slider from '@mui/material/Slider';
+
+const marks = [
+    {
+        value: 0,
+        label: '0원',
+    },
+
+    {
+        value: 1000000,
+        label: '100만원',
+    },
+];
+
 
 function CategoryN() {
     const size = ['XS', 'S', 'M', 'L', 'XL', '2XL'];
     const color = ['red', 'orange', 'yellow', 'green', 'blue'];
     const item = ['outer', 'top', 'pants'];
+    
 
-    const [first, setfirst] = useState(Array(size.length).fill(false));
+    const [sizeState, setSizeState] = useState(Array(size.length).fill(false));
+    const [colorState, setColorState] = useState(
+        Array(color.length).fill(false),
+    );
 
-    function clickE(index) {
-        setfirst((prevS) => {
+    const [value, setValue] = useState([0, 1000000]);
+
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
+
+    function clickE(setState, index) {
+        setState((prevS) => {
             const new1 = [...prevS];
             new1[index] = !new1[index];
             return new1;
@@ -58,26 +82,20 @@ function CategoryN() {
                         </div>
 
                         <div className='price_box'>
-                            <label for='price'>
-                                <input type='checkbox' id='price' />
-                                <span className='price'> 0 - 100,000원</span>
-                            </label>
-                        </div>
-                        <div>
-                            <input type='checkbox' />
-                            <span className='price'> 100,000 - 200,000 원</span>
-                        </div>
-                        <div>
-                            <input type='checkbox' />
-                            <span className='price'> 200,000 - 300,000 원</span>
-                        </div>
-                        <div>
-                            <input type='checkbox' />
-                            <span className='price'> 300,000 - 400,000 원</span>
-                        </div>
-                        <div>
-                            <input type='checkbox' />
-                            <span className='price'> 400,000 - 500,000 원</span>
+                            <Slider
+                                className='price_slider'
+                                getAriaLabel={() => 'Temperature range'}
+                                valueLabelDisplay='auto'
+                                marks={marks}
+                                max={1000000}
+                                step={10000}
+                                value={value}
+                                onChange={handleChange}
+                            />
+                            <p className='priceC'>
+                                선택가격 : <span>{value[0]}</span> 원 ~{' '}
+                                <span>{value[1]}</span> 원
+                            </p>
                         </div>
                     </div>
                     <div className='side_item'>
@@ -90,7 +108,12 @@ function CategoryN() {
                                 return (
                                     <div className='color_box'>
                                         <div
-                                            className={`color ${colorV}`}
+                                            key={colorV}
+                                            onClick={() =>
+                                                clickE(setColorState, index)
+                                            }
+                                            className={`color ${colorV}
+                                            ${colorState[index] && 'active'}`}
                                         ></div>
                                         <div className='color_name'>
                                             {colorV}
@@ -110,9 +133,11 @@ function CategoryN() {
                                 return (
                                     <div
                                         key={sizeV}
-                                        onClick={() => clickE(index)}
+                                        onClick={() =>
+                                            clickE(setSizeState, index)
+                                        }
                                         className={`size ${
-                                            first[index] && 'active'
+                                            sizeState[index] && 'active'
                                         }`}
                                     >
                                         <span>{sizeV}</span>

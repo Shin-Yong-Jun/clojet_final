@@ -7,7 +7,7 @@
             background-color: orange;
         }
         &.yellow {
-            background-color: yellow;
+            background-color: #fed533;
         }
         &.green {
             background-color: green;
@@ -49,9 +49,18 @@
             .price,
             .price_box {
                 cursor: pointer;
-
+                margin-top: 10px;
                 &:hover {
                     color: rgb(142, 141, 141);
+                }
+                .price_slider{
+                    width: 80%;
+                }
+                .priceC {
+                    span {
+                        color: red;
+                        font-weight: bolder;
+                    }
                 }
             }
 
@@ -63,10 +72,26 @@
                 gap: 20px;
                 .color_box {
                     text-align: center;
+                    &:hover {
+                        color: gray;
+                    }
                     .color {
-                        border-radius: 50%;
+                        border-radius: 10%;
                         width: 33px;
                         height: 33px;
+                        transition: 0.3s;
+                        &.active {
+                            position: relative;
+                            border-radius: 50%;
+                            &::before {
+                                content: '';
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                border-radius: 50%;
+                                border: solid 2px gray;
+                            }
+                        }
                     }
                     .color_name {
                         font-size: small;
