@@ -18,21 +18,21 @@ import { useState, useEffect } from 'react';
 function App() {
   const [checkLogin, setCheckLogin] = useState(false);
 
-    const loginMember = sessionStorage.getItem('loginMember');
-    if(loginMember) {
-      console.log("데이터있다")
-      // const parsedMemberLogin = JSON.parse(loginMember);
-      // const {userName, userEmail} = parsedMemberLogin;
-      setCheckLogin(true);
-      // setCheckLogin({
-      //   userName : userName,
-      //   userEmail : userEmail,
-      // });
-    }
-    else {
-      console.log("데이터 없다");
-      setCheckLogin(false);
-    }
+    useEffect(() => {
+      const loginMember = sessionStorage.getItem('loginMember');
+      if (loginMember) {
+        const parsedMemberLogin = JSON.parse(loginMember);
+        const { userName, userEmail } = parsedMemberLogin;
+        setCheckLogin({
+          userName: userName,
+          userEmail: userEmail,
+        });
+      }
+    }, []);
+    
+    useEffect(() => {
+      console.log(checkLogin);
+    }, [checkLogin]);
 
 
 
