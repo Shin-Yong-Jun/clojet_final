@@ -50,33 +50,6 @@ const pwValidation = (password) => {
 
 function Login({ setCheckLogin }) {
   const navigate = useNavigate();
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const data = new FormData(e.currentTarget);
-  //   const email = data.get("userEmail");
-  //   const password = data.get("userPw");
-
-  //   if (email && password) {
-  //     // 이메일 형식 검사
-  //     if (!emailValidation(email)) {
-  //       alert('올바른 이메일 형식이 아닙니다.'); // 경고 메시지 표시
-  //       return; // 함수 종료
-  //     } else {
-  //       if(!pwValidation(password)) {
-  //         alert('비밀번호는 최소 8자 이상이어야 하며, 영문 대소문자, 숫자, 특수문자(@$!%*?&)를 모두 포함해야 합니다.')
-  //         return;
-  //       }
-  //     }
-
-  //     console.log({
-  //       email: email,
-  //       password: password,
-  //     });
-  //     navigate('/');
-  //   } else {
-  //     alert('이메일과 비밀번호를 모두 입력해주세요.'); // 경고 메시지 표시
-  //   }
-  // }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -107,14 +80,6 @@ function Login({ setCheckLogin }) {
             const loginMember = response.data;
             sessionStorage.setItem("loginMember", JSON, stringify(loginMember));
 
-            // loginMember = sessionStorage.getItem("loginMember");
-
-            // if (loginMember) {
-            /**
-             *console.log(JSON.parse(loginMember));
-             *const parsedMemberLogin = JSON.parse(loginMember);
-             *const { userName, userEmail } = parsedMemberLogin;
-             */
             const userInfo = new XMLHttpRequest();
             userInfo.open("GET", "/member/list", true);
 
