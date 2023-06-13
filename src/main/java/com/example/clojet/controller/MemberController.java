@@ -35,6 +35,7 @@ public class MemberController {
         if (memberOptional.isPresent()) {
             return  ResponseEntity.badRequest().body("기존 계정이 등록되어있습니다.");
         }
+
         return ResponseEntity.ok(memberRepository.save(member));
     }
 
