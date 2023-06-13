@@ -1,10 +1,8 @@
 import {
   Box,
   Avatar,
-  Checkbox,
   TextField,
   Button,
-  FormControlLabel,
   Grid,
   Typography,
   createTheme,
@@ -15,7 +13,6 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import React from "react";
 import { Link, json, redirect } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { grey } from "@mui/material/colors";
 import axios from "axios";
 import { stringify } from "json5";
 
@@ -41,8 +38,7 @@ const emailValidation = (email) => {
 };
 
 const pwValidation = (password) => {
-    const pwRegex = 
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&*()])[A-Za-z\d@#$%^&*()]{8,}$/;
+  const pwRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&*()?!])[A-Za-z\d@#$%^&*()?!]{8,}$/;
   return pwRegex.test(password);
 };
 
@@ -64,7 +60,7 @@ function Login({ setCheckLogin }) {
         return; // 함수 종료
       } else if (!pwValidation(password)) {
         alert(
-          "비밀번호는 최소 8자 이상이어야 하며, 영문 대소문자와 특수문자(@$!%*?&)를 포함해야 합니다."
+          "비밀번호는 숫자와 영문 대소문자와 특수문자(@$!%*?&)포함 8자 이상이어야 합니다."
         );
         return;
       } else {

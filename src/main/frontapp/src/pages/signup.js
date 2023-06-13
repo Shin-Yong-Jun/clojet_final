@@ -108,7 +108,7 @@ function Signup() {
 
     const pwValidation = (password) => {
       const pwRegex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&*()])[A-Za-z\d@#$%^&*()]{8,}$/;
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&*()?!])[A-Za-z\d@#$%^&*()?!]{8,}$/;
       return pwRegex.test(password);
     };
 
@@ -134,7 +134,7 @@ function Signup() {
         return;
       } else if (!pwValidation(password)) {
         alert(
-          "비밀번호는 최소 8자 이상이어야 하며, 영문 대소문자와 특수문자(@$!%*?&)를 포함해야 합니다."
+          "비밀번호는 숫자와 영문 대소문자와 특수문자(@$!%*?&)포함 8자 이상이어야 합니다."
         );
         return;
       } else if (password !== password2) {
