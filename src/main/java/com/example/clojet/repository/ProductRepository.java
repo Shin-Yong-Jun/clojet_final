@@ -10,4 +10,7 @@ import java.util.Optional;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
+
+    Optional<Product> findByP_name(String p_name);
+    Optional<Product> findByP
 }

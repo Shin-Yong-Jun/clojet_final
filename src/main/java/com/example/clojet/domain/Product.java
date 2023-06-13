@@ -14,44 +14,44 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "p_seq")
-    private Long pSeq;
+    private Long p_seq;
 
     @Column(name = "ct_grp")
     private char ctGrp;
 
     @Column(name = "cm_grp")
-    private char cmGrp;
+    private char cm_grp;
 
     @Column(name = "cb_type")
-    private char cbType;
+    private char cb_type;
 
     @Column(name = "cc_type")
-    private char ccType;
+    private char cc_type;
 
     @Column(name = "cs_type")
-    private char csType;
+    private char cs_type;
 
     @Column(name = "gender_code")
-    private char genderCode;
+    private char gender_code;
 
     @Column(name = "p_name")
-    private String pName;
+    private String p_name;
 
     @Column(name = "p_price")
-    private String pPrice;
+    private String p_price;
 
     @Column(name = "p_enroll")
-    private String pEnroll;
+    private String p_enroll;
 
     @Column(name = "p_size")
-    private String pSize;
+    private String p_size;
 
     @Column(name = "p_stock")
-    private int pStock;
+    private int p_stock;
 
     @Column(name = "p_thum_url")
-    private String pThumUrl;
+    private String p_thum_url;
 
     @Column(name = "p_detail")
-    private String pDetail;
+    private String p_detail;
 }
