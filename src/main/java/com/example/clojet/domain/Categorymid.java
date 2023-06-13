@@ -4,19 +4,19 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name="categorybot")
+@Table(name="categorymid")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Categorybot {
+public class Categorymid {
 
     @Id
-    @Column(name="cb_grp", nullable = false, length = 1)
-    private String cb_grp;
+    @Column(name="cm_grp", nullable = false, length = 1)
+    private String cm_grp;
 
-    @Column(name="cb_valmean")
-    private String cb_valmean;
+    @Column(name="cm_valmean")
+    private String cm_valmean;
 
 
 }

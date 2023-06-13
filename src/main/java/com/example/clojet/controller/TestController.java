@@ -1,21 +1,21 @@
 package com.example.clojet.controller;
 
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import com.example.clojet.domain.Categorymid;
+import com.example.clojet.service.CategorymidService;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
+import java.util.List;
 
 @RestController
+@AllArgsConstructor
 public class TestController {
-    @GetMapping("/category")
-    public boolean test(){
+    private final CategorymidService categorymidService;
 
-        return true;
+    @GetMapping("/category")
+    public List<Categorymid> getFindAll(){
+
+        return categorymidService.findCategory();
     }
 }
