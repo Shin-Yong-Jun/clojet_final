@@ -12,16 +12,25 @@ import Detail from "./pages/detail";
 import Category from "./pages/category";
 import Dashboard from "./pages/admin/dashboard/dashboard";
 import { Route, Routes } from "react-router-dom";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
 
 function App() {
-  const [checkLogin, setCheckLogin] = useState(
-    {
-      userName: "이학로",
-      address: "hakro125@gmail.com",
-      phoneNumber: "010-8828-4608"
-    }
-  );
+  const [checkLogin, setCheckLogin] = useState();
+
+    // useEffect(() => {
+    //   const loginMember = sessionStorage.getItem('loginMember');
+    //   if (loginMember) {
+    //     const parsedMemberLogin = JSON.parse(loginMember);
+    //     const { userName, userEmail } = parsedMemberLogin;
+    //     setCheckLogin({
+    //       userName: userName,
+    //       userEmail: userEmail,
+    //     });
+    //   }
+    // }, []);
+    
+    // console.log(checkLogin);
 
 
   return (
@@ -32,7 +41,7 @@ function App() {
         <Routes>
           <Route index element={<Main />} />
           <Route path="/category/*" element={<Category />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login setCheckLogin={setCheckLogin}/>} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/findpw" element={<Findpw />} />
           <Route path="/cart" element={<Cart />} />

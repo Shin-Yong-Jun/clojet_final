@@ -23,6 +23,7 @@ import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
 import MuiAccordion from "@mui/material/Accordion";
 import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
+import axios from "axios";
 //=========================================================
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -80,21 +81,23 @@ const theme = createTheme({
 function Signup() {
   //=========================================================
   const [expanded, setExpanded] = React.useState("");
-
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
   };
   //=========================================================
   const navigate = useNavigate();
-  const handleSubmit = (e) => {
+  const [userGender, setuserGender] = React.useState("");
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
-    const email = data.get("email");
-    const password = data.get("password");
-    const password2 = data.get("password2");
-    const phoneNumber = data.get("phoneNumber");
+    const email = data.get("userEmail");
+    const password = data.get("userPw");
+    const password2 = data.get("userPw2");
+    const name = data.get("userName");
+    const phoneNumber = data.get("userPhone");
     const infoCheck = data.get("infoCheck");
-    const selectedGender = data.get("gender");
+    const gender = data.get("userGender");
 
     //========유효성 검사=====================
 
@@ -105,7 +108,7 @@ function Signup() {
 
     const pwValidation = (password) => {
       const pwRegex =
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&*()?!])[A-Za-z\d@#$%^&*()?!]{8,}$/;
       return pwRegex.test(password);
     };
 
@@ -126,43 +129,54 @@ function Signup() {
 
     //=============================
 
-    if (
-      email &&
-      password &&
-      password2 &&
-      phoneNumber &&
-      infoCheck &&
-      selectedGender
-    ) {
-      if (!emailValidation(email)) {
-        alert("올바른 이메일 형식이 아닙니다.");
-        return;
-      } else if (!pwValidation(password)) {
-        alert(
-          "비밀번호는 최소 8자 이상이어야 하며, 영문 대소문자, 숫자, 특수문자(@$!%*?&)를 모두 포함해야 합니다."
-        );
-        return;
-      } else if (password !== password2) {
-        alert("비밀번호 확인란과 일치하지 않습니다.");
-        return;
-      } else if (!pnValidation(phoneNumber)) {
-        alert("유효하지 않은 휴대번호입니다.");
-        return;
-      } else if (selectedGender === "") {
-        alert("성별을 선택하세요.");
-      } else {
-        console.log({
-          email: data.get("email"),
-          password: data.get("password"),
-          password2: data.get("password2"),
-          phoneNumber: data.get("phoneNumber"),
-          infoCheck: data.get("infoCheck"),
-          selectedGender: data.get("gender"),
-        });
-        navigate("/");
-      }
+    if (!emailValidation(email)) {
+      alert("올바른 이메일 형식이 아닙니다.");
+      return;
+    } else if (!pwValidation(password)) {
+      alert(
+        "비밀번호는 숫자와 영문 대소문자와 특수문자(@$!%*?&)포함 8자 이상이어야 합니다."
+      );
+      return;
+    } else if (password !== password2) {
+      alert("비밀번호 확인란과 일치하지 않습니다.");
+      return;
+    } else if (!pnValidation(phoneNumber)) {
+      alert("유효하지 않은 휴대번호입니다.");
+      return;
+    } else if (!gender) {
+      alert("성별을 선택하세요.");
+    } else if (!name) {
+      alert("성함을 입력하세요.");
+    } else if (!infoCheck) {
+      alert("개인정보 제공에 동의해주세요.");
     } else {
-      alert("필수사항들을 모두 입력 및 체크해주세요"); // 경고 메시지 표시
+      try {
+        // 회원 데이터 생성을 위한 요청 본문 생성
+        const memberData = {
+          userEmail: email,
+          userPw: password,
+          userGender: gender,
+          userName: name,
+          userPhone: phoneNumber,
+          // 필요한 추가 데이터는 여기에 포함시키세요
+        };
+
+        axios
+          .post("/member/create", memberData)
+          .then((response) => {
+            if (response.status === 200) {
+              alert("회원가입을 축하합니다. 로그인하세요");
+              navigate("/");
+            }
+          })
+          .catch((error) => {
+            alert("이미 등록되어있는 회원입니다.");
+            console.error(error);
+          });
+      } catch (error) {
+        alert("로그인을 실패하였습니다. 관리자에게 문의하십시오.");
+        console.error(error);
+      }
     }
   };
 
@@ -216,20 +230,30 @@ function Signup() {
           {/* -------------------------------------------------------------------------------------------------------- */}
           {/* -------------------------------------------------------------------------------------------------------- */}
           {/* -------------------------------------------------------------------------------------------------------- */}
-          <RadioGroup row sx={{ mt: 2, mb: -2 }} name="gender">
+          <RadioGroup
+            row
+            sx={{ mt: 2, mb: -2 }}
+            name="userGender"
+            value={userGender}
+            onChange={(e) => {
+              setuserGender(e.target.value);
+            }}
+          >
             <FormControlLabel
-              value="female"
+              value="f"
               control={
                 <Radio
+                  value="f"
                   sx={{ color: "black", "&.Mui-checked": { color: "black" } }}
                 />
               }
               label="여성"
             />
             <FormControlLabel
-              value="male"
+              value="m"
               control={
                 <Radio
+                  value="m"
                   sx={{ color: "black", "&.Mui-checked": { color: "black" } }}
                 />
               }
@@ -239,8 +263,8 @@ function Signup() {
           <TextField
             sx={{ mt: 3, width: 400 }}
             label="이메일 주소 등록"
-            name="email"
-            id="email"
+            name="userEmail"
+            id="userEmail"
             type="email"
             autoComplete="email"
             autoFocus
@@ -251,8 +275,8 @@ function Signup() {
           <TextField
             sx={{ mt: 2, width: 400 }}
             label="비밀번호 등록"
-            name="password"
-            id="password"
+            name="userPw"
+            id="userPw"
             type="password"
             autoComplete="current-password"
             placeholder="8자 이상, 영문 대소문자, 숫자, 특수문자(@$!%*?&) 포함"
@@ -263,8 +287,8 @@ function Signup() {
           <TextField
             sx={{ mt: 2, width: 400 }}
             label="비밀번호 확인입력"
-            name="password2"
-            id="password2"
+            name="userPw2"
+            id="userPw2"
             type="password"
             autoComplete="current-password"
             placeholder="비밀번호 등록과 동일하게 작성요망"
@@ -286,8 +310,8 @@ function Signup() {
           <TextField
             sx={{ mt: 2, mb: 2, width: 400 }}
             label="휴대번호 등록"
-            name="phoneNumber"
-            id="phoneNumber"
+            name="userPhone"
+            id="userPhone"
             type="tel"
             placeholder="(-)를 제외하여 입력"
             required
