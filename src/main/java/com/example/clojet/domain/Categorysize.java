@@ -10,19 +10,19 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="categorycolor")
+@Table(name="categorysize")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Categorycolor {
+public class Categorysize {
 
     @Id
-    @Column(name="cc_type", nullable = false)
-    private String cc_type;
+    @Column(name="cs_type", nullable = false)
+    private String cs_type;
 
-    @Column(name="cc_valmean")
-    private String cc_valmean;
+    @Column(name="cs_valmean")
+    private String cs_valmean;
 
 
 }

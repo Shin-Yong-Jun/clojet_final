@@ -1,7 +1,7 @@
 package com.example.clojet.service;
 
-import com.example.clojet.domain.Categorymid;
-import com.example.clojet.repository.CategorymidRepository;
+import com.example.clojet.domain.Categorycolor;
+import com.example.clojet.repository.CategorycolorRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -9,11 +9,11 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class CategorymidService {
-    private final CategorymidRepository categorymidRepository;
+public class Categorycolorservice {
+    private final CategorycolorRepository categorycolorRepository;
 
-    public List<Categorymid> findCategory(){
-        return categorymidRepository.findAll();
+    public List<Categorycolor> findColor(){
+        return categorycolorRepository.findAll();
 
     }
 

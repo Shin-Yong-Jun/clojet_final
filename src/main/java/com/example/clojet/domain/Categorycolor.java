@@ -1,22 +1,28 @@
 package com.example.clojet.domain;
 
-import jakarta.persistence.*;
-import lombok.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="categorymid")
+@Table(name="categorycolor")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Categorymid {
+public class Categorycolor {
 
     @Id
-    @Column(name="cm_grp", nullable = false, length = 1)
-    private String cm_grp;
+    @Column(name="cc_type", nullable = false)
+    private String cc_type;
 
-    @Column(name="cm_valmean")
-    private String cm_valmean;
+    @Column(name="cc_valmean")
+    private String cc_valmean;
 
 
 }
