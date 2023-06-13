@@ -76,7 +76,7 @@ function Findpw() {
 
           if (response.status === 200) {
             const newRandomPw = response.data; // 서버 랜덤 패스워드
-            alert("임시 비밀번호 : " + newRandomPw + "\n 임시 비밀번호로 재로그인 요망 ");
+            alert("임시 비밀번호 : " + newRandomPw + "\n임시 비밀번호로 재로그인 요망 ");
             navigate("/login");
           } 
         } 

@@ -23,7 +23,7 @@ import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
 import MuiAccordion from "@mui/material/Accordion";
 import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
-import axios from 'axios';
+import axios from "axios";
 //=========================================================
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -88,7 +88,7 @@ function Signup() {
   const navigate = useNavigate();
   const [userGender, setuserGender] = React.useState("");
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
     const email = data.get("userEmail");
@@ -108,7 +108,7 @@ function Signup() {
 
     const pwValidation = (password) => {
       const pwRegex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&*()?!])[A-Za-z\d@#$%^&*()?!]{8,}$/;
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&*()?!])[A-Za-z\d@#$%^&*()?!]{8,}$/;
       return pwRegex.test(password);
     };
 
@@ -129,55 +129,56 @@ function Signup() {
 
     //=============================
 
-      if (!emailValidation(email)) {
-        alert("올바른 이메일 형식이 아닙니다.");
-        return;
-      } else if (!pwValidation(password)) {
-        alert(
-          "비밀번호는 숫자와 영문 대소문자와 특수문자(@$!%*?&)포함 8자 이상이어야 합니다."
-        );
-        return;
-      } else if (password !== password2) {
-        alert("비밀번호 확인란과 일치하지 않습니다.");
-        return;
-      } else if (!pnValidation(phoneNumber)) {
-        alert("유효하지 않은 휴대번호입니다.");
-        return;
-      } else if (!gender) {
-        alert("성별을 선택하세요.");
-      } else if (!name) {
-        alert("성함을 입력하세요.");
-      } else if (!infoCheck){
-        alert("개인정보 제공에 동의해주세요.")
-      }
-      else {
-        try {
-          // 회원 데이터 생성을 위한 요청 본문 생성
-          const memberData = {
-            userEmail: email,
-            userPw: password,
-            userGender: gender,
-            userName: name,
-            userPhone: phoneNumber,
-            // 필요한 추가 데이터는 여기에 포함시키세요
-          };
-      
-          // 회원 데이터 생성 요청
-          const response = await axios.post('/member/create', memberData);
-      
-          // 응답 처리
-          if (response.status === 200) {
-            alert('회원가입을 축하합니다. 로그인하세요');
-            navigate('/');
-          }
-        } catch (error) {
-          alert("이미 등록되어있는 회원입니다.")
-          console.error(error);
-        }
-      }
+    if (!emailValidation(email)) {
+      alert("올바른 이메일 형식이 아닙니다.");
+      return;
+    } else if (!pwValidation(password)) {
+      alert(
+        "비밀번호는 숫자와 영문 대소문자와 특수문자(@$!%*?&)포함 8자 이상이어야 합니다."
+      );
+      return;
+    } else if (password !== password2) {
+      alert("비밀번호 확인란과 일치하지 않습니다.");
+      return;
+    } else if (!pnValidation(phoneNumber)) {
+      alert("유효하지 않은 휴대번호입니다.");
+      return;
+    } else if (!gender) {
+      alert("성별을 선택하세요.");
+    } else if (!name) {
+      alert("성함을 입력하세요.");
+    } else if (!infoCheck) {
+      alert("개인정보 제공에 동의해주세요.");
+    } else {
+      try {
+        // 회원 데이터 생성을 위한 요청 본문 생성
+        const memberData = {
+          userEmail: email,
+          userPw: password,
+          userGender: gender,
+          userName: name,
+          userPhone: phoneNumber,
+          // 필요한 추가 데이터는 여기에 포함시키세요
+        };
 
+        axios
+          .post("/member/create", memberData)
+          .then((response) => {
+            if (response.status === 200) {
+              alert("회원가입을 축하합니다. 로그인하세요");
+              navigate("/");
+            }
+          })
+          .catch((error) => {
+            alert("이미 등록되어있는 회원입니다.");
+            console.error(error);
+          });
+      } catch (error) {
+        alert("로그인을 실패하였습니다. 관리자에게 문의하십시오.");
+        console.error(error);
+      }
+    }
   };
-
 
   return (
     <>
@@ -229,10 +230,15 @@ function Signup() {
           {/* -------------------------------------------------------------------------------------------------------- */}
           {/* -------------------------------------------------------------------------------------------------------- */}
           {/* -------------------------------------------------------------------------------------------------------- */}
-          <RadioGroup row sx={{ mt: 2, mb: -2 }} 
-          name="userGender" 
-          value={userGender}
-          onChange={(e)=> {setuserGender(e.target.value)}}>
+          <RadioGroup
+            row
+            sx={{ mt: 2, mb: -2 }}
+            name="userGender"
+            value={userGender}
+            onChange={(e) => {
+              setuserGender(e.target.value);
+            }}
+          >
             <FormControlLabel
               value="f"
               control={
