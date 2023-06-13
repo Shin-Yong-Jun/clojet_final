@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import cNdata from './cNdata';
 import './categoryN.scss';
 import { Link } from 'react-router-dom';
@@ -33,7 +33,8 @@ function CategoryN() {
         'green',
         'blue',
     ];
-    const item = ['outer', 'top', 'pants'];
+
+    const [item, setItem] = useState([]);
 
     const [value, setValue] = useState([0, 1000000]);
     const [foldState, setFoldState] = useState(Array(4).fill(false));
@@ -53,6 +54,17 @@ function CategoryN() {
             });
     }, []);
 
+    /*   useEffect(() => {
+       axios
+          .get('/category')
+            .then((result) => {
+                setItem(result.data.map((categoryV) => categoryV.cm_valmean));
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, []); */
+
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
@@ -71,13 +83,13 @@ function CategoryN() {
                 <div className='category_side'>
                     <h1>NEW</h1>
                     <div className='side_item'>
-                        {item.map((itemV, index) => {
+                        {/*{item.map((itemV, index) => {
                             return (
                                 <div className='item_type'>
                                     <Link to={'/'}>{itemV}</Link>
                                 </div>
                             );
-                        })}
+                        })}*/}
                     </div>
                     <div className='side_item'>
                         <div className='side_title'>
