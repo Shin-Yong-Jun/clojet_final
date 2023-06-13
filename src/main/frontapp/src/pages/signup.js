@@ -23,7 +23,7 @@ import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
 import MuiAccordion from "@mui/material/Accordion";
 import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
-import axios from 'axios';
+import axios from "axios";
 //=========================================================
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -88,7 +88,7 @@ function Signup() {
   const navigate = useNavigate();
   const [userGender, setuserGender] = React.useState("");
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
     const email = data.get("userEmail");
@@ -108,7 +108,7 @@ function Signup() {
 
     const pwValidation = (password) => {
       const pwRegex =
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&*()?!])[A-Za-z\d@#$%^&*()?!]{8,}$/;
       return pwRegex.test(password);
     };
 
@@ -129,129 +129,56 @@ function Signup() {
 
     //=============================
 
-      if (!emailValidation(email)) {
-        alert("올바른 이메일 형식이 아닙니다.");
-        return;
-      } else if (!pwValidation(password)) {
-        alert(
-          "비밀번호는 최소 8자 이상이어야 하며, 영문 대소문자, 숫자, 특수문자(@$!%*?&)를 모두 포함해야 합니다."
-        );
-        return;
-      } else if (password !== password2) {
-        alert("비밀번호 확인란과 일치하지 않습니다.");
-        return;
-      } else if (!pnValidation(phoneNumber)) {
-        alert("유효하지 않은 휴대번호입니다.");
-        return;
-      } else if (!gender) {
-        alert("성별을 선택하세요.");
-      } else if (!name) {
-        alert("성함을 입력하세요.");
-      } else if (!infoCheck){
-        alert("개인정보 제공에 동의해주세요.")
-      }
-      else {
-        try {
-          // 회원 데이터 생성을 위한 요청 본문 생성
-          const memberData = {
-            userEmail: email,
-            userPw: password,
-            userGender: gender,
-            userName: name,
-            userPhone: phoneNumber,
-            // 필요한 추가 데이터는 여기에 포함시키세요
-          };
-      
-          // 회원 데이터 생성 요청
-          const response = await axios.post('/member/create', memberData);
-      
-          // 응답 처리
-          if (response.status === 200) {
-            alert('회원가입을 축하합니다. 로그인하세요');
-            navigate('/');
-          } 
-        } catch (error) {
-          alert('이미 존재하는 계정입니다.');
-          console.error(error);
-        }
-      }
+    if (!emailValidation(email)) {
+      alert("올바른 이메일 형식이 아닙니다.");
+      return;
+    } else if (!pwValidation(password)) {
+      alert(
+        "비밀번호는 숫자와 영문 대소문자와 특수문자(@$!%*?&)포함 8자 이상이어야 합니다."
+      );
+      return;
+    } else if (password !== password2) {
+      alert("비밀번호 확인란과 일치하지 않습니다.");
+      return;
+    } else if (!pnValidation(phoneNumber)) {
+      alert("유효하지 않은 휴대번호입니다.");
+      return;
+    } else if (!gender) {
+      alert("성별을 선택하세요.");
+    } else if (!name) {
+      alert("성함을 입력하세요.");
+    } else if (!infoCheck) {
+      alert("개인정보 제공에 동의해주세요.");
+    } else {
+      try {
+        // 회원 데이터 생성을 위한 요청 본문 생성
+        const memberData = {
+          userEmail: email,
+          userPw: password,
+          userGender: gender,
+          userName: name,
+          userPhone: phoneNumber,
+          // 필요한 추가 데이터는 여기에 포함시키세요
+        };
 
+        axios
+          .post("/member/create", memberData)
+          .then((response) => {
+            if (response.status === 200) {
+              alert("회원가입을 축하합니다. 로그인하세요");
+              navigate("/");
+            }
+          })
+          .catch((error) => {
+            alert("이미 등록되어있는 회원입니다.");
+            console.error(error);
+          });
+      } catch (error) {
+        alert("로그인을 실패하였습니다. 관리자에게 문의하십시오.");
+        console.error(error);
+      }
+    }
   };
-
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const data = new FormData(e.currentTarget);
-  //   const email = data.get("userEmail");
-  //   const password = data.get("userPw");
-  //   const password2 = data.get("userPw2");
-  //   const phoneNumber = data.get("userPhone");
-  //   const infoCheck = data.get("infoCheck");
-  //   const Gender = data.get("userGender");
-
-  //   //========유효성 검사=====================
-
-  //   const emailValidation = (email) => {
-  //     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-  //     return emailRegex.test(email);
-  //   };
-
-  //   const pwValidation = (password) => {
-  //     const pwRegex =
-  //       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-  //     return pwRegex.test(password);
-  //   };
-
-  //   const pnValidation = (phoneNumber) => {
-  //     let hasNonNumeric = false; // 문자가 발견되었는지를 나타내는 변수
-  //     phoneNumber.split("").forEach((char) => {
-  //       if (isNaN(char)) {
-  //         // 입력받은 값이 숫자가 아닌 경우
-  //         hasNonNumeric = true; // 문자가 발견되었음을 표시
-  //       }
-  //     });
-  //     if (hasNonNumeric || phoneNumber.length !== 11) {
-  //       // 문자가 발견되었거나 숫자가 11개가 아닐 경우
-  //       return false; // false 반환
-  //     }
-  //     return true; // 숫자가 11개일 경우
-  //   };
-
-  //   //=============================
-
-  //     if (!emailValidation(email)) {
-  //       alert("올바른 이메일 형식이 아닙니다.");
-  //       return;
-  //     } else if (!pwValidation(password)) {
-  //       alert(
-  //         "비밀번호는 최소 8자 이상이어야 하며, 영문 대소문자, 숫자, 특수문자(@$!%*?&)를 모두 포함해야 합니다."
-  //       );
-  //       return;
-  //     } else if (password !== password2) {
-  //       alert("비밀번호 확인란과 일치하지 않습니다.");
-  //       return;
-  //     } else if (!pnValidation(phoneNumber)) {
-  //       alert("유효하지 않은 휴대번호입니다.");
-  //       return;
-  //     } else if (!Gender) {
-  //       alert("성별을 선택하세요.");
-  //     } else if (!infoCheck){
-  //       alert("개인정보 제공에 동의해주세요.")
-  //     }
-  //     else {
-  //       alert("회원가입을 축하합니다. 로그인하세요")
-  //       console.log({
-  //         email: data.get("userEmail"),
-  //         password: data.get("userPw"),
-  //         password2: data.get("userPw2"),
-  //         phoneNumber: data.get("userPhone"),
-  //         infoCheck: data.get("infoCheck"),
-  //         Gender: data.get("userGender"),
-  //       });
-  //       navigate("/");
-  //     }
-
-  // };
 
   return (
     <>
@@ -303,10 +230,15 @@ function Signup() {
           {/* -------------------------------------------------------------------------------------------------------- */}
           {/* -------------------------------------------------------------------------------------------------------- */}
           {/* -------------------------------------------------------------------------------------------------------- */}
-          <RadioGroup row sx={{ mt: 2, mb: -2 }} 
-          name="userGender" 
-          value={userGender}
-          onChange={(e)=> {setuserGender(e.target.value)}}>
+          <RadioGroup
+            row
+            sx={{ mt: 2, mb: -2 }}
+            name="userGender"
+            value={userGender}
+            onChange={(e) => {
+              setuserGender(e.target.value);
+            }}
+          >
             <FormControlLabel
               value="f"
               control={

@@ -11,9 +11,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.apache.commons.lang3.RandomStringUtils;
 
+import java.security.SecureRandom;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/member")
@@ -29,7 +33,7 @@ public class MemberController {
         Optional<Member> memberOptional =
                 memberRepository.findByUserEmail(member.getUserEmail());
         if (memberOptional.isPresent()) {
-            return ResponseEntity.badRequest().body("기존 계정이 등록되어있습니다.");
+            return  ResponseEntity.badRequest().body("기존 계정이 등록되어있습니다.");
         }
         return ResponseEntity.ok(memberRepository.save(member));
     }
@@ -52,6 +56,47 @@ public class MemberController {
         }
     }
 
+
+    private String generateRandomPassword() {
+        String characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%^&*()";
+        StringBuilder password = new StringBuilder();
+
+        // 영어 대문자, 영어 소문자, 특수문자 각각 1개씩 추가
+        password.append(RandomStringUtils.random(1, "ABCDEFGHIJKLMNOPQRSTUVWXYZ"));
+        password.append(RandomStringUtils.random(1, "abcdefghijklmnopqrstuvwxyz"));
+        password.append(RandomStringUtils.random(1, "@#$%^&*()?!"));
+        password.append(RandomStringUtils.random(1, "1234567890"));
+
+        // 나머지 길이의 문자열 추가
+        password.append(RandomStringUtils.random(4, characters));
+
+        // 문자열 섞기
+        List<Character> chars = password.chars()
+                .mapToObj(c -> (char) c)
+                .collect(Collectors.toList());
+        Collections.shuffle(chars, new SecureRandom());
+        StringBuilder shuffledPassword = new StringBuilder();
+        chars.forEach(shuffledPassword::append);
+
+        return shuffledPassword.toString();
+    }
+
+    @PostMapping("/findPw")
+    public ResponseEntity<?> findMember(@RequestBody Member memberFindPw) {
+        Optional<Member> memberOptional =
+                memberRepository.findByUserEmailAndUserPhone(
+                        memberFindPw.getUserEmail(),
+                        memberFindPw.getUserPhone()
+                );
+        if (memberOptional.isPresent()) {
+            Member member = memberOptional.get();
+            String newRandomPw = generateRandomPassword();
+            member.setUserPw(newRandomPw);
+            memberRepository.save(member);
+            return ResponseEntity.ok(newRandomPw);
+        }
+        return ResponseEntity.badRequest().body("비밀번호 찾기 에러");
+    }
 
     //ReadAll
     @GetMapping("/list")

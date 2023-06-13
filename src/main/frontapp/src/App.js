@@ -16,7 +16,7 @@ import { useState, useEffect } from 'react';
 
 
 function App() {
-  const [checkLogin, setCheckLogin] = useState(false);
+  const [checkLogin, setCheckLogin] = useState();
 
     // useEffect(() => {
     //   const loginMember = sessionStorage.getItem('loginMember');

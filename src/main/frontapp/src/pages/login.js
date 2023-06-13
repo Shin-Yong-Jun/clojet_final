@@ -1,10 +1,8 @@
 import {
   Box,
   Avatar,
-  Checkbox,
   TextField,
   Button,
-  FormControlLabel,
   Grid,
   Typography,
   createTheme,
@@ -13,9 +11,8 @@ import {
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import React from "react";
-import { Link, json, redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { grey } from "@mui/material/colors";
 import axios from "axios";
 import { stringify } from "json5";
 
@@ -41,8 +38,7 @@ const emailValidation = (email) => {
 };
 
 const pwValidation = (password) => {
-  const pwRegex =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  const pwRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&*()?!])[A-Za-z\d@#$%^&*()?!]{8,}$/;
   return pwRegex.test(password);
 };
 
@@ -50,33 +46,6 @@ const pwValidation = (password) => {
 
 function Login({ setCheckLogin }) {
   const navigate = useNavigate();
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const data = new FormData(e.currentTarget);
-  //   const email = data.get("userEmail");
-  //   const password = data.get("userPw");
-
-  //   if (email && password) {
-  //     // 이메일 형식 검사
-  //     if (!emailValidation(email)) {
-  //       alert('올바른 이메일 형식이 아닙니다.'); // 경고 메시지 표시
-  //       return; // 함수 종료
-  //     } else {
-  //       if(!pwValidation(password)) {
-  //         alert('비밀번호는 최소 8자 이상이어야 하며, 영문 대소문자, 숫자, 특수문자(@$!%*?&)를 모두 포함해야 합니다.')
-  //         return;
-  //       }
-  //     }
-
-  //     console.log({
-  //       email: email,
-  //       password: password,
-  //     });
-  //     navigate('/');
-  //   } else {
-  //     alert('이메일과 비밀번호를 모두 입력해주세요.'); // 경고 메시지 표시
-  //   }
-  // }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -91,7 +60,7 @@ function Login({ setCheckLogin }) {
         return; // 함수 종료
       } else if (!pwValidation(password)) {
         alert(
-          "비밀번호는 최소 8자 이상이어야 하며, 영문 대소문자, 숫자, 특수문자(@$!%*?&)를 모두 포함해야 합니다."
+          "비밀번호는 숫자와 영문 대소문자와 특수문자(@$!%*?&)포함 8자 이상이어야 합니다."
         );
         return;
       } else {
@@ -107,14 +76,6 @@ function Login({ setCheckLogin }) {
             const loginMember = response.data;
             sessionStorage.setItem("loginMember", JSON, stringify(loginMember));
 
-            // loginMember = sessionStorage.getItem("loginMember");
-
-            // if (loginMember) {
-            /**
-             *console.log(JSON.parse(loginMember));
-             *const parsedMemberLogin = JSON.parse(loginMember);
-             *const { userName, userEmail } = parsedMemberLogin;
-             */
             const userInfo = new XMLHttpRequest();
             userInfo.open("GET", "/member/list", true);
 
@@ -212,7 +173,7 @@ function Login({ setCheckLogin }) {
           fullWidth
         />
 
-        <FormControlLabel
+        {/* <FormControlLabel
           control={
             <Checkbox
               value="remember"
@@ -221,14 +182,14 @@ function Login({ setCheckLogin }) {
           }
           label="계정 기억하기"
           sx={{ ml: -32, mt: 1 }}
-        />
+        /> */}
 
         <ThemeProvider theme={theme}>
           <Button
             type="submit"
             fullWidth
             variant="contained"
-            sx={{ mt: 1, width: 400 }}
+            sx={{ mt: 3, width: 400 }}
             color="primary"
           >
             로그인
