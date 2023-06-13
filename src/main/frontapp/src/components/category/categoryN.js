@@ -4,6 +4,7 @@ import './categoryN.scss';
 import { Link } from 'react-router-dom';
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import Slider from '@mui/material/Slider';
+import axios from 'axios';
 
 const marks = [
     {
@@ -42,14 +43,19 @@ function CategoryN() {
     );
 
     useEffect(() => {
-        
-        return () => {};
+        axios
+            .get('/category')
+            .then((result) => {
+                console.log(result);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     }, []);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
-
 
     function clickE(setState, index) {
         setState((prevS) => {
