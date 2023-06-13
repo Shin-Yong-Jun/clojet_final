@@ -16,22 +16,7 @@ import { useState, useEffect } from 'react';
 
 
 function App() {
-  const [checkLogin, setCheckLogin] = useState(false);
-
-    // useEffect(() => {
-    //   const loginMember = sessionStorage.getItem('loginMember');
-    //   if (loginMember) {
-    //     const parsedMemberLogin = JSON.parse(loginMember);
-    //     const { userName, userEmail } = parsedMemberLogin;
-    //     setCheckLogin({
-    //       userName: userName,
-    //       userEmail: userEmail,
-    //     });
-    //   }
-    // }, []);
-    
-    // console.log(checkLogin);
-
+  const [checkLogin, setCheckLogin] = useState(1);
 
   return (
     <>

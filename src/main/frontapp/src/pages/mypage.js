@@ -6,19 +6,19 @@ import makeDot from "../utils/makeDot";
 
 export default function Mypage({ checkLogin }) {
   //--------------사이드 서브메뉴 구성 ------------
-const sideMenu_orderPages = [
-  { id: 1, title: "주문/배송 조회", url: "/" },
-  { id: 2, title: "위시리스트", url: "/mypage/wishlist" },
-];
+  const sideMenu_orderPages = [
+    { id: 1, title: "주문/배송 조회", url: "/" },
+    { id: 2, title: "위시리스트", url: "/mypage/wishlist" },
+  ];
 
-const sideMenu_askPages = [
-  { id: 1, title: "1:1문의 내역", url: "/mypage/myqna" },
-  { id: 2, title: "리뷰작성 내역", url: "/mypage/myreview" },
-];
+  const sideMenu_askPages = [
+    { id: 1, title: "1:1문의 내역", url: "/mypage/myqna" },
+    { id: 2, title: "리뷰작성 내역", url: "/mypage/myreview" },
+  ];
 
-const sideMenu_myInfo = [{ id: 1, title: "회원정보 수정", url: "/" }];
+  const sideMenu_myInfo = [{ id: 1, title: "회원정보 수정", url: "/" }];
 
-//마이페이지 HTML 구성
+  //마이페이지 HTML 구성
 
   return (
     <div className="mpContainer">
@@ -191,12 +191,16 @@ const sideMenu_myInfo = [{ id: 1, title: "회원정보 수정", url: "/" }];
 
   function MpQnA() {
     //css 필요
-    const receiveData = data.filter(i => i.address === checkLogin.address);
+    const receiveData = data.filter(i => i.address === checkLogin.userEmail);
     const boardList = ["작성자", "상품명", "작성일", "제목", "내용"];
 
-    if (receiveData.length != 0) {
+    if (receiveData.length == 0) {
       return (
         <>
+          <div className="boardHeader">
+            <div className="boardTitle">1:1 문의</div>
+            <button type="button" className="makeQnAPost">문의하기</button>
+          </div>
           <div className="qnaBoard">
             <table border="1px">
               <tr className="boardListContainer">
@@ -243,22 +247,7 @@ const sideMenu_myInfo = [{ id: 1, title: "회원정보 수정", url: "/" }];
 } // main function
 
 const data = [
-  // {
-  //   작성자: "이학로",
-  //   상품명: "test1",
-  //   date: "2023.05.10",
-  //   title: "제목 테스트",
-  //   content: "내용 테스트",
-  //   address: "hakro125@gmail.com",
-  // },
-  // {
-  //   작성자: "이학로",
-  //   상품명: "test2",
-  //   date: "2023.05.29",
-  //   title: "제목 테스트",
-  //   content: "내용 테스트",
-  //   address: "hakro125@gmail.com",
-  // }
+
 ]
 
 //--------------내 쿠폰, 포인트, 문의, 위시 ----
