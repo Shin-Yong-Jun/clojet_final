@@ -7,7 +7,7 @@
             background-color: orange;
         }
         &.yellow {
-            background-color: yellow;
+            background-color: #fed533;
         }
         &.green {
             background-color: green;
@@ -20,14 +20,15 @@
 
 .category {
     display: flex;
-    height: 80vh;
     margin: 0, auto;
-
     .category_left {
+        position: fixed;
         width: 300px;
-        height: 100%;
+        height: 90vh;
+        overflow: auto;
 
         .category_side {
+            height: 100%;
             width: 90%;
             .side_item {
                 border-bottom: 1px solid rgb(209, 208, 208);
@@ -38,6 +39,19 @@
                 .item_type {
                     font-size: 23px;
                     font-style: italic;
+                }
+                .contents {
+                    min-height: 50px;
+                    // background-color: #bc3131;
+                    transition: 1s;
+                    transform: scaleY(1);
+                    transform-origin: top;
+                    &.close {
+                        // background-color: #fed533;
+                        min-height: 0;
+                        height: 0;
+                        transform: scaleY(0);
+                    }
                 }
             }
             .side_title {
@@ -51,9 +65,18 @@
             .price,
             .price_box {
                 cursor: pointer;
-
+                margin-top: 10px;
                 &:hover {
                     color: rgb(142, 141, 141);
+                }
+                .price_slider {
+                    width: 80%;
+                }
+                .priceC {
+                    span {
+                        color: red;
+                        font-weight: bolder;
+                    }
                 }
             }
 
@@ -65,10 +88,26 @@
                 gap: 20px;
                 .color_box {
                     text-align: center;
+                    &:hover {
+                        color: gray;
+                    }
                     .color {
-                        border-radius: 50%;
+                        border-radius: 10%;
                         width: 33px;
                         height: 33px;
+                        transition: 0.3s;
+                        &.active {
+                            position: relative;
+                            border-radius: 50%;
+                            &::before {
+                                content: '';
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                border-radius: 50%;
+                                border: solid 2px gray;
+                            }
+                        }
                     }
                     .color_name {
                         font-size: small;
@@ -100,45 +139,34 @@
         }
     }
     .category_right {
-        background-color: darkgreen;
-        height: 100%;
         display: flex;
         flex-wrap: wrap;
         flex-direction: column;
         width: 80%;
+        margin-left: 22%;
 
         .category_banner {
-            background-color: coral;
-            height: 30%;
-
             img {
                 width: 100%;
             }
         }
         .category_item {
-            background-color: cadetblue;
             height: 70%;
         }
-        .container {
+        .containerC {
             display: flex;
             flex-wrap: wrap;
-            // justify-content: start;
-            // margin-left: auto;
-            // margin-bottom: 10%;
-            gap: 80px;
+            padding-top: 10px;
+            padding-left: 5%;
+            gap: 50px;
             .pd_box {
-                width: 100px;
-                height: 100px;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 .pd_img {
-                    width: 100%;
-                    height: 100%;
-                    .pd_img img {
-                        width: 100px;
-                        height: 100px;
-                        // object-fit: cover;
+                    img {
+                        width: 200px;
+                        height: 200px;
                     }
                 }
                 .pd_info {

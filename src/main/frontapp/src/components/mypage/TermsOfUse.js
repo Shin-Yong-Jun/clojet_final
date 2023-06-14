@@ -3,8 +3,16 @@ import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
 import { styled } from "@mui/material/styles";
 import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
+import { Typography } from "@mui/material";
+import { useState } from "react";
+
 
 export default function TermsOfUse(){
+    const [expanded, setExpanded] = useState("");
+    const handleChange = (panel) => (event, newExpanded) => {
+        setExpanded(newExpanded ? panel : false);
+    };
+
     //=========================================================
     const Accordion = styled((props) => (
         <MuiAccordion disableGutters elevation={0} square {...props} />

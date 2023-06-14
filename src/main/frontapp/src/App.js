@@ -16,22 +16,11 @@ import { useState, useEffect } from 'react';
 
 
 function App() {
-  const [checkLogin, setCheckLogin] = useState();
-
-    // useEffect(() => {
-    //   const loginMember = sessionStorage.getItem('loginMember');
-    //   if (loginMember) {
-    //     const parsedMemberLogin = JSON.parse(loginMember);
-    //     const { userName, userEmail } = parsedMemberLogin;
-    //     setCheckLogin({
-    //       userName: userName,
-    //       userEmail: userEmail,
-    //     });
-    //   }
-    // }, []);
-    
-    // console.log(checkLogin);
-
+  const [checkLogin, setCheckLogin] = useState({
+    // 문의사항 게시판 만들기용 테스트입니다.
+    userName: 'test',
+    userEmail: 'hakro1@gmail.com'
+  });
 
   return (
     <>
@@ -41,12 +30,12 @@ function App() {
         <Routes>
           <Route index element={<Main />} />
           <Route path="/category/*" element={<Category />} />
-          <Route path="/login" element={<Login setCheckLogin={setCheckLogin}/>} />
+          <Route path="/login" element={<Login setCheckLogin={setCheckLogin} />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/findpw" element={<Findpw />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/purchase" element={<Purchase />} />
-          <Route path="/mypage/*" element={<Mypage checkLogin={checkLogin}/>} />
+          <Route path="/mypage/*" element={<Mypage checkLogin={checkLogin} />} />
           <Route path="/detail" element={<Detail />} />
           <Route path="/admin/*" element={<Dashboard />} />
         </Routes>
