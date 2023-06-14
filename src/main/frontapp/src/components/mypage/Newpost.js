@@ -60,6 +60,14 @@ export default function Newpost({ checkLogin, page, setPage }) {
 
     }
 
+    function checkCancel(){
+        if(window.confirm("작성중인 게시물을 삭제하고 돌아가시겠습니까?")){
+            navigate("/mypage/myqna");
+        }else{
+            return;
+        }
+    }
+
     return (
         <>
             <BoardHeader boardTitle={boardTitle} btnText={btnText} page={page} setPage={setPage} />
@@ -120,7 +128,10 @@ export default function Newpost({ checkLogin, page, setPage }) {
                 </table>
             </div>
 
-            <button onClick={validateData}>testBtn</button>
+            <div className="validateBtnBox">
+                <button onClick={validateData}>등록하기</button>
+                <button onClick={checkCancel}>취소하기</button>
+            </div>
         </>
     )
 }

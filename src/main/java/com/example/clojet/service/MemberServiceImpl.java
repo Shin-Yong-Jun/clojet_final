@@ -19,8 +19,6 @@ import java.util.stream.Collectors;
 public class MemberServiceImpl implements MemberService {
 
     private final MemberRepository memberRepository;
-//    private final HttpSession session;
-
     @Override
     public Member createMember(Member member) {
         Optional<Member> memberOptional = memberRepository.findByUserEmail(member.getUserEmail());

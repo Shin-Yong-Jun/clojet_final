@@ -15,8 +15,8 @@ import java.util.Optional;
 public class BoardController {
     private final BoardRepository boardRepository;
     @PostMapping(value = "/createpost")
-    public ResponseEntity<?> createBoard(@RequestBody Board board){
-        return ResponseEntity.ok(boardRepository.save(board));
+    public Board createBoard(@RequestBody Board board){
+        return boardRepository.save(board);
     }
 
     @GetMapping
