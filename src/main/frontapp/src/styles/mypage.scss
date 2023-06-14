@@ -1,3 +1,11 @@
+.blind {
+  display: none;
+  font-size: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
 .mpContainer {
   margin: 0 auto;
   box-sizing: border-box;
@@ -14,6 +22,24 @@
     background-color: rgb(182, 182, 182);
   }
 
+  table *:not(.textBox) {
+    border: none;
+  }
+
+  .boardHeader {
+    margin-bottom: 0.4rem;
+    border-bottom: 0.08rem solid black;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .boardTitle {
+    font-weight: bold;
+    font-size: large;
+    margin-bottom: 0.4rem;
+    padding-bottom: 0.2rem;
+  }
+
   .myBoard {
     position: relative;
     margin-top: 1.25rem;
@@ -21,36 +47,118 @@
     margin-bottom: 5rem;
     min-width: 60%;
 
-    .boardHeader {
-      margin-bottom: 0.4rem;
-      border-bottom: 0.08rem solid black;
-      display: flex;
-      justify-content: space-between;
-    }
+
 
     .makeQnAPost {
-      margin-bottom: 10px;
+      margin-bottom: 0.4rem;
+      padding: 0.2rem;
     }
 
     .myBoardTitle {
       font-weight: bold;
       font-size: 22px;
-      margin-bottom: 10px;
+      margin-bottom: 0.4rem;
       margin-top: 50px;
     }
 
-    .boardTitle {
-      font-weight: bold;
-      font-size: large;
-      margin-bottom: 0.4rem;
-      padding-bottom: 0.2rem;
-    }
 
     .qnaBoard {
-      width: 100%;
       display: flex;
       align-items: flex-start;
       flex-wrap: wrap;
+
+      table {
+        width: 100%;
+
+        tr {
+          display: flex;
+        }
+
+        td {
+          text-align: center;
+          font-weight: bold;
+        }
+
+        tr>td:not(:last-child) {
+          border-right: solid black 0.05rem;
+        }
+
+        tr>td:nth-of-type(1) {
+          flex: 1;
+        }
+
+        tr>td:nth-of-type(2) {
+          flex: 3;
+        }
+
+        tr>td:nth-of-type(3) {
+          flex: 4;
+        }
+
+        tr>td:nth-of-type(4) {
+          flex: 1;
+        }
+      }
+
+    }
+
+    .inquiryForm {
+      tbody {
+        width: 810px;
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      tr {
+        width: 100%;
+        line-height: 2.3rem;
+      }
+
+      tr>span {
+        display: inline-block;
+        width: 5rem;
+        margin-right: 1rem;
+      }
+
+      td {
+        width: calc(80% - 6rem);
+        display: inline-flex;
+      }
+
+      @media screen and (max-width:768px) {
+        td {
+          width: calc(100% - 6rem);
+        }
+
+        tbody {
+          width: 100%;
+        }
+      }
+
+      td>span {
+        margin-right: 0.6rem;
+        display: flex;
+        align-items: center;
+      }
+
+      input:not(.textBox) {
+        line-height: 2rem;
+      }
+
+      .titleOfQuestion {
+        font-weight: bold;
+      }
+
+      .textBox {
+        display: inline-block;
+        width: 100%;
+      }
+
+      .question_Input_Content {
+        height: 11rem;
+        line-height: initial;
+      }
+
     }
   }
 }
@@ -389,7 +497,20 @@
 /* =============    반응형    ============== */
 /* ========================================= */
 
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
+  * {
+    transition: 0.2s ease-in-out;
+  }
+
+  .myBoard {
+    margin: 1rem 1.5rem 4rem 1.4em;
+  }
+
+  .mpContainer {
+    display: block;
+    width: 100vw;
+
+  }
 
   // .myListContainer {
   //   display: none;
