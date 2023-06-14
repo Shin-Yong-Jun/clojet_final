@@ -12,7 +12,7 @@ import java.util.List;
 public class CategorymidService {
     private final CategorymidRepository categorymidRepository;
 
-    public List<Categorymid> findCategory(){
+    public List<Categorymid> findMid(){
         return categorymidRepository.findAll();
 
     }
