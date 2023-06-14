@@ -3,6 +3,7 @@ import { TYPEOFINQUIRY } from "../../constants/constOfMypage";
 import { BoardHeader } from "./BoardHeader";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { paresDate } from "../../utils/parseDate";
 
 export default function Newpost({ checkLogin, page, setPage }) {
     const boardTitle = "문의 입력";
@@ -42,7 +43,7 @@ export default function Newpost({ checkLogin, page, setPage }) {
                         userEmail: checkLogin.userEmail,
                         title: title,
                         content: content,
-                        date: new Date(),
+                        date: paresDate(),
                         response: false,
                     })
                     .then((response) => {
