@@ -22,7 +22,7 @@ public class MemberServiceImpl implements MemberService {
 
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
-//    private final HttpSession session;
+
 
     @Override
     public Member createMember(Member member) {
