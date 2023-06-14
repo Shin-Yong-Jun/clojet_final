@@ -12,8 +12,7 @@ import java.util.List;
 public class Categorysizeservice {
     private final CategorysizeRepository categorysizeRepository;
     public List<Categorysize> findSize(){
-        return categorysizeRepository.findAll();
-
+        return categorysizeRepository.findAllByOrderByIndex();
     }
 
 
