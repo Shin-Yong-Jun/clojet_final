@@ -6,6 +6,8 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
@@ -19,6 +21,7 @@ import java.util.stream.Collectors;
 public class MemberServiceImpl implements MemberService {
 
     private final MemberRepository memberRepository;
+    private final PasswordEncoder passwordEncoder;
 //    private final HttpSession session;
 
     @Override
@@ -27,23 +30,39 @@ public class MemberServiceImpl implements MemberService {
         if (memberOptional.isPresent()) {
             throw new IllegalArgumentException("기존 계정이 등록되어 있습니다.");
         }
+        String encryptedPassword = passwordEncoder.encode(member.getUserPw());
+        member.setUserPw(encryptedPassword);
         return memberRepository.save(member);
     }
 
     @Override
     public ResponseEntity<?> loginMember(Member memberLogin, HttpSession session) {
-        Optional<Member> memberOptional = memberRepository.findByUserEmailAndUserPw(
-                memberLogin.getUserEmail(),
-                memberLogin.getUserPw()
-        );
+        Optional<Member> memberOptional = memberRepository.findByUserEmail(memberLogin.getUserEmail());
         if (memberOptional.isPresent()) {
-            Member loginMember = memberOptional.get();
-            session.setAttribute("loggedInMember", loginMember);
-            return ResponseEntity.ok().build();
-        } else {
-            return ResponseEntity.badRequest().body("로그인 정보가 일치하지 않습니다.");
+            Member storedMember = memberOptional.get();
+            boolean passwordMatches = passwordEncoder.matches(memberLogin.getUserPw(), storedMember.getUserPw());
+            if (passwordMatches) {
+                session.setAttribute("loggedInMember", storedMember);
+                return ResponseEntity.ok().build();
+            }
         }
+        return ResponseEntity.badRequest().body("로그인 정보가 일치하지 않습니다.");
     }
+
+//    @Override
+//    public ResponseEntity<?> loginMember(Member memberLogin, HttpSession session) {
+//        Optional<Member> memberOptional = memberRepository.findByUserEmailAndUserPw(
+//                memberLogin.getUserEmail(),
+//                memberLogin.getUserPw()
+//        );
+//        if (memberOptional.isPresent()) {
+//            Member loginMember = memberOptional.get();
+//            session.setAttribute("loggedInMember", loginMember);
+//            return ResponseEntity.ok().build();
+//        } else {
+//            return ResponseEntity.badRequest().body("로그인 정보가 일치하지 않습니다.");
+//        }
+//    }
 
     @Override
     public String generateRandomPassword() {
