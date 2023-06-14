@@ -15,5 +15,4 @@ public interface MemberService {
     Member getMemberById(Long id);
     void updateMember(Long id, String userEmail);
     void deleteMember(Long id);
-
 }
