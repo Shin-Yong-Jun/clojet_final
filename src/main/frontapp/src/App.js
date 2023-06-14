@@ -12,14 +12,11 @@ import Detail from "./pages/detail";
 import Category from "./pages/category";
 import Dashboard from "./pages/admin/dashboard/dashboard";
 import { Route, Routes } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from 'react';
+
 
 function App() {
-    const [checkLogin, setCheckLogin] = useState({
-        // 문의사항 게시판 만들기용 테스트입니다.
-        userName: "test",
-        userEmail: "hakro1@gmail.com",
-    });
+    const [checkLogin, setCheckLogin] = useState(false);
 
     return (
         <>
@@ -29,18 +26,12 @@ function App() {
                 <Routes>
                     <Route index element={<Main />} />
                     <Route path="/category/*" element={<Category />} />
-                    <Route
-                        path="/login"
-                        element={<Login setCheckLogin={setCheckLogin} />}
-                    />
+                    <Route path="/login" element={<Login setCheckLogin={setCheckLogin} />} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/findpw" element={<Findpw />} />
                     <Route path="/cart" element={<Cart />} />
                     <Route path="/purchase" element={<Purchase />} />
-                    <Route
-                        path="/mypage/*"
-                        element={<Mypage checkLogin={checkLogin} />}
-                    />
+                    <Route path="/mypage/*" element={<Mypage checkLogin={checkLogin} />} />
                     <Route path="/detail" element={<Detail />} />
                     <Route path="/admin/*" element={<Dashboard />} />
                 </Routes>

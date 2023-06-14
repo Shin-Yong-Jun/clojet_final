@@ -2,8 +2,14 @@ import { Route, Routes, Outlet, Link } from "react-router-dom";
 import WishList from "../components/mypage/wishList/wishList";
 import RecentList from "../components/mypage/recentList/recentList";
 import "../styles/mypage.scss";
+import { useState } from "react";
+import Newpost from "../components/mypage/Newpost";
+import { BoardHeader } from "../components/mypage/BoardHeader";
+
 
 export default function Mypage({ checkLogin }) {
+    const [page, setPage] = useState('qna');
+
     //--------------사이드 서브메뉴 구성 ------------
     const sideMenu_orderPages = [
         { id: 1, title: "주문/배송 조회", url: "/" },
@@ -26,6 +32,7 @@ export default function Mypage({ checkLogin }) {
                 <Routes>
                     <Route path="/main" element={<MpMain />} />
                     <Route path="/myqna" element={<MpQnA />} />
+                    <Route path="/newpost" element={<Newpost checkLogin={checkLogin} page={page} setPage={setPage} />} />
                     <Route path="/myreview" element={<MpMyReview />} />
                 </Routes>
                 <Outlet />
@@ -42,7 +49,7 @@ export default function Mypage({ checkLogin }) {
                 <div className="myListContainer">
                     <div className="myList">
                         <ul className="hello">
-                            <Link to="/mypage/main">
+                            <Link to='/mypage/main'>
                                 <strong>마이페이지</strong>
                             </Link>
                             <li>
@@ -51,39 +58,47 @@ export default function Mypage({ checkLogin }) {
                         </ul>
                         <ul className="myOrder">
                             <li className="sideMtitle">주문 관련</li>
-                            {sideMenu_orderPages.map((obj) => {
-                                return (
-                                    <li key={obj.id} className="list">
-                                        <Link to={obj.url}>{obj.title}</Link>
-                                    </li>
-                                );
-                            })}
+                            {
+                                sideMenu_orderPages.map((obj) => {
+                                    return (
+                                        <li key={obj.id} className="list">
+                                            <Link to={obj.url}>{obj.title}</Link>
+                                        </li>
+                                    );
+                                })
+                            }
                         </ul>
                         <ul className="myQnaReview">
                             <li className="sideMtitle">문의/리뷰</li>
-                            {sideMenu_askPages.map((obj) => {
-                                return (
-                                    <li key={obj.id} className="list">
-                                        <Link to={obj.url}>{obj.title}</Link>
-                                    </li>
-                                );
-                            })}
+                            {
+                                sideMenu_askPages.map((obj) => {
+                                    return (
+                                        <li key={obj.id} className="list">
+                                            <Link to={obj.url}>{obj.title}</Link>
+                                        </li>
+                                    );
+                                })
+                            }
                         </ul>
                         <ul className="myInfo">
                             <li className="sideMtitle">나의 정보</li>
-                            {sideMenu_myInfo.map((obj) => {
-                                return (
-                                    <li key={obj.id} className="list">
-                                        <Link to={obj.url}>{obj.title}</Link>
-                                    </li>
-                                );
-                            })}
+                            {
+                                sideMenu_myInfo.map((obj) => {
+                                    return (
+                                        <li key={obj.id} className="list">
+                                            <Link to={obj.url}>{obj.title}</Link>
+                                        </li>
+                                    );
+                                })
+                            }
                         </ul>
                     </div>
                 </div>
             </>
-        );
+        )
+
     } // Sidemenu
+
 
     //=======================================================================
     //================== MpMain 및 하위 컴포넌트 함수 모음 ==================
@@ -98,25 +113,21 @@ export default function Mypage({ checkLogin }) {
                 <WishList mockListData={mockListData} />
             </>
         );
+
     } // MpMain
 
-    //================== MpMain 하위 StatusBox
+    //================== MpMain 하위 StatusBox 
 
     function StatusBox() {
         return (
             <>
                 <ul className="statusBox">
-                    <li className="box">
-                        <p>{statusData.request}</p>
-                        <p>문의</p>
-                    </li>
-                    <li className="box">
-                        <p>{statusData.wish}</p>
-                        <p>위시리스트</p>
-                    </li>
+                    <li className="box"><p>{statusData.request}</p><p>문의</p></li>
+                    <li className="box"><p>{statusData.wish}</p><p>위시리스트</p></li>
                 </ul>
             </>
-        );
+        )
+
     } // StatusBox
 
     //================== MpMain 하위 OrderFlow
@@ -131,9 +142,7 @@ export default function Mypage({ checkLogin }) {
                         <li className="oStep 1">
                             <p>결제완료</p>
                             <Link to={"/"}>
-                                <span className="circle">
-                                    {orderData.purchase}
-                                </span>
+                                <span className="circle">{orderData.purchase}</span>
                             </Link>
                         </li>
                         <li className="arrow">
@@ -144,9 +153,7 @@ export default function Mypage({ checkLogin }) {
                         <li className="oStep 2">
                             <p>상품준비중</p>
                             <Link to={"/"}>
-                                <span className="circle">
-                                    {orderData.ready}
-                                </span>
+                                <span className="circle">{orderData.ready}</span>
                             </Link>
                         </li>
                         <li className="arrow">
@@ -157,9 +164,7 @@ export default function Mypage({ checkLogin }) {
                         <li className="oStep 3">
                             <p>배송중</p>
                             <Link to={"/"}>
-                                <span className="circle">
-                                    {orderData.delivery}
-                                </span>
+                                <span className="circle">{orderData.delivery}</span>
                             </Link>
                         </li>
                         <li className="arrow">
@@ -170,56 +175,45 @@ export default function Mypage({ checkLogin }) {
                         <li className="oStep 4">
                             <p>배송완료</p>
                             <Link to={"/"}>
-                                <span className="circle">
-                                    {orderData.arrived}
-                                </span>
+                                <span className="circle">{orderData.arrived}</span>
                             </Link>
                         </li>
                     </ul>
                 </div>
             </>
         );
+
     } // OrderFlow
-
-    //---------------- <recentList, wishList 상품 임시 데이터, 버튼 이미지>
-
-    //=================================================================
-    //=================================================================
-    //=================================================================
 
     function MpQnA() {
         //css 필요
-        const receiveData = data.filter(
-            (i) => i.address === checkLogin.userEmail
-        );
-        const boardList = ["작성자", "상품명", "작성일", "제목", "내용"];
+        const receiveData = data.filter(i => i.address === checkLogin.userEmail);
+        const boardList = ["작성자", "상품명", "제목", "작성일"];
+        const boardTitle = "1:1 문의 내역";
+        const btnText = "문의하기"
 
         if (receiveData.length === 0) {
             return (
                 <>
-                    <div className="boardHeader">
-                        <div className="boardTitle">1:1 문의</div>
-                        <button type="button" className="makeQnAPost">
-                            문의하기
-                        </button>
-                    </div>
+                    <BoardHeader boardTitle={boardTitle} btnText={btnText} page={page} setPage={setPage} />
                     <div className="qnaBoard">
                         <table border="1px">
                             <tr className="boardListContainer">
-                                {boardList.map((i) => (
-                                    <td>{i}</td>
-                                ))}
+                                {
+                                    boardList.map(i => <td>{i}</td>)
+                                }
                             </tr>
 
-                            {receiveData.map((i) => (
-                                <tr className="boardContentContainer">
-                                    <td>{i.작성자}</td>
-                                    <td>{i.상품명}</td>
-                                    <td>{i.date}</td>
-                                    <td>{i.title}</td>
-                                    <td>{i.content}</td>
-                                </tr>
-                            ))}
+                            {
+                                receiveData.map(i => (
+                                    <tr className="boardContentContainer">
+                                        <td>{i.userName}</td>
+                                        <td>{i.상품명}</td>
+                                        <td>{i.date}</td>
+                                        <td>{i.title}</td>
+                                    </tr>
+                                ))
+                            }
                         </table>
                     </div>
                 </>
@@ -229,8 +223,9 @@ export default function Mypage({ checkLogin }) {
                 <>
                     <div>문의하신 내역이 없습니다.</div>
                 </>
-            );
+            )
         }
+
     } // MpQnA
 
     function MpMyReview() {
@@ -242,6 +237,7 @@ export default function Mypage({ checkLogin }) {
             </>
         );
     } // MpMyReview
+
 } // main function
 
 const data = [];

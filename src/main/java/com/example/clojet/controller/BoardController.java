@@ -2,7 +2,6 @@ package com.example.clojet.controller;
 
 import com.example.clojet.domain.Board;
 import com.example.clojet.repository.BoardRepository;
-import org.springframework.http.HttpStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +14,10 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class BoardController {
     private final BoardRepository boardRepository;
+    @PostMapping(value = "/createpost")
+    public ResponseEntity<?> createBoard(@RequestBody Board board){
+        return ResponseEntity.ok(boardRepository.save(board));
+    }
 
     @GetMapping
     public ResponseEntity<List<Board>> getAllPosts(){
@@ -31,20 +34,4 @@ public class BoardController {
             return ResponseEntity.notFound().build();
         }
     }
-
-    @PostMapping
-    public ResponseEntity<Board> createBoard(@RequestBody Board board){
-        Board creatBoard = boardRepository.save(board);
-        return ResponseEntity.status(HttpStatus.CREATED).body(creatBoard);
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Board> updatePost(@PathVariable Long id, @RequestBody Board board){
-        Optional<Board> optionalBoard = boardRepository.findById(id);
-
-        return ResponseEntity.ok(optionalBoard.get());
-    }
-
-
-
 }
