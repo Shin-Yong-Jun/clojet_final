@@ -19,51 +19,27 @@ const marks = [
 ];
 
 function CategoryN() {
-    const size = ['XS', 'S', 'M', 'L', 'XL', '2XL'];
-    const color = [
-        'red',
-        'red',
-        'red',
-        'red',
-        'red',
-        'red',
-        'red',
-        'orange',
-        'yellow',
-        'green',
-        'blue',
-    ];
-
+    const [size, setSize] = useState([]);
     const [item, setItem] = useState([]);
+    const [color, setColor] = useState([]);
 
     const [value, setValue] = useState([0, 1000000]);
     const [foldState, setFoldState] = useState(Array(4).fill(false));
     const [sizeState, setSizeState] = useState(Array(size.length).fill(false));
-    const [colorState, setColorState] = useState(
-        Array(color.length).fill(false),
-    );
+    const [colorState, setColorState] = useState(Array(color.length).fill(false));
 
     useEffect(() => {
         axios
             .get('/category')
             .then((result) => {
-                console.log(result);
+                setSize(result.data.cs_type);
+                setItem(result.data.cm_valmean);
+                setColor(result.data.cc_type);
             })
             .catch((err) => {
                 console.log(err);
             });
     }, []);
-
-    /*   useEffect(() => {
-       axios
-          .get('/category')
-            .then((result) => {
-                setItem(result.data.map((categoryV) => categoryV.cm_valmean));
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }, []); */
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -83,13 +59,13 @@ function CategoryN() {
                 <div className='category_side'>
                     <h1>NEW</h1>
                     <div className='side_item'>
-                        {/*{item.map((itemV, index) => {
+                        {item.map((itemV, index) => {
                             return (
                                 <div className='item_type'>
                                     <Link to={'/'}>{itemV}</Link>
                                 </div>
                             );
-                        })}*/}
+                        })}
                     </div>
                     <div className='side_item'>
                         <div className='side_title'>
@@ -142,8 +118,7 @@ function CategoryN() {
                                     onChange={handleChange}
                                 />
                                 <p className='priceC'>
-                                    선택가격 : <span>{value[0]}</span> 원 ~{' '}
-                                    <span>{value[1]}</span> 원
+                                    선택가격 : <span>{value[0]}</span> 원 ~ <span>{value[1]}</span> 원
                                 </p>
                             </div>
                         </div>
@@ -165,15 +140,11 @@ function CategoryN() {
                                     <div className='color_box'>
                                         <div
                                             key={colorV}
-                                            onClick={() =>
-                                                clickE(setColorState, index)
-                                            }
+                                            onClick={() => clickE(setColorState, index)}
                                             className={`color ${colorV}
                                             ${colorState[index] && 'active'}`}
                                         ></div>
-                                        <div className='color_name'>
-                                            {colorV}
-                                        </div>
+                                        <div className='color_name'>{colorV}</div>
                                     </div>
                                 );
                             })}
@@ -195,12 +166,8 @@ function CategoryN() {
                                 return (
                                     <div
                                         key={sizeV}
-                                        onClick={() =>
-                                            clickE(setSizeState, index)
-                                        }
-                                        className={`size ${
-                                            sizeState[index] && 'active'
-                                        }`}
+                                        onClick={() => clickE(setSizeState, index)}
+                                        className={`size ${sizeState[index] && 'active'}`}
                                     >
                                         <span>{sizeV}</span>
                                     </div>
@@ -213,10 +180,7 @@ function CategoryN() {
 
             <div className='category_right'>
                 <div className='category_banner'>
-                    <img
-                        src={require('../../image/clojet-category-new-banner.png')}
-                        alt={'categoryN_banner'}
-                    />
+                    <img src={require('../../image/clojet-category-new-banner.png')} alt={'categoryN_banner'} />
                 </div>
                 <div className='category_item'>
                     <h1>아이템</h1>
@@ -226,9 +190,7 @@ function CategoryN() {
                                 <div className='pd_img'>
                                     <a href='/'>
                                         <img
-                                            src={require(`../../image/product${
-                                                index + 1
-                                            }.jpg`)}
+                                            src={require(`../../image/product${index + 1}.jpg`)}
                                             alt={`product${index + 1}`}
                                         />
                                     </a>
@@ -237,8 +199,7 @@ function CategoryN() {
                                     <p>{product.title}</p>
                                     <p>{product.PercentS}</p>
                                     <p>
-                                        <del>{product.basicP}</del>{' '}
-                                        <strong>{product.saleP}</strong>
+                                        <del>{product.basicP}</del> <strong>{product.saleP}</strong>
                                     </p>
                                 </div>
                             </div>

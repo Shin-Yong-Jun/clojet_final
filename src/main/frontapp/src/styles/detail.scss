@@ -11,31 +11,25 @@
 }
 
 .detail {
-    background-color: aqua;
     height: 100vh;
     margin-top: 20px;
 
     .detail_top {
-        background-color: chartreuse;
-
         display: flex;
         justify-content: center;
         // align-items: center;
         flex-wrap: nowrap;
 
         .detail_top_thumnail {
-            background-color: rgb(104, 70, 58);
             width: 70%;
             text-align: center;
 
             .detail_top_main_thumnail {
-                background-color: brown;
                 img {
                     height: 600px;
                 }
             }
             .detail_top_sub_thumnail {
-                background-color: coral;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -47,61 +41,121 @@
             }
         }
         .detail_top_information {
-            background-color: rgb(14, 37, 37);
             width: 30%;
+            word-break: keep-all;
+            text-align: right;
 
-            .event_logo {
-                span {
-                    border: 2px solid red;
-                    border-radius: 10px;
-                    margin-right: 5px;
+            .title_box {
+                h1 {
+                    line-height: 30px;
+                }
+                h2 {
+                    color: gray;
+                    font-weight: normal;
+                    font-size: 20px;
+                    line-height: 20px;
                 }
             }
-            .hashTag {
-                span {
-                    margin-right: 5px;
+            .pirce_box {
+                font-size: 20px;
+                .discount {
+                    font-weight: bold;
                 }
-            }
-            .title {
-                word-break: keep-all;
-            }
-            .price_area {
-                .won {
-                    font-size: 50%;
+                del {
+                    color: gray;
                 }
-                strong {
-                    margin-right: 5px;
+                p {
                     font-size: 30px;
+                    font-weight: bold;
                 }
-                small {
+            }
+            .size,
+            .color {
+                display: flex;
+                flex-wrap: nowrap;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px;
+                border-bottom: 1px solid #000;
+                transition: 0.3s;
+                cursor: pointer;
+
+                &.hidden {
+                    opacity: 0.3;
+                    pointer-events: none;
+                }
+
+                span {
+                    font-weight: bold;
                     font-size: 20px;
                 }
-            }
-            .about_rating {
-                display: flex;
-                align-items: center;
-
-                .rating_star {
+                .select {
                     display: flex;
+                    justify-content: end;
+                    width: 80%;
+                    gap: 5px;
+
+                    div {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        width: 100px;
+                        height: 30px;
+                        border: 1px solid black;
+                        transition: 0.3s;
+                        cursor: pointer;
+
+                        &:hover,
+                        &.check {
+                            background-color: black;
+                            color: white;
+                        }
+                    }
                 }
             }
-            .delivery_info {
-                dl {
-                    display: inline-flex;
-                    padding-right: 15px;
-                    margin-right: 15px;
-                    border-right: 1px solid black;
-                    dt {
-                        margin-right: 5px;
-                    }
 
-                    &:last-of-type {
-                        border-right: none;
+            .buy_box {
+                display: flex;
+                div {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                    height: 50px;
+                    border: 1px solid black;
+                    transition: 0.3s;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: black;
+                        color: white;
+                    }
+                }
+            }
+            .otherInformation {
+                margin-top: 20px;
+
+                > div {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-bottom: 1px solid #000;
+                    text-align: center;
+                    padding: 10px;
+
+                    .title {
+                        flex: 2;
+                    }
+                    .icon {
+                        font-size: 20px;
+                        flex: 1;
                     }
                 }
             }
         }
     }
+
     .detail_bottom {
         .detail_bottom_header {
             background-color: white;
