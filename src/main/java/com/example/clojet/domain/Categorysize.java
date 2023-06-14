@@ -24,5 +24,7 @@ public class Categorysize {
     @Column(name="cs_valmean")
     private String cs_valmean;
 
+    private int index;
+
 
 }
