@@ -7,6 +7,8 @@ import Newpost from "../components/mypage/Newpost";
 import { BoardHeader } from "../components/mypage/BoardHeader";
 import { Button, Input } from "@mui/material";
 import axios from "axios";
+import { MpQnA } from "../components/mypage/MpQnA";
+
 
 
 export default function Mypage({ checkLogin }) {
@@ -33,7 +35,7 @@ export default function Mypage({ checkLogin }) {
             <div className="myBoard">
                 <Routes>
                     <Route path="/main" element={<MpMain />} />
-                    <Route path="/myqna" element={<MpQnA />} />
+                    <Route path="/myqna" element={<MpQnA page={page} setPage={setPage} checkLogin={checkLogin} />} />
                     <Route path="/newpost" element={<Newpost checkLogin={checkLogin} page={page} setPage={setPage} />} />
                     <Route path="/myreview" element={<MpMyReview />} />
                     <Route path="/myinfo" element={<MpMyInfo />} />
@@ -231,102 +233,6 @@ export default function Mypage({ checkLogin }) {
 
     } // MpQnA
 
-    function MpMyInfo() {
-        // const myInfoList = ["이메일", "비밀번호", "이름", "성별", "전화번호",]
-        const myInfoList = [
-            {
-                title : "이메일",
-                inputType : "email",
-                readonly: "readonly",
-                name: "userEmail",
-            },
-            {
-                title : "비밀번호 수정",
-                inputType : "password",
-                readonly: "readonly",
-                name: "userPw",
-            },
-            {
-                title : "이름",
-                inputType : "text",
-                name: "userName",
-            },
-            {
-                title : "성별",
-                inputType : "text",
-                name: "userGender",
-            },
-            {
-                title : "전화번호",
-                inputType : "text",
-                name: "userPhone",
-            },
-            
-        ];
-
-        const handleSubmit = async (e) => {
-            e.preventDefault();
-            const data = new FormData(e.currentTarget);
-            const email = data.get("userEmail");
-            const password = data.get("userPw");
-            const name = data.get("userName");
-            const phoneNumber = data.get("userPhone");
-            const gender = data.get("userGender");
-
-            try {
-                const memberData = {
-                    userEmail : email,
-                    userPw: password,
-                    userName : name,
-                    userPhone: phoneNumber,
-                    userGender: gender,
-                }
-                axios
-                    .post("/member/update", memberData)
-
-            } catch {
-
-            }
-
-        }
-
-        return (
-            <>
-            <div className="myInfo">
-                <div className="myInfoTitle">회원정보 수정</div>
-                <hr/>
-                    <div className="myInfoBox">
-                        <form method="post" className="myInfoForm">
-                            <div>이메일</div>
-                            <input type="email" name="userEmail" value="꺼져" disabled/>
-                            <div>신규 비밀번호 수정</div>
-                            <input type="text" name="userPw"/>
-                            <div>이름</div>
-                            <input type="text" name="userName"/>
-                            <div>성별</div>
-                            <select name = "userGender">
-                                <option value="m">남자</option>
-                                <option value="f">여자</option>
-                            </select>
-                            <div>전화번호</div>
-                            <input type="text" value=""/>
-                            <div>
-                                <Button onSubmit={handleSubmit}>제출</Button>
-                            </div>
-                        </form>
-
-                    </div>
-
-
-            </div>
-            
-            
-            </>
-        );
-    }
-
-
-
     function MpMyReview() {
         return (
             <>
@@ -338,8 +244,6 @@ export default function Mypage({ checkLogin }) {
     } // MpMyReview
 
 } // main function
-
-const data = [];
 
 //--------------내 쿠폰, 포인트, 문의, 위시 ----
 const statusData = {
