@@ -13,29 +13,64 @@ function MpMyInfo({ checkLogin }) {
         const newGender = data.get("userGender");
         const newPhone = data.get("userPhone");
 
-        try {
-            const memberNewData = {
-                userPw: newPassword,
-                userName: newName,
-                userGender: newGender,
-                userPhone: newPhone,
-            };
+        const pwValidation = (password) => {
+            const pwRegex =
+                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&*()?!])[A-Za-z\d@#$%^&*()?!]{8,}$/;
+            return pwRegex.test(password);
+        };
 
-            axios
-                .put("/member/update/" + `${checkLogin.userIdx}`, memberNewData)
-                .then((response) => {
-                    if (response.status === 200) {
-                        alert("회원정보가 성공적으로 변경되었습니다.");
-                        navigate("/mypage/myinfo");
-                    }
-                })
-                .catch(() => {
-                    alert("회원정보 변경이 실패하였습니다.");
-                });
-        } catch {
-            alert("뭔가 이상합니데이");
-        }
-    };
+        const pnValidation = (phoneNumber) => {
+            let hasNonNumeric = false; // 문자가 발견되었는지를 나타내는 변수
+            phoneNumber.split("").forEach((char) => {
+                if (isNaN(char)) {
+                    // 입력받은 값이 숫자가 아닌 경우
+                    hasNonNumeric = true; // 문자가 발견되었음을 표시
+                }
+            });
+            if (hasNonNumeric || phoneNumber.length !== 11) {
+                // 문자가 발견되었거나 숫자가 11개가 아닐 경우
+                return false; // false 반환
+            }
+            return true; // 숫자가 11개일 경우
+        };
+
+        //======================================
+
+        if(!pwValidation(newPassword)) {
+            alert("비밀번호는 숫자와 영문 대소문자와 특수문자(@$!%*?&)포함 8자 이상이어야 합니다.");
+            return
+        } else if(!pnValidation(newPhone)) {
+            alert("유효하지 않은 휴대번호입니다.");
+            return;
+        } else if (!newName) {
+            alert("성함을 입력하세요.");
+            return;
+        } else{
+            try {
+                const memberNewData = {
+                    userPw: newPassword,
+                    userName: newName,
+                    userGender: newGender,
+                    userPhone: newPhone,
+                };
+    
+                axios
+                    .put("/member/update/" + `${checkLogin.userIdx}`, memberNewData)
+                    .then((response) => {
+                        if (response.status === 200) {
+                            alert("회원정보가 성공적으로 변경되었습니다.");
+                            navigate("/mypage/myinfo");
+                        }
+                    })
+                    .catch(() => {
+                        alert("회원정보 변경이 실패하였습니다.");
+                    });
+            } catch {
+                alert("뭔가 이상합니데이");
+            }
+        };
+
+            };
 
     return (
         <div className="myInfo">
