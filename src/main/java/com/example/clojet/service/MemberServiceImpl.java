@@ -99,7 +99,8 @@ public class MemberServiceImpl implements MemberService {
         if (memberOptional.isPresent()) {
             Member member = memberOptional.get();
             String newRandomPw = generateRandomPassword();
-            member.setUserPw(newRandomPw);
+            String encryptedPassword = passwordEncoder.encode(newRandomPw);
+            member.setUserPw(encryptedPassword);
             memberRepository.save(member);
             return ResponseEntity.ok(newRandomPw);
         }
