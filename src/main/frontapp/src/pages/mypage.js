@@ -21,7 +21,7 @@ export default function Mypage({ checkLogin }) {
         { id: 2, title: "리뷰작성 내역", url: "/mypage/myreview" },
     ];
 
-    const sideMenu_myInfo = [{ id: 1, title: "회원정보 수정", url: "/" }];
+    const sideMenu_myInfo = [{ id: 1, title: "회원정보 수정", url: "/mypage/myinfo" }];
 
     //마이페이지 HTML 구성
 
@@ -34,6 +34,7 @@ export default function Mypage({ checkLogin }) {
                     <Route path="/myqna" element={<MpQnA />} />
                     <Route path="/newpost" element={<Newpost checkLogin={checkLogin} page={page} setPage={setPage} />} />
                     <Route path="/myreview" element={<MpMyReview />} />
+                    <Route path="/myinfo" element={<MpMyInfo />} />
                 </Routes>
                 <Outlet />
             </div>
@@ -227,6 +228,39 @@ export default function Mypage({ checkLogin }) {
         }
 
     } // MpQnA
+
+    function MpMyInfo() {
+        const myInfoList = ["이메일", "비밀번호", "이름", "성별", "전화번호",]
+        const myDelInfo = ["수령인 이름", "수령인 전화번호","우편번호", "도로주소", "상세주소",]
+
+        return (
+            <>
+            <div className="myInfo">
+                <div className="myInfoTitle">회원정보 수정</div>
+                <hr/>
+                    <div className="myInfoBox">
+                        <table border="1px">
+                            <tr className="myInfo">
+                                {myInfoList.map((obj) => {
+                                    return (
+                                        <td>{obj}</td>
+                                    );
+                                })
+                                    }
+                                </tr>
+                        </table>
+
+                    </div>
+
+
+            </div>
+            
+            
+            </>
+        );
+    }
+
+
 
     function MpMyReview() {
         return (
