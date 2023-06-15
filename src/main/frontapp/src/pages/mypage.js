@@ -7,7 +7,6 @@ import Newpost from "../components/mypage/Newpost";
 import { MpQnA } from "../components/mypage/MpQnA";
 import { MpMyInfo } from "../components/mypage/MpMyInfo"
 
-
 export default function Mypage({ checkLogin }) {
     const [page, setPage] = useState('qna');
 
