@@ -21,8 +21,11 @@ function App() {
 
     // 테스트용코드
     const [checkLogin, setCheckLogin] = useState({
+        userIdx: "2",
         userName : 'test',
+        userGender : 'f',
         userEmail : "hakro1@gmail.com",
+        userPhone : "01089456515"
     });
 
     paresDate();
