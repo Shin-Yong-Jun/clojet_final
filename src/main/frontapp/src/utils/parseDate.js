@@ -1,8 +1,7 @@
 export function paresDate(){
-    const nowTime = new Date().toString().split(" ")
+    const nowTime = new Date().toString().split(" ");
 
     const year = nowTime[3];
-
     function month(){
         const t2 = new Date().getMonth();
 
@@ -12,11 +11,8 @@ export function paresDate(){
             return (t2+1);
         }
     };
-
     const minute = nowTime[2];
-
     const time = nowTime[4];
 
-    return `${year}.${month()}.${minute} ${time}`
-    
+    return `${year}.${month()}.${minute} ${time}`    
 }
