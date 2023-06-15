@@ -2,7 +2,11 @@ import React from 'react'
 
 function MpMyInfo() {
   return (
-    <div>MpMyInfo</div>
+    <div className = "myInfo">
+        <div className="myInfoTitle">회원정보 수정</div>
+        <hr/>
+
+    </div>
   )
 }
 
