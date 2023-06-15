@@ -4,6 +4,9 @@ import RecentList from "../components/mypage/recentList/recentList";
 import "../styles/mypage.scss";
 import { useState } from "react";
 import Newpost from "../components/mypage/Newpost";
+import { BoardHeader } from "../components/mypage/BoardHeader";
+import { Button, Input } from "@mui/material";
+import axios from "axios";
 import { MpQnA } from "../components/mypage/MpQnA";
 
 
@@ -22,7 +25,7 @@ export default function Mypage({ checkLogin }) {
         { id: 2, title: "리뷰작성 내역", url: "/mypage/myreview" },
     ];
 
-    const sideMenu_myInfo = [{ id: 1, title: "회원정보 수정", url: "/" }];
+    const sideMenu_myInfo = [{ id: 1, title: "회원정보 수정", url: "/mypage/myinfo" }];
 
     //마이페이지 HTML 구성
 
@@ -35,6 +38,7 @@ export default function Mypage({ checkLogin }) {
                     <Route path="/myqna" element={<MpQnA page={page} setPage={setPage} checkLogin={checkLogin} />} />
                     <Route path="/newpost" element={<Newpost checkLogin={checkLogin} page={page} setPage={setPage} />} />
                     <Route path="/myreview" element={<MpMyReview />} />
+                    <Route path="/myinfo" element={<MpMyInfo />} />
                 </Routes>
                 <Outlet />
             </div>
@@ -185,6 +189,49 @@ export default function Mypage({ checkLogin }) {
         );
 
     } // OrderFlow
+
+    function MpQnA() {
+        //css 필요
+        const receiveData = data.filter(i => i.address === checkLogin.userEmail);
+        const boardList = ["작성자", "상품명", "제목", "작성일"];
+        const boardTitle = "1:1 문의 내역";
+        const btnText = "문의하기"
+
+        if (receiveData.length === 0) {
+            return (
+                <>
+                    <BoardHeader boardTitle={boardTitle} btnText={btnText} page={page} setPage={setPage} />
+                    <div className="qnaBoard">
+                        <table border="1px">
+                            <tr className="boardListContainer">
+                                {
+                                    boardList.map(i => <td>{i}</td>)
+                                }
+                            </tr>
+
+                            {
+                                receiveData.map(i => (
+                                    <tr className="boardContentContainer">
+                                        <td>{i.userName}</td>
+                                        <td>{i.상품명}</td>
+                                        <td>{i.date}</td>
+                                        <td>{i.title}</td>
+                                    </tr>
+                                ))
+                            }
+                        </table>
+                    </div>
+                </>
+            );
+        } else {
+            return (
+                <>
+                    <div>문의하신 내역이 없습니다.</div>
+                </>
+            )
+        }
+
+    } // MpQnA
 
     function MpMyReview() {
         return (

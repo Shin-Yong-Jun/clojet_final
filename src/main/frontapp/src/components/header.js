@@ -142,7 +142,7 @@ function Header({ checkLogin, setCheckLogin }) {
                                             onClick={() => {
                                                 if (checkLogin) {
                                                     alert(
-                                                        "로그아웃 하시겠습니까?"
+                                                        "로그아웃이 완료되었습니다."
                                                     );
                                                     sessionStorage.clear();
                                                     setCheckLogin(false);
