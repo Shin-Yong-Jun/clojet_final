@@ -4,11 +4,8 @@ import RecentList from "../components/mypage/recentList/recentList";
 import "../styles/mypage.scss";
 import { useState } from "react";
 import Newpost from "../components/mypage/Newpost";
-import { BoardHeader } from "../components/mypage/BoardHeader";
-import { Button, Input } from "@mui/material";
-import axios from "axios";
 import { MpQnA } from "../components/mypage/MpQnA";
-
+import { MpMyInfo } from "../components/mypage/MpMyInfo"
 
 
 export default function Mypage({ checkLogin }) {
@@ -189,49 +186,6 @@ export default function Mypage({ checkLogin }) {
         );
 
     } // OrderFlow
-
-    function MpQnA() {
-        //css 필요
-        const receiveData = data.filter(i => i.address === checkLogin.userEmail);
-        const boardList = ["작성자", "상품명", "제목", "작성일"];
-        const boardTitle = "1:1 문의 내역";
-        const btnText = "문의하기"
-
-        if (receiveData.length === 0) {
-            return (
-                <>
-                    <BoardHeader boardTitle={boardTitle} btnText={btnText} page={page} setPage={setPage} />
-                    <div className="qnaBoard">
-                        <table border="1px">
-                            <tr className="boardListContainer">
-                                {
-                                    boardList.map(i => <td>{i}</td>)
-                                }
-                            </tr>
-
-                            {
-                                receiveData.map(i => (
-                                    <tr className="boardContentContainer">
-                                        <td>{i.userName}</td>
-                                        <td>{i.상품명}</td>
-                                        <td>{i.date}</td>
-                                        <td>{i.title}</td>
-                                    </tr>
-                                ))
-                            }
-                        </table>
-                    </div>
-                </>
-            );
-        } else {
-            return (
-                <>
-                    <div>문의하신 내역이 없습니다.</div>
-                </>
-            )
-        }
-
-    } // MpQnA
 
     function MpMyReview() {
         return (
