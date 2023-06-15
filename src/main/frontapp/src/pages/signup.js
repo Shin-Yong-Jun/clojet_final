@@ -122,11 +122,9 @@ function Signup() {
                     })
                     .catch((error) => {
                         alert("이미 등록되어있는 회원입니다.");
-                        console.error(error);
                     });
-            } catch (error) {
+            } catch {
                 alert("로그인을 실패하였습니다. 관리자에게 문의하십시오.");
-                console.error(error);
             }
         }
     };

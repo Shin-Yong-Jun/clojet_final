@@ -49,6 +49,7 @@ export function MpQnA({ page, setPage, checkLogin }) {
     } else {
         return (
             <>
+                <BoardHeader boardTitle={boardTitle} btnText={btnText} page={page} setPage={setPage} />
                 <div>문의하신 내역이 없습니다.</div>
             </>
         )

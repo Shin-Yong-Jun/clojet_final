@@ -13,6 +13,7 @@ public interface MemberService {
     ResponseEntity<?> findMember(Member memberFindPw);
     List<Member> getAllMembers();
     Member getMemberById(Long id);
-    void updateMember(Long id, String userEmail);
+    ResponseEntity<Object> updateMember(Long id, Member memberNewData);
+
     void deleteMember(Long id);
 }

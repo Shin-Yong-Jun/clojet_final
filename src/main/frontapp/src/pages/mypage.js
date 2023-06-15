@@ -12,7 +12,7 @@ export default function Mypage({ checkLogin }) {
 
     //--------------사이드 서브메뉴 구성 ------------
     const sideMenu_orderPages = [
-        { id: 1, title: "주문/배송 조회", url: "/" },
+        { id: 1, title: "주문/배송 조회", url: "/" }, 
         { id: 2, title: "위시리스트", url: "/mypage/wishlist" },
     ];
 
@@ -34,7 +34,7 @@ export default function Mypage({ checkLogin }) {
                     <Route path="/myqna" element={<MpQnA page={page} setPage={setPage} checkLogin={checkLogin} />} />
                     <Route path="/newpost" element={<Newpost checkLogin={checkLogin} page={page} setPage={setPage} />} />
                     <Route path="/myreview" element={<MpMyReview />} />
-                    <Route path="/myinfo" element={<MpMyInfo />} />
+                    <Route path="/myinfo" element={<MpMyInfo checkLogin={checkLogin}/>} />
                 </Routes>
                 <Outlet />
             </div>
