@@ -94,15 +94,13 @@ function Login({ setCheckLogin }) {
                                 this.readyState === this.DONE
                             ) {
                                 const filterData = userInfo.response.filter((i) => i.userEmail === email)[0];
-                                let userInfoData = {
+                                setCheckLogin({
                                     userIdx: filterData.id,
                                     userName: filterData.userName,
                                     userPhone: filterData.userPhone,
                                     userGender: filterData.userGender,
                                     userEmail: email,
-                                }
-                                setCheckLogin(userInfoData);
-                                sessionStorage.setItem(userInfoData);
+                                });
                             }
                         };
 

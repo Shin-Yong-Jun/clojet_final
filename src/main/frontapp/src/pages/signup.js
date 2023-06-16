@@ -63,6 +63,11 @@ function Signup() {
             return pwRegex.test(password);
         };
 
+        const nameValidation = (name) => {
+            const nameRegex = /^[가-힣]{2,5}$/;
+            return nameRegex.test(name);
+        };
+
         const pnValidation = (phoneNumber) => {
             let hasNonNumeric = false; // 문자가 발견되었는지를 나타내는 변수
             phoneNumber.split("").forEach((char) => {
@@ -96,8 +101,8 @@ function Signup() {
             return;
         } else if (!gender) {
             alert("성별을 선택하세요.");
-        } else if (!name) {
-            alert("성함을 입력하세요.");
+        } else if (!nameValidation(name)) {
+            alert("성함을 2글자 이상 5글자 미만으로 입력하세요.");
         } else if (!infoCheck) {
             alert("개인정보 제공에 동의해주세요.");
         } else {
