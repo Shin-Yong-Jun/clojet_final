@@ -5,6 +5,7 @@ import com.example.clojet.repository.MemberRepository;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -107,17 +108,22 @@ public class MemberServiceImpl implements MemberService {
     public ResponseEntity<Object> updateMember(Long id, Member memberNewData) {
         Optional<Member> memberOptional = memberRepository.findById(id);
         if (memberOptional.isPresent()) {
-            Member member = memberOptional.get();
-            String encryptedPassword = passwordEncoder.encode(memberNewData.getUserPw());
-            member.setUserPw(encryptedPassword);
-            member.setUserName(memberNewData.getUserName());
-            member.setUserGender(memberNewData.getUserGender());
-            member.setUserPhone(memberNewData.getUserPhone());
-            memberRepository.save(member);
+            Member storedMember = memberOptional.get();
+            if (memberNewData.getUserPw() != null && !memberNewData.getUserPw().isEmpty()) {
+                // 새로운 비밀번호가 입력된 경우
+                String encryptedPassword = passwordEncoder.encode(memberNewData.getUserPw());
+                storedMember.setUserPw(encryptedPassword);
+            }
+            storedMember.setUserName(memberNewData.getUserName());
+            storedMember.setUserGender(memberNewData.getUserGender());
+            storedMember.setUserPhone(memberNewData.getUserPhone());
+            memberRepository.save(storedMember);
             return ResponseEntity.ok().build();
         }
         return ResponseEntity.badRequest().body("백엔드에서 이상합니다.");
     }
+
+
 
     @Override
     public void deleteMember(Long id) {
