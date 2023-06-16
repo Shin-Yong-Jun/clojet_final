@@ -20,13 +20,14 @@ function App() {
     // const [checkLogin, setCheckLogin] = useState(false);
 
     // 테스트용코드
-    const [checkLogin, setCheckLogin] = useState({
-        userIdx: "2",
-        userName : 'test',
-        userGender : 'f',
-        userEmail : "hakro1@gmail.com",
-        userPhone : "01089456515"
-    });
+    // const [checkLogin, setCheckLogin] = useState({
+    //     userIdx: "2",
+    //     userName : 'test',
+    //     userGender : 'f',
+    //     userEmail : "hakro1@gmail.com",
+    //     userPhone : "01089456515"
+    // });
+    const [checkLogin, setCheckLogin] = useState(false);
 
     paresDate();
 
@@ -43,7 +44,7 @@ function App() {
                     <Route path="/findpw" element={<Findpw />} />
                     <Route path="/cart" element={<Cart />} />
                     <Route path="/purchase" element={<Purchase />} />
-                    <Route path="/mypage/*" element={<Mypage checkLogin={checkLogin} />} />
+                    <Route path="/mypage/*" element={<Mypage checkLogin={checkLogin} setCheckLogin={setCheckLogin}/>} />
                     <Route path="/detail" element={<Detail />} />
                     <Route path="/admin/*" element={<Dashboard />} />
                 </Routes>
