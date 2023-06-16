@@ -25,6 +25,11 @@ function MpMyInfo({ checkLogin, setCheckLogin }) {
             }
         };
 
+        const nameValidation = (name) => {
+            const nameRegex = /^[가-힣]{2,5}$/;
+            return nameRegex.test(name);
+        };
+
         const pnValidation = (phoneNumber) => {
             let hasNonNumeric = false; // 문자가 발견되었는지를 나타내는 변수
             phoneNumber.split("").forEach((char) => {
@@ -62,8 +67,8 @@ function MpMyInfo({ checkLogin, setCheckLogin }) {
         } else if (!pnValidation(newPhone)) {
             alert("유효하지 않은 휴대번호입니다.");
             return;
-        } else if (!newName) {
-            alert("성함을 입력하세요.");
+        } else if (!nameValidation(newName)) {
+            alert("성함을 2글자 이상 5글자 미만으로 입력하세요.");
             return;
         } else {
             try {
