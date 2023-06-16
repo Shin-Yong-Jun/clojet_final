@@ -13,11 +13,7 @@ import Category from "./pages/category";
 import Dashboard from "./pages/admin/dashboard/dashboard";
 import { Route, Routes } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { paresDate } from "./utils/parseDate";
 
-
-function App() {
-    const [checkLogin, setCheckLogin] = useState(false);
 
     // 테스트용코드
     // const [checkLogin, setCheckLogin] = useState({
@@ -30,7 +26,6 @@ function App() {
 
     function App() {
         const [checkLogin, setCheckLogin] = useState(false);
-        paresDate();
         useEffect(() => {
             // 페이지 로드 시 sessionStorage에서 checkLogin 값 가져오기
             const storedCheckLogin = sessionStorage.getItem("checkLogin");
@@ -78,5 +73,4 @@ function App() {
             </>
         );
     }
-}
     export default App;
