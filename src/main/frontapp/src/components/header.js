@@ -13,7 +13,7 @@ function Header({ checkLogin, setCheckLogin }) {
             />
             <header>
                 <HeaderBackScroll />
-                <HeaderTopDeltaY />
+                <HeaderTopDeltaY checkLogin={checkLogin} />
                 <HeaderBottom />
                 {/* <HeaderBadge /> */}
             </header>
@@ -78,7 +78,7 @@ function Header({ checkLogin, setCheckLogin }) {
     //========================= HeaderTopDeltaY =============================
     //=======================================================================
 
-    function HeaderTopDeltaY() {
+    function HeaderTopDeltaY({ checkLogin }) {
         // 로그인 여부에 따른 TOP 메뉴 링크 워딩 변경
         let topMenu = [
             {

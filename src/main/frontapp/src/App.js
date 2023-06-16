@@ -12,8 +12,8 @@ import Detail from "./pages/detail";
 import Category from "./pages/category";
 import Dashboard from "./pages/admin/dashboard/dashboard";
 import { Route, Routes } from "react-router-dom";
-import { useState } from 'react';
-
+import { useState, useEffect } from "react";
+import { paresDate } from "./utils/parseDate";
 
 
 function App() {
@@ -21,32 +21,62 @@ function App() {
 
     // 테스트용코드
     // const [checkLogin, setCheckLogin] = useState({
+    //     userIdx: "2",
     //     userName : 'test',
+    //     userGender : 'f',
     //     userEmail : "hakro1@gmail.com",
+    //     userPhone : "01089456515"
     // });
 
-    return (
-        <>
-            <Header checkLogin={checkLogin} setCheckLogin={setCheckLogin} />
+    function App() {
+        const [checkLogin, setCheckLogin] = useState(false);
+        paresDate();
+        useEffect(() => {
+            // 페이지 로드 시 sessionStorage에서 checkLogin 값 가져오기
+            const storedCheckLogin = sessionStorage.getItem("checkLogin");
+            if (storedCheckLogin !== null) {
+                setCheckLogin(JSON.parse(storedCheckLogin));
+            }
+        }, []);
 
-            <main>
-                <Routes>
-                    <Route index element={<Main />} />
-                    <Route path="/category/*" element={<Category />} />
-                    <Route path="/login" element={<Login setCheckLogin={setCheckLogin} />} />
-                    <Route path="/signup" element={<Signup />} />
-                    <Route path="/findpw" element={<Findpw />} />
-                    <Route path="/cart" element={<Cart />} />
-                    <Route path="/purchase" element={<Purchase />} />
-                    <Route path="/mypage/*" element={<Mypage checkLogin={checkLogin} />} />
-                    <Route path="/detail" element={<Detail />} />
-                    <Route path="/admin/*" element={<Dashboard />} />
-                </Routes>
-            </main>
+        useEffect(() => {
+            // checkLogin 값이 변경될 때마다 sessionStorage에 저장
+            sessionStorage.setItem("checkLogin", JSON.stringify(checkLogin));
+        }, [checkLogin]);
 
-            <Footer />
-        </>
-    );
+        return (
+            <>
+                <Header checkLogin={checkLogin} setCheckLogin={setCheckLogin} />
+
+                <main>
+                    <Routes>
+                        <Route index element={<Main />} />
+                        <Route path="/category/*" element={<Category />} />
+                        <Route
+                            path="/login"
+                            element={<Login setCheckLogin={setCheckLogin} />}
+                        />
+                        <Route path="/signup" element={<Signup />} />
+                        <Route path="/findpw" element={<Findpw />} />
+                        <Route path="/cart" element={<Cart />} />
+                        <Route path="/purchase" element={<Purchase />} />
+                        <Route
+                            path="/mypage/*"
+                            element={
+                                <Mypage
+                                    checkLogin={checkLogin}
+                                    setCheckLogin={setCheckLogin}
+                                />
+                            }
+                        />
+                        <Route path="/detail" element={<Detail />} />
+                        <Route path="/admin/*" element={<Dashboard />} />
+                    </Routes>
+                </main>
+
+                <Footer />
+            </>
+        );
+    }
 }
-
-export default App;
+    export default App;

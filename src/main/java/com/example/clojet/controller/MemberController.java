@@ -63,14 +63,15 @@ public class MemberController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<?> updateMember(@PathVariable Long id, @RequestBody Member member) {
+    public ResponseEntity<?> updateMember(@PathVariable Long id, @RequestBody Member memberNewData) {
         try {
-            memberService.updateMember(id, member.getUserEmail());
+            memberService.updateMember(id, memberNewData);
             return ResponseEntity.ok().build();
         } catch (IllegalArgumentException e) {
             return ResponseEntity.notFound().build();
         }
     }
+
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteMember(@PathVariable Long id) {

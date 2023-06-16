@@ -94,7 +94,6 @@ function Login({ setCheckLogin }) {
                                 this.readyState === this.DONE
                             ) {
                                 const filterData = userInfo.response.filter((i) => i.userEmail === email)[0];
-
                                 setCheckLogin({
                                     userIdx: filterData.id,
                                     userName: filterData.userName,

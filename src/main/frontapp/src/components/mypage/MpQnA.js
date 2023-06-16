@@ -100,8 +100,8 @@ export function MpQnA({ page, setPage, checkLogin }) {
                     </table>
                 </div>
             </>
-        )
-    }
+        );
+    } 
 
     return (
         <>
