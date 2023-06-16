@@ -13,19 +13,17 @@ import Category from "./pages/category";
 import Dashboard from "./pages/admin/dashboard/dashboard";
 import { Route, Routes } from "react-router-dom";
 import { useState } from 'react';
-import { paresDate } from "./utils/parseDate";
+
 
 
 function App() {
-    // const [checkLogin, setCheckLogin] = useState(false);
+    const [checkLogin, setCheckLogin] = useState(false);
 
     // 테스트용코드
-    const [checkLogin, setCheckLogin] = useState({
-        userName : 'test',
-        userEmail : "hakro1@gmail.com",
-    });
-
-    paresDate();
+    // const [checkLogin, setCheckLogin] = useState({
+    //     userName : 'test',
+    //     userEmail : "hakro1@gmail.com",
+    // });
 
     return (
         <>

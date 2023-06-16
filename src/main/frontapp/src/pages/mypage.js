@@ -5,7 +5,7 @@ import "../styles/mypage.scss";
 import { useState } from "react";
 import Newpost from "../components/mypage/Newpost";
 import { MpQnA } from "../components/mypage/MpQnA";
-import { MpMyInfo } from "../components/mypage/MpMyInfo"
+import MpMyInfo from "../components/mypage/MpMyInfo"
 
 export default function Mypage({ checkLogin }) {
     const [page, setPage] = useState('qna');
@@ -31,8 +31,8 @@ export default function Mypage({ checkLogin }) {
             <div className="myBoard">
                 <Routes>
                     <Route path="/main" element={<MpMain />} />
-                    <Route path="/myqna" element={<MpQnA page={page} setPage={setPage} checkLogin={checkLogin} />} />
-                    <Route path="/newpost" element={<Newpost checkLogin={checkLogin} page={page} setPage={setPage} />} />
+                    <Route path="/myqna/*" element={<MpQnA page={page} setPage={setPage} checkLogin={checkLogin} />} />
+                    <Route path="/newpost" element={<Newpost checkLogin={checkLogin} page={page} setPage={setPage}  />} />
                     <Route path="/myreview" element={<MpMyReview />} />
                     <Route path="/myinfo" element={<MpMyInfo />} />
                 </Routes>

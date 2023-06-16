@@ -3,6 +3,7 @@ package com.example.clojet.service;
 import com.example.clojet.domain.Board;
 import com.example.clojet.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,13 +23,9 @@ public class BoardServiceImpl implements BoardService{
         return boardRepository.findAll();
     }
 
-    @Override
-    public void updatePost(Long board_seq, String userEmail) {
-
-    }
 
     @Override
-    public void deletePost(Long board_seq) {
+    public void deletePost(Long boardSeq) {
 
     }
 }
