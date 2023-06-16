@@ -2,7 +2,9 @@ package com.example.clojet.controller;
 
 import com.example.clojet.domain.Board;
 import com.example.clojet.repository.BoardRepository;
+import com.example.clojet.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,14 +33,23 @@ public class BoardController {
         return Optional.ofNullable(boardRepository.findAll().stream()
                 .filter(i -> i.getUserEmail().equals(userEmail)));
     }
+    @PutMapping("/updatepost/{id}")
+    public ResponseEntity<?> updateBoard(@RequestBody Board board, @PathVariable Long id){
+        Board updateboard = boardRepository.getReferenceById(id);
+        updateboard.setTitle(board.getTitle());
+        updateboard.setContent(board.getContent());
+        boardRepository.save(updateboard);
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Board> getBoardById(@PathVariable Long id){
-        Optional<Board> optionalBoard = boardRepository.findById(id);
-        if (optionalBoard.isPresent()){
-            return ResponseEntity.ok(optionalBoard.get());
-        }else {
-            return ResponseEntity.notFound().build();
-        }
+        return new ResponseEntity<>("{}", HttpStatus.OK);
     }
+
+//    @GetMapping("/{id}")
+//    public ResponseEntity<Board> getBoardById(@PathVariable Long id){
+//        Optional<Board> optionalBoard = boardRepository.findById(id);
+//        if (optionalBoard.isPresent()){
+//            return ResponseEntity.ok(optionalBoard.get());
+//        }else {
+//            return ResponseEntity.notFound().build();
+//        }
+//    }
 }

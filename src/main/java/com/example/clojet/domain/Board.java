@@ -14,16 +14,16 @@ public class Board {
 
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Column(name = "board_seq", nullable = false)
+    @Column(name = "boardSeq", nullable = false)
     private Long boardSeq;
 
-    @Column(name = "type_of_inquiry")
-    private String type_of_inquiry;
+    @Column(name = "typeOfInquiry", nullable = false)
+    private String typeOfInquiry;
 
-    @Column(name = "user_name", nullable = false)
+    @Column(name = "userName", nullable = false)
     private String userName;
 
-    @Column(name = "user_email", nullable = false)
+    @Column(name = "userEmail", nullable = false)
     private String userEmail;
 
     @Column(name = "title", nullable = false)

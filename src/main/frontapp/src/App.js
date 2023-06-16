@@ -15,7 +15,9 @@ import { Route, Routes } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { paresDate } from "./utils/parseDate";
 
-// const [checkLogin, setCheckLogin] = useState(false);
+
+function App() {
+    const [checkLogin, setCheckLogin] = useState(false);
 
 // 테스트용코드
 // const [checkLogin, setCheckLogin] = useState({

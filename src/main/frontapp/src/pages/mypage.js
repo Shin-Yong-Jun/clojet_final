@@ -34,7 +34,7 @@ export default function Mypage({ checkLogin, setCheckLogin }) {
                 <Routes>
                     <Route path="/main" element={<MpMain />} />
                     <Route
-                        path="/myqna"
+                        path="/myqna/*"
                         element={
                             <MpQnA
                                 page={page}
@@ -50,7 +50,7 @@ export default function Mypage({ checkLogin, setCheckLogin }) {
                                 checkLogin={checkLogin}
                                 page={page}
                                 setPage={setPage}
-                            />
+                             />
                         }
                     />
                     <Route path="/myreview" element={<MpMyReview />} />
