@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { TYPEOFINQUIRY } from "../../constants/constOfMypage";
 import { BoardHeader } from "./BoardHeader";
-import { useNavigate } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { paresDate } from "../../utils/parseDate";
 
 export default function Newpost({ checkLogin, page, setPage }) {
     const boardTitle = "문의 입력";
@@ -42,7 +43,7 @@ export default function Newpost({ checkLogin, page, setPage }) {
                         userEmail: checkLogin.userEmail,
                         title: title,
                         content: content,
-                        date: new Date(),
+                        date: paresDate(),
                         response: false,
                     })
                     .then((response) => {
@@ -57,6 +58,14 @@ export default function Newpost({ checkLogin, page, setPage }) {
 
         }
 
+    }
+
+    function checkCancel() {
+        if (window.confirm("작성중인 게시물을 삭제하고 돌아가시겠습니까?")) {
+            navigate("/mypage/myqna");
+        } else {
+            return;
+        }
     }
 
     return (
@@ -119,7 +128,10 @@ export default function Newpost({ checkLogin, page, setPage }) {
                 </table>
             </div>
 
-            <button onClick={validateData}>testBtn</button>
+            <div className="validateBtnBox">
+                <button onClick={validateData}>등록하기</button>
+                <button onClick={checkCancel}>취소하기</button>
+            </div>
         </>
     )
 }

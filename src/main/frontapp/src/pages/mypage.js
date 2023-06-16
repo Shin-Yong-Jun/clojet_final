@@ -4,11 +4,11 @@ import RecentList from "../components/mypage/recentList/recentList";
 import "../styles/mypage.scss";
 import { useState } from "react";
 import Newpost from "../components/mypage/Newpost";
-import { BoardHeader } from "../components/mypage/BoardHeader";
+import { MpQnA } from "../components/mypage/MpQnA";
+import MpMyInfo from "../components/mypage/MpMyInfo";
 
-
-export default function Mypage({ checkLogin }) {
-    const [page, setPage] = useState('qna');
+export default function Mypage({ checkLogin, setCheckLogin }) {
+    const [page, setPage] = useState("qna");
 
     //--------------사이드 서브메뉴 구성 ------------
     const sideMenu_orderPages = [
@@ -21,7 +21,9 @@ export default function Mypage({ checkLogin }) {
         { id: 2, title: "리뷰작성 내역", url: "/mypage/myreview" },
     ];
 
-    const sideMenu_myInfo = [{ id: 1, title: "회원정보 수정", url: "/" }];
+    const sideMenu_myInfo = [
+        { id: 1, title: "회원정보 수정", url: "/mypage/myinfo" },
+    ];
 
     //마이페이지 HTML 구성
 
@@ -31,9 +33,36 @@ export default function Mypage({ checkLogin }) {
             <div className="myBoard">
                 <Routes>
                     <Route path="/main" element={<MpMain />} />
-                    <Route path="/myqna" element={<MpQnA />} />
-                    <Route path="/newpost" element={<Newpost checkLogin={checkLogin} page={page} setPage={setPage} />} />
+                    <Route
+                        path="/myqna"
+                        element={
+                            <MpQnA
+                                page={page}
+                                setPage={setPage}
+                                checkLogin={checkLogin}
+                            />
+                        }
+                    />
+                    <Route
+                        path="/newpost"
+                        element={
+                            <Newpost
+                                checkLogin={checkLogin}
+                                page={page}
+                                setPage={setPage}
+                            />
+                        }
+                    />
                     <Route path="/myreview" element={<MpMyReview />} />
+                    <Route
+                        path="/myinfo"
+                        element={
+                            <MpMyInfo
+                                checkLogin={checkLogin}
+                                setCheckLogin={setCheckLogin}
+                            />
+                        }
+                    />
                 </Routes>
                 <Outlet />
             </div>
@@ -49,7 +78,7 @@ export default function Mypage({ checkLogin }) {
                 <div className="myListContainer">
                     <div className="myList">
                         <ul className="hello">
-                            <Link to='/mypage/main'>
+                            <Link to="/mypage/main">
                                 <strong>마이페이지</strong>
                             </Link>
                             <li>
@@ -58,47 +87,39 @@ export default function Mypage({ checkLogin }) {
                         </ul>
                         <ul className="myOrder">
                             <li className="sideMtitle">주문 관련</li>
-                            {
-                                sideMenu_orderPages.map((obj) => {
-                                    return (
-                                        <li key={obj.id} className="list">
-                                            <Link to={obj.url}>{obj.title}</Link>
-                                        </li>
-                                    );
-                                })
-                            }
+                            {sideMenu_orderPages.map((obj) => {
+                                return (
+                                    <li key={obj.id} className="list">
+                                        <Link to={obj.url}>{obj.title}</Link>
+                                    </li>
+                                );
+                            })}
                         </ul>
                         <ul className="myQnaReview">
                             <li className="sideMtitle">문의/리뷰</li>
-                            {
-                                sideMenu_askPages.map((obj) => {
-                                    return (
-                                        <li key={obj.id} className="list">
-                                            <Link to={obj.url}>{obj.title}</Link>
-                                        </li>
-                                    );
-                                })
-                            }
+                            {sideMenu_askPages.map((obj) => {
+                                return (
+                                    <li key={obj.id} className="list">
+                                        <Link to={obj.url}>{obj.title}</Link>
+                                    </li>
+                                );
+                            })}
                         </ul>
                         <ul className="myInfo">
                             <li className="sideMtitle">나의 정보</li>
-                            {
-                                sideMenu_myInfo.map((obj) => {
-                                    return (
-                                        <li key={obj.id} className="list">
-                                            <Link to={obj.url}>{obj.title}</Link>
-                                        </li>
-                                    );
-                                })
-                            }
+                            {sideMenu_myInfo.map((obj) => {
+                                return (
+                                    <li key={obj.id} className="list">
+                                        <Link to={obj.url}>{obj.title}</Link>
+                                    </li>
+                                );
+                            })}
                         </ul>
                     </div>
                 </div>
             </>
-        )
-
+        );
     } // Sidemenu
-
 
     //=======================================================================
     //================== MpMain 및 하위 컴포넌트 함수 모음 ==================
@@ -113,21 +134,25 @@ export default function Mypage({ checkLogin }) {
                 <WishList mockListData={mockListData} />
             </>
         );
-
     } // MpMain
 
-    //================== MpMain 하위 StatusBox 
+    //================== MpMain 하위 StatusBox
 
     function StatusBox() {
         return (
             <>
                 <ul className="statusBox">
-                    <li className="box"><p>{statusData.request}</p><p>문의</p></li>
-                    <li className="box"><p>{statusData.wish}</p><p>위시리스트</p></li>
+                    <li className="box">
+                        <p>{statusData.request}</p>
+                        <p>문의</p>
+                    </li>
+                    <li className="box">
+                        <p>{statusData.wish}</p>
+                        <p>위시리스트</p>
+                    </li>
                 </ul>
             </>
-        )
-
+        );
     } // StatusBox
 
     //================== MpMain 하위 OrderFlow
@@ -142,7 +167,9 @@ export default function Mypage({ checkLogin }) {
                         <li className="oStep 1">
                             <p>결제완료</p>
                             <Link to={"/"}>
-                                <span className="circle">{orderData.purchase}</span>
+                                <span className="circle">
+                                    {orderData.purchase}
+                                </span>
                             </Link>
                         </li>
                         <li className="arrow">
@@ -153,7 +180,9 @@ export default function Mypage({ checkLogin }) {
                         <li className="oStep 2">
                             <p>상품준비중</p>
                             <Link to={"/"}>
-                                <span className="circle">{orderData.ready}</span>
+                                <span className="circle">
+                                    {orderData.ready}
+                                </span>
                             </Link>
                         </li>
                         <li className="arrow">
@@ -164,7 +193,9 @@ export default function Mypage({ checkLogin }) {
                         <li className="oStep 3">
                             <p>배송중</p>
                             <Link to={"/"}>
-                                <span className="circle">{orderData.delivery}</span>
+                                <span className="circle">
+                                    {orderData.delivery}
+                                </span>
                             </Link>
                         </li>
                         <li className="arrow">
@@ -175,58 +206,16 @@ export default function Mypage({ checkLogin }) {
                         <li className="oStep 4">
                             <p>배송완료</p>
                             <Link to={"/"}>
-                                <span className="circle">{orderData.arrived}</span>
+                                <span className="circle">
+                                    {orderData.arrived}
+                                </span>
                             </Link>
                         </li>
                     </ul>
                 </div>
             </>
         );
-
     } // OrderFlow
-
-    function MpQnA() {
-        //css 필요
-        const receiveData = data.filter(i => i.address === checkLogin.userEmail);
-        const boardList = ["작성자", "상품명", "제목", "작성일"];
-        const boardTitle = "1:1 문의 내역";
-        const btnText = "문의하기"
-
-        if (receiveData.length === 0) {
-            return (
-                <>
-                    <BoardHeader boardTitle={boardTitle} btnText={btnText} page={page} setPage={setPage} />
-                    <div className="qnaBoard">
-                        <table border="1px">
-                            <tr className="boardListContainer">
-                                {
-                                    boardList.map(i => <td>{i}</td>)
-                                }
-                            </tr>
-
-                            {
-                                receiveData.map(i => (
-                                    <tr className="boardContentContainer">
-                                        <td>{i.userName}</td>
-                                        <td>{i.상품명}</td>
-                                        <td>{i.date}</td>
-                                        <td>{i.title}</td>
-                                    </tr>
-                                ))
-                            }
-                        </table>
-                    </div>
-                </>
-            );
-        } else {
-            return (
-                <>
-                    <div>문의하신 내역이 없습니다.</div>
-                </>
-            )
-        }
-
-    } // MpQnA
 
     function MpMyReview() {
         return (
@@ -237,10 +226,7 @@ export default function Mypage({ checkLogin }) {
             </>
         );
     } // MpMyReview
-
 } // main function
-
-const data = [];
 
 //--------------내 쿠폰, 포인트, 문의, 위시 ----
 const statusData = {

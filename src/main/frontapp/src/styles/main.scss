@@ -1,5 +1,5 @@
 main {
-  
+
   width: 1350px;
   margin: 0 auto;
   position: relative;
@@ -9,6 +9,7 @@ main {
   margin: 0 auto;
   padding: 0px 0 0 0;
   box-sizing: border-box;
+
 }
 
 /* ========================== BODY_MAIN ========================== */
@@ -53,8 +54,12 @@ main {
 
 /* 모바일 사이즈 */
 @media (max-width: 768px) {
-.myListContainer {
-  display: none;
-}
+  main {
+      width: 100vw;
+    }
+
+  .myListContainer {
+    display: none;
+  }
 
 }

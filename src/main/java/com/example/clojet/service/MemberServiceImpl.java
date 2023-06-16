@@ -5,7 +5,9 @@ import com.example.clojet.repository.MemberRepository;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
@@ -19,7 +21,8 @@ import java.util.stream.Collectors;
 public class MemberServiceImpl implements MemberService {
 
     private final MemberRepository memberRepository;
-//    private final HttpSession session;
+    private final PasswordEncoder passwordEncoder;
+
 
     @Override
     public Member createMember(Member member) {
@@ -27,23 +30,25 @@ public class MemberServiceImpl implements MemberService {
         if (memberOptional.isPresent()) {
             throw new IllegalArgumentException("기존 계정이 등록되어 있습니다.");
         }
+        String encryptedPassword = passwordEncoder.encode(member.getUserPw());
+        member.setUserPw(encryptedPassword);
         return memberRepository.save(member);
     }
 
     @Override
     public ResponseEntity<?> loginMember(Member memberLogin, HttpSession session) {
-        Optional<Member> memberOptional = memberRepository.findByUserEmailAndUserPw(
-                memberLogin.getUserEmail(),
-                memberLogin.getUserPw()
-        );
+        Optional<Member> memberOptional = memberRepository.findByUserEmail(memberLogin.getUserEmail());
         if (memberOptional.isPresent()) {
-            Member loginMember = memberOptional.get();
-            session.setAttribute("loggedInMember", loginMember);
-            return ResponseEntity.ok().build();
-        } else {
-            return ResponseEntity.badRequest().body("로그인 정보가 일치하지 않습니다.");
+            Member storedMember = memberOptional.get();
+            boolean passwordMatches = passwordEncoder.matches(memberLogin.getUserPw(), storedMember.getUserPw());
+            if (passwordMatches) {
+                session.setAttribute("loggedInMember", storedMember);
+                return ResponseEntity.ok().build();
+            }
         }
+        return ResponseEntity.badRequest().body("로그인 정보가 일치하지 않습니다.");
     }
+
 
     @Override
     public String generateRandomPassword() {
@@ -80,7 +85,8 @@ public class MemberServiceImpl implements MemberService {
         if (memberOptional.isPresent()) {
             Member member = memberOptional.get();
             String newRandomPw = generateRandomPassword();
-            member.setUserPw(newRandomPw);
+            String encryptedPassword = passwordEncoder.encode(newRandomPw);
+            member.setUserPw(encryptedPassword);
             memberRepository.save(member);
             return ResponseEntity.ok(newRandomPw);
         }
@@ -99,13 +105,25 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public void updateMember(Long id, String userEmail) {
-        memberRepository.findById(id)
-                .map(member -> {
-                    member.setUserPw(userEmail);
-                    return memberRepository.save(member);
-                });
+    public ResponseEntity<Object> updateMember(Long id, Member memberNewData) {
+        Optional<Member> memberOptional = memberRepository.findById(id);
+        if (memberOptional.isPresent()) {
+            Member storedMember = memberOptional.get();
+            if (memberNewData.getUserPw() != null && !memberNewData.getUserPw().isEmpty()) {
+                // 새로운 비밀번호가 입력된 경우
+                String encryptedPassword = passwordEncoder.encode(memberNewData.getUserPw());
+                storedMember.setUserPw(encryptedPassword);
+            }
+            storedMember.setUserName(memberNewData.getUserName());
+            storedMember.setUserGender(memberNewData.getUserGender());
+            storedMember.setUserPhone(memberNewData.getUserPhone());
+            memberRepository.save(storedMember);
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.badRequest().body("백엔드에서 이상합니다.");
     }
+
+
 
     @Override
     public void deleteMember(Long id) {
