@@ -43,6 +43,7 @@ public class MemberServiceImpl implements MemberService {
             boolean passwordMatches = passwordEncoder.matches(memberLogin.getUserPw(), storedMember.getUserPw());
             if (passwordMatches) {
                 session.setAttribute("loggedInMember", storedMember);
+//                return ResponseEntity.ok(session.getAttribute("loggedInMember"));
                 return ResponseEntity.ok().build();
             }
         }
@@ -92,6 +93,7 @@ public class MemberServiceImpl implements MemberService {
         }
         return ResponseEntity.badRequest().body("비밀번호 찾기 에러");
     }
+
 
     @Override
     public List<Member> getAllMembers() {
