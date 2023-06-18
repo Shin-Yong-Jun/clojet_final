@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import "./MpMyInfo.scss";
 
 function MpMyInfo({ checkLogin, setCheckLogin }) {
     const navigate = useNavigate();
@@ -104,7 +105,7 @@ function MpMyInfo({ checkLogin, setCheckLogin }) {
     };
 
     return (
-        <div className="myInfo">
+        <div className="myInfoPage">
             <div className="myInfoTitle">회원정보 수정</div>
             <hr />
             <div className="myInfoBox">
@@ -113,27 +114,27 @@ function MpMyInfo({ checkLogin, setCheckLogin }) {
                     className="myInfoForm"
                     onSubmit={handleSubmit}
                 >
-                    <div>이메일</div>
+                    <div className="myInfoEditableTitle">이메일</div>
                     <input
                         type="email"
                         name="userEmail"
                         value={checkLogin.userEmail}
                         disabled
                     />
-                    <div>신규 비밀번호 수정</div>
+                    <div className="myInfoEditableTitle">신규 비밀번호 수정</div>
                     <input
                         type="password"
                         name="userPw"
                         placeholder="숫자와 영문 대소문자와 특수문자(@$!%*?&)포함 8자 이상"
                         autoComplete="current-password"
                     />
-                    <div>이름</div>
+                    <div className="myInfoEditableTitle">이름</div>
                     <input
                         type="text"
                         name="userName"
                         defaultValue={checkLogin.userName}
                     />
-                    <div>성별</div>
+                    <div className="myInfoEditableTitle">성별</div>
                     <select
                         name="userGender"
                         defaultValue={checkLogin.userGender}
@@ -150,14 +151,15 @@ function MpMyInfo({ checkLogin, setCheckLogin }) {
                             </>
                         )}
                     </select>
-                    <div>전화번호</div>
+                    <div className="myInfoEditableTitle">전화번호</div>
                     <input
                         type="text"
                         name="userPhone"
                         defaultValue={checkLogin.userPhone}
                     />
-                    <div>
-                        <button type="submit">제출</button>
+                    <div className="btnBox">
+                        <button className="editMyinfo" type="submit">제출</button>
+                        <button className="delMyinfo" type="submit">탈퇴</button>
                     </div>
                 </form>
             </div>
