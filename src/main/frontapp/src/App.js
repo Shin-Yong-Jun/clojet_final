@@ -15,18 +15,19 @@ import { Route, Routes } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 
+function App() {
     // 테스트용코드
-    // const [checkLogin, setCheckLogin] = useState({
-    //     userIdx: "2",
-    //     userName : 'test',
-    //     userGender : 'f',
-    //     userEmail : "hakro1@gmail.com",
-    //     userPhone : "01089456515"
-    // });
+    const [checkLogin, setCheckLogin] = useState({
+        userIdx: "2",
+        userName : 'test',
+        userGender : 'f',
+        userEmail : "hakro1@gmail.com",
+        userPhone : "01089456515"
+    });
 
-    function App() {
-        const [checkLogin, setCheckLogin] = useState(false);
-        useEffect(() => {
+    // const [checkLogin, setCheckLogin] = useState(false);
+        
+    useEffect(() => {
             // 페이지 로드 시 sessionStorage에서 checkLogin 값 가져오기
             const storedCheckLogin = sessionStorage.getItem("checkLogin");
             if (storedCheckLogin !== null) {
