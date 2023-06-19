@@ -3,7 +3,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./MpMyInfo.scss";
 
-function MpMyInfo({ checkLogin, setCheckLogin }) {
+function MpMyInfo({ userInfo, setUserInfo, setCheckLogin }) {
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -50,9 +50,9 @@ function MpMyInfo({ checkLogin, setCheckLogin }) {
         // 변경사항이 없는지 확인
         if (
             !newPassword &&
-            newName === checkLogin.userName &&
-            newGender === checkLogin.userGender &&
-            newPhone === checkLogin.userPhone
+            newName === userInfo.userName &&
+            newGender === userInfo.userGender &&
+            newPhone === userInfo.userPhone
         ) {
             alert("변경사항이 없습니다!");
             return;
@@ -81,7 +81,7 @@ function MpMyInfo({ checkLogin, setCheckLogin }) {
                 };
                 axios
                     .put(
-                        "/member/update/" + `${checkLogin.userIdx}`,
+                        `/member/update/${userInfo.id}`,
                         memberNewData
                     )
                     .then((response) => {
@@ -91,6 +91,7 @@ function MpMyInfo({ checkLogin, setCheckLogin }) {
                             );
                             sessionStorage.clear();
                             navigate("/");
+                            setUserInfo({}); // 비어있는 객체로 초기화
                             setCheckLogin(false);
                         }
                     })
@@ -118,7 +119,7 @@ function MpMyInfo({ checkLogin, setCheckLogin }) {
                     <input
                         type="email"
                         name="userEmail"
-                        value={checkLogin.userEmail}
+                        value={userInfo.userEmail}
                         disabled
                     />
                     <div className="myInfoEditableTitle">신규 비밀번호 수정</div>
@@ -132,14 +133,14 @@ function MpMyInfo({ checkLogin, setCheckLogin }) {
                     <input
                         type="text"
                         name="userName"
-                        defaultValue={checkLogin.userName}
+                        defaultValue={userInfo.userName}
                     />
                     <div className="myInfoEditableTitle">성별</div>
                     <select
                         name="userGender"
-                        defaultValue={checkLogin.userGender}
+                        defaultValue={userInfo.userGender}
                     >
-                        {checkLogin.userGender === "m" ? (
+                        {userInfo.userGender === "m" ? (
                             <>
                                 <option value="m">남자</option>
                                 <option value="f">여자</option>
@@ -155,7 +156,7 @@ function MpMyInfo({ checkLogin, setCheckLogin }) {
                     <input
                         type="text"
                         name="userPhone"
-                        defaultValue={checkLogin.userPhone}
+                        defaultValue={userInfo.userPhone}
                     />
                     <div className="btnBox">
                         <button className="editMyinfo" type="submit">제출</button>

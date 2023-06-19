@@ -84,27 +84,44 @@ function Login({ setCheckLogin }) {
                             stringify(loginMember)
                         );
 
-                        const userInfo = new XMLHttpRequest();
-                        userInfo.open("GET", "/member/list", true);
-
-                        userInfo.responseType = "json";
-                        userInfo.onreadystatechange = function () {
-                            if (
-                                this.status === 200 &&
-                                this.readyState === this.DONE
-                            ) {
-                                const filterData = userInfo.response.filter((i) => i.userEmail === email)[0];
+                        axios
+                            .get("/member/session")
+                            .then((response) => {
+                                const sessionMember = response.data;
                                 setCheckLogin({
-                                    userIdx: filterData.id,
-                                    userName: filterData.userName,
-                                    userPhone: filterData.userPhone,
-                                    userGender: filterData.userGender,
-                                    userEmail: email,
+                                    userIdx: sessionMember.id,
+                                    // userName: sessionMember.userName,
+                                    // userPhone: sessionMember.userPhone,
+                                    // userGender: sessionMember.userGender,
+                                    // userEmail: sessionMember.userEmail,
                                 });
-                            }
-                        };
+                            })
+                            .catch((error) => {
+                                console.log(error);
+                                alert("세션에 회원정보가 없습니다.");
+                            });
 
-                        userInfo.send();
+                        // const userInfo = new XMLHttpRequest();
+                        // userInfo.open("GET", "/member/list", true);
+
+                        // userInfo.responseType = "json";
+                        // userInfo.onreadystatechange = function () {
+                        //     if (
+                        //         this.status === 200 &&
+                        //         this.readyState === this.DONE
+                        //     ) {
+                        //         const filterData = userInfo.response.filter((i) => i.userEmail === email)[0];
+                        //         setCheckLogin({
+                        //             userIdx: filterData.id,
+                        //             userName: filterData.userName,
+                        //             userPhone: filterData.userPhone,
+                        //             userGender: filterData.userGender,
+                        //             userEmail: email,
+                        //         });
+                        //     }
+                        // };
+
+                        // userInfo.send();
                         // }
 
                         navigate("/");
