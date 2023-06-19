@@ -6,6 +6,28 @@ import "./MpMyInfo.scss";
 function MpMyInfo({ userInfo, setUserInfo, setCheckLogin }) {
     const navigate = useNavigate();
 
+    const handleDelete = () => {
+        if (window.confirm("정말로 탈퇴하시겠습니까?")) {
+                axios
+                    .delete(`/member/delete/${userInfo.id}`)
+                    .then((response) => {
+                        console.log(response.status);
+                        if (response.status === 204) {
+                            console.log("탈퇴성공");
+                            alert("회원 탈퇴가 완료되었습니다.");
+                            sessionStorage.clear();
+                            setUserInfo({}); // 비어있는 객체로 초기화
+                            setCheckLogin(false);
+                            navigate("/");
+                        }
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                        alert("회원 탈퇴를 실패하였습니다.");
+                    });
+        }
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const data = new FormData(e.currentTarget);
@@ -160,7 +182,7 @@ function MpMyInfo({ userInfo, setUserInfo, setCheckLogin }) {
                     />
                     <div className="btnBox">
                         <button className="editMyinfo" type="submit">제출</button>
-                        <button className="delMyinfo" type="submit">탈퇴</button>
+                        <button className="delMyinfo" type="button" onClick={handleDelete}>탈퇴</button>
                     </div>
                 </form>
             </div>
