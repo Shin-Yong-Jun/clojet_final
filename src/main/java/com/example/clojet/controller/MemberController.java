@@ -37,6 +37,16 @@ public class MemberController {
         }
     }
 
+//    @GetMapping("/session")
+//    public ResponseEntity<?> getSessionMember(HttpSession session) {
+//        Member loggedInMember = (Member) session.getAttribute("loggedInMember");
+//        if(loggedInMember != null) {
+//            return ResponseEntity.ok(loggedInMember);
+//        } else {
+//            return ResponseEntity.badRequest().body("세션에 회원정보가 없습니다.");
+//        }
+//    }
+
     @PostMapping("/findPw")
     public ResponseEntity<?> findMember(@RequestBody Member memberFindPw) {
         try {
@@ -63,14 +73,15 @@ public class MemberController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<?> updateMember(@PathVariable Long id, @RequestBody Member member) {
+    public ResponseEntity<?> updateMember(@PathVariable Long id, @RequestBody Member memberNewData) {
         try {
-            memberService.updateMember(id, member.getUserEmail());
+            memberService.updateMember(id, memberNewData);
             return ResponseEntity.ok().build();
         } catch (IllegalArgumentException e) {
             return ResponseEntity.notFound().build();
         }
     }
+
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteMember(@PathVariable Long id) {
