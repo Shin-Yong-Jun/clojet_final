@@ -8,6 +8,8 @@ import { MpQnA } from "../components/mypage/MpQnA";
 import MpMyInfo from "../components/mypage/MpMyInfo";
 import axios from "axios";
 export default function Mypage({ checkLogin, setCheckLogin }) {
+
+
     const [page, setPage] = useState("qna");
     //-------------- 세션 정보 가져오기 ------------
     const [userInfo, setUserInfo] = useState({});
