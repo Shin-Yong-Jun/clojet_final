@@ -36,14 +36,12 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public ResponseEntity<?> loginMember(Member memberLogin, HttpSession session) {
+    public ResponseEntity<?> loginMember(Member memberLogin) {
         Optional<Member> memberOptional = memberRepository.findByUserEmail(memberLogin.getUserEmail());
         if (memberOptional.isPresent()) {
             Member storedMember = memberOptional.get();
             boolean passwordMatches = passwordEncoder.matches(memberLogin.getUserPw(), storedMember.getUserPw());
             if (passwordMatches) {
-                session.setAttribute("loggedInMember", storedMember);
-//                return ResponseEntity.ok(session.getAttribute("loggedInMember"));
                 return ResponseEntity.ok().build();
             }
         }

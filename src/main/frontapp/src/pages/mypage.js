@@ -13,20 +13,21 @@ export default function Mypage({ checkLogin, setCheckLogin }) {
     const [userInfo, setUserInfo] = useState({});
 
     useEffect(() => {
+        async function fetchUserInfo() {
+            try {
+                const response = await axios.get(`/member/list/${checkLogin}`);
+                const data = response.data;
+                setUserInfo(data);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    
         if (checkLogin) {
             fetchUserInfo();
         }
     }, [checkLogin]);
-
-    async function fetchUserInfo() {
-        try {
-            const response = await axios.get("/member/session");
-            const data = response.data;
-            setUserInfo(data);
-        } catch (error) {
-            console.log(error);
-        }
-    }
+    
 
     //--------------사이드 서브메뉴 구성 ------------
     const sideMenu_orderPages = [

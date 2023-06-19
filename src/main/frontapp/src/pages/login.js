@@ -85,21 +85,20 @@ function Login({ setCheckLogin }) {
                         );
 
                         axios
-                            .get("/member/session")
-                            .then((response) => {
-                                const sessionMember = response.data;
-                                setCheckLogin({
-                                    userIdx: sessionMember.id,
-                                    // userName: sessionMember.userName,
-                                    // userPhone: sessionMember.userPhone,
-                                    // userGender: sessionMember.userGender,
-                                    // userEmail: sessionMember.userEmail,
-                                });
-                            })
-                            .catch((error) => {
-                                console.log(error);
-                                alert("세션에 회원정보가 없습니다.");
-                            });
+                        .get("/member/list")
+                        .then((response) => {
+                            const memberList = response.data;
+                            const loginMember = memberList.find((member) => member.userEmail === email);
+                            if (loginMember) {
+                                setCheckLogin(loginMember.id);
+                            } else {
+                                alert("해당 로그인된 멤버를 찾을 수 없습니다.");
+                            }
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                            alert("세션에 회원정보가 없습니다.");
+                        });
 
                         // const userInfo = new XMLHttpRequest();
                         // userInfo.open("GET", "/member/list", true);
