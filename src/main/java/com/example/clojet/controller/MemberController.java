@@ -37,15 +37,15 @@ public class MemberController {
         }
     }
 
-//    @GetMapping("/session")
-//    public ResponseEntity<?> getSessionMember(HttpSession session) {
-//        Member loggedInMember = (Member) session.getAttribute("loggedInMember");
-//        if(loggedInMember != null) {
-//            return ResponseEntity.ok(loggedInMember);
-//        } else {
-//            return ResponseEntity.badRequest().body("세션에 회원정보가 없습니다.");
-//        }
-//    }
+    @GetMapping("/session")
+    public ResponseEntity<?> getSessionMember(HttpSession session) {
+        Member loggedInMember = (Member) session.getAttribute("loggedInMember");
+        if(loggedInMember != null) {
+            return ResponseEntity.ok(loggedInMember);
+        } else {
+            return ResponseEntity.badRequest().body("세션에 회원정보가 없습니다.");
+        }
+    }
 
     @PostMapping("/findPw")
     public ResponseEntity<?> findMember(@RequestBody Member memberFindPw) {
