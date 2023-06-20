@@ -30,7 +30,7 @@ public class MemberController {
     @PostMapping("/login")
     public ResponseEntity<?> loginMember(@RequestBody Member memberLogin) {
         try {
-            ResponseEntity<?> response = memberService.loginMember(memberLogin, session);
+            ResponseEntity<?> response = memberService.loginMember(memberLogin);
             return response;
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());

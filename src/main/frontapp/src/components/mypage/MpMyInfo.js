@@ -1,9 +1,32 @@
 import axios from "axios";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import "./MpMyInfo.scss";
 
-function MpMyInfo({ checkLogin, setCheckLogin }) {
+function MpMyInfo({ userInfo, setUserInfo, setCheckLogin }) {
     const navigate = useNavigate();
+
+    const handleDelete = () => {
+        if (window.confirm("정말로 탈퇴하시겠습니까?")) {
+                axios
+                    .delete(`/member/delete/${userInfo.id}`)
+                    .then((response) => {
+                        console.log(response.status);
+                        if (response.status === 204) {
+                            console.log("탈퇴성공");
+                            alert("회원 탈퇴가 완료되었습니다.");
+                            sessionStorage.clear();
+                            setUserInfo({}); // 비어있는 객체로 초기화
+                            setCheckLogin(false);
+                            navigate("/");
+                        }
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                        alert("회원 탈퇴를 실패하였습니다.");
+                    });
+        }
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -49,9 +72,9 @@ function MpMyInfo({ checkLogin, setCheckLogin }) {
         // 변경사항이 없는지 확인
         if (
             !newPassword &&
-            newName === checkLogin.userName &&
-            newGender === checkLogin.userGender &&
-            newPhone === checkLogin.userPhone
+            newName === userInfo.userName &&
+            newGender === userInfo.userGender &&
+            newPhone === userInfo.userPhone
         ) {
             alert("변경사항이 없습니다!");
             return;
@@ -80,7 +103,7 @@ function MpMyInfo({ checkLogin, setCheckLogin }) {
                 };
                 axios
                     .put(
-                        "/member/update/" + `${checkLogin.userIdx}`,
+                        `/member/update/${userInfo.id}`,
                         memberNewData
                     )
                     .then((response) => {
@@ -90,6 +113,7 @@ function MpMyInfo({ checkLogin, setCheckLogin }) {
                             );
                             sessionStorage.clear();
                             navigate("/");
+                            setUserInfo({}); // 비어있는 객체로 초기화
                             setCheckLogin(false);
                         }
                     })
@@ -104,7 +128,7 @@ function MpMyInfo({ checkLogin, setCheckLogin }) {
     };
 
     return (
-        <div className="myInfo">
+        <div className="myInfoPage">
             <div className="myInfoTitle">회원정보 수정</div>
             <hr />
             <div className="myInfoBox">
@@ -113,32 +137,32 @@ function MpMyInfo({ checkLogin, setCheckLogin }) {
                     className="myInfoForm"
                     onSubmit={handleSubmit}
                 >
-                    <div>이메일</div>
+                    <div className="myInfoEditableTitle">이메일</div>
                     <input
                         type="email"
                         name="userEmail"
-                        value={checkLogin.userEmail}
+                        value={userInfo.userEmail}
                         disabled
                     />
-                    <div>신규 비밀번호 수정</div>
+                    <div className="myInfoEditableTitle">신규 비밀번호 수정</div>
                     <input
                         type="password"
                         name="userPw"
                         placeholder="숫자와 영문 대소문자와 특수문자(@$!%*?&)포함 8자 이상"
                         autoComplete="current-password"
                     />
-                    <div>이름</div>
+                    <div className="myInfoEditableTitle">이름</div>
                     <input
                         type="text"
                         name="userName"
-                        defaultValue={checkLogin.userName}
+                        defaultValue={userInfo.userName}
                     />
-                    <div>성별</div>
+                    <div className="myInfoEditableTitle">성별</div>
                     <select
                         name="userGender"
-                        defaultValue={checkLogin.userGender}
+                        defaultValue={userInfo.userGender}
                     >
-                        {checkLogin.userGender === "m" ? (
+                        {userInfo.userGender === "m" ? (
                             <>
                                 <option value="m">남자</option>
                                 <option value="f">여자</option>
@@ -150,14 +174,15 @@ function MpMyInfo({ checkLogin, setCheckLogin }) {
                             </>
                         )}
                     </select>
-                    <div>전화번호</div>
+                    <div className="myInfoEditableTitle">전화번호</div>
                     <input
                         type="text"
                         name="userPhone"
-                        defaultValue={checkLogin.userPhone}
+                        defaultValue={userInfo.userPhone}
                     />
-                    <div>
-                        <button type="submit">제출</button>
+                    <div className="btnBox">
+                        <button className="editMyinfo" type="submit">제출</button>
+                        <button className="delMyinfo" type="button" onClick={handleDelete}>탈퇴</button>
                     </div>
                 </form>
             </div>
