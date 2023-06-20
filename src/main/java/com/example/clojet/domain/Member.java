@@ -18,22 +18,22 @@ public class Member {
     @Column(name = "id")
     private Long id;
 
-    @Column(name="user_email", nullable = false)
+    @Column(name="userEmail", nullable = false)
     private String userEmail;
 
-    @Column(name="user_pw", nullable = false)
+    @Column(name="userPw", nullable = false)
     private String userPw;
 
-    @Column(name="user_gender", nullable = false)
+    @Column(name="userGender", nullable = false)
     private Character userGender;
 
-    @Column(name="user_phone", nullable = false)
+    @Column(name="userPhone", nullable = false)
     private String userPhone;
 
-    @Column(name="user_name", nullable = false)
+    @Column(name="userName", nullable = false)
     private String userName;
 
-    @Column(name="user_admin")
+    @Column(name="userAdmin")
     private Boolean userAdmin;
 
 }

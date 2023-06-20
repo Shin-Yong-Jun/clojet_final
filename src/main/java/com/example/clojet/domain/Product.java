@@ -13,45 +13,45 @@ import lombok.*;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "p_seq")
+    @Column(name = "productSeq")
     private Long productSeq;
 
-    @Column(name = "ct_grp")
+    @Column(name = "ctGrp", nullable = false)
     private char ctGrp;
 
-    @Column(name = "cm_grp")
+    @Column(name = "cmGrp", nullable = false)
     private char cmGrp;
 
-    @Column(name = "cb_type")
+    @Column(name = "cbType", nullable = false)
     private char cbType;
 
-    @Column(name = "cc_type")
-    private char ccType;
+    @Column(name = "ccType", nullable = false)
+    private String ccType;
 
-    @Column(name = "cs_type")
-    private char csType;
+    @Column(name = "csType", nullable = false)
+    private String csType;
 
-    @Column(name = "gender_code")
+    @Column(name = "genderCode", nullable = false)
     private char genderCode;
 
-    @Column(name = "p_name")
+    @Column(name = "productName", nullable = false)
     private String productName;
 
-    @Column(name = "p_price")
+    @Column(name = "productPrice", nullable = false)
     private String productPrice;
 
-    @Column(name = "p_enroll")
+    @Column(name = "productEnroll", nullable = false)
     private String productEnroll;
 
-    @Column(name = "p_size")
+    @Column(name = "productSize", nullable = false)
     private String productSize;
 
-    @Column(name = "p_stock")
+    @Column(name = "productStock", nullable = false)
     private int productStock;
 
-    @Column(name = "p_thum_url")
+    @Column(name = "productThumUrl", nullable = false)
     private String productThumUrl;
 
-    @Column(name = "p_detail")
+    @Column(name = "productDetail", nullable = false)
     private String productDetail;
 }
