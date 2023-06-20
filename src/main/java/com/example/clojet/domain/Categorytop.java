@@ -15,12 +15,12 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CategoryTop {
+public class Categorytop {
     @Id
-    @Column(name="ct_grp", nullable = false )
+    @Column(name="ctGrp", nullable = false )
     private char ctGrp;
 
-    @Column(name="ct_valmean", nullable = false)
+    @Column(name="ctValMean", nullable = false)
     private String ctValMean;
 
 

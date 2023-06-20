@@ -28,26 +28,26 @@ public class TestController {
         List<Categorysize> categorysizeList = categorysizeservice.findSize();
 
         List<String> cmValmeanList = categorymidList.stream()
-                .map(Categorymid::getCm_valmean)
+                .map(Categorymid::getCmValMean)
                 .collect(Collectors.toList());
 
-        List<String> cc_type = categorycolorList.stream()
-                .map(Categorycolor::getCc_type)
+        List<String> ccType = categorycolorList.stream()
+                .map(Categorycolor::getCcType)
                 .collect(Collectors.toList());
 
-        List<String> cc_valmean = categorycolorList.stream()
-                .map(Categorycolor::getCc_valmean)
+        List<String> ccValMean = categorycolorList.stream()
+                .map(Categorycolor::getCcValMean)
                 .toList();
 
-        List<String> cs_type = categorysizeList.stream()
-                .map(Categorysize::getCs_type)
+        List<String> csType = categorysizeList.stream()
+                .map(Categorysize::getCsType)
                 .toList();
 
         return Categorydto.builder()
-                .cm_valmean(cmValmeanList)
-                .cc_type(cc_type)
-                .cs_type(cs_type)
-                .cc_valmean(cc_valmean)
+                .cmValMean(cmValmeanList)
+                .ccType(ccType)
+                .csType(ccValMean)
+                .ccValMean(csType)
                 .build();
     }
 }

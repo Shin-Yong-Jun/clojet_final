@@ -17,10 +17,10 @@ public class Gender {
 
     @Id
     @Column(name="gender_code", nullable = false)
-    private char genderCode;
+    private char gender_code;
 
     @Column(name="gender_mean", nullable = false)
-    private String genderMean;
+    private String gender_mean;
 
 
 }
