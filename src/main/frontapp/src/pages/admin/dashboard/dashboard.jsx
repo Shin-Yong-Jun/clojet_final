@@ -10,6 +10,8 @@ import TableList from '../../../components/table/table';
 import Prepar from '../../../components/prepar/prepar';
 import User from '../user/user';
 import Single from '../single/single';
+import Product from '../product/product';
+import ProductSingle from '../productsingle/productsingle';
 
 function DashBoardMain() {
     return (
@@ -37,6 +39,17 @@ function UserMain() {
     );
 }
 
+function ProductMain() {
+    return(
+        <Routes>
+            <Route index element={<Product />} />
+            <Route path='/*' element={<ProductSingle />} />
+        </Routes>
+    );
+
+}
+
+
 const DashBoard = () => {
     return (
         <div className='dashBoard'>
@@ -47,6 +60,7 @@ const DashBoard = () => {
                     <Route index element={<DashBoardMain />} />
                     <Route path='/user/*' element={<UserMain />} />
                     <Route path='/prepar' element={<Prepar />} />
+                    <Route path='/product' element={<ProductMain />} />
                 </Routes>
             </div>
         </div>

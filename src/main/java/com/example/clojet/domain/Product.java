@@ -43,9 +43,6 @@ public class Product {
     @Column(name = "productEnroll", nullable = false)
     private String productEnroll;
 
-    @Column(name = "productSize", nullable = false)
-    private String productSize;
-
     @Column(name = "productStock", nullable = false)
     private int productStock;
 

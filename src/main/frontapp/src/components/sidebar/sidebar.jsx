@@ -109,7 +109,7 @@ function Sidebar() {
             "유저관리"
           )}
           {sidebarList(
-            "./prepar",
+            "./product",
             <CategoryRoundedIcon className="icon" />,
             "상품관리"
           )}
