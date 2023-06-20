@@ -59,6 +59,7 @@ const DashBoard = () => {
                 <Routes>
                     <Route index element={<DashBoardMain />} />
                     <Route path='/user/*' element={<UserMain />} />
+                    <Route path='/product/*' element={<ProductMain />} />
                     <Route path='/prepar' element={<Prepar />} />
                     <Route path='/product' element={<ProductMain />} />
                 </Routes>

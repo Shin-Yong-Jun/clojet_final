@@ -5,6 +5,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.File;
@@ -13,7 +14,7 @@ import java.nio.file.Files;
 
 @RestController
 public class WebController {
-    @GetMapping(value = {"/signup", "/mypage/*", "/category/*"})
+    @RequestMapping("/*")
     public ResponseEntity<String> getIndex() {
         // "/index"에 대한 요청을 처리하는 메서드입니다.
 
