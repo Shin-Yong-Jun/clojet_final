@@ -2,9 +2,6 @@
     .text-red {
         color: red;
     }
-    .text-gray {
-        color: gray;
-    }
     .border-top {
         border-top: 1px solid #000;
     }
@@ -172,7 +169,10 @@
                     align-items: center;
                     height: 50px;
                     width: 100%;
-                    &.checked {
+                    transition: 0.2s;
+
+                    cursor: pointer;
+                    &:hover {
                         background-color: #000;
                         color: white;
                     }
@@ -181,7 +181,9 @@
         }
 
         .detail_bottom_information {
-            background-color: bisque;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .detail_bottom_review {
@@ -193,7 +195,34 @@
         }
 
         .detail_bottom_etc_info {
-            background-color: cadetblue;
+            .title {
+                background-color: #f8f8f8;
+                margin: 10px 0;
+                padding: 30px;
+                font-size: 30px;
+            }
+
+            table {
+                border-collapse: collapse;
+                margin: 10px 0;
+                tr {
+                    border-bottom: 1px solid #ebebeb;
+                    th {
+                        background-color: #f8f8f8;
+                        padding: 10px;
+                        height: 50px;
+                        width: 120px;
+                    }
+                    td:first-of-type {
+                        padding: 10px;
+                        width: 110px;
+                        text-align: center;
+                    }
+                    td {
+                        padding: 10px;
+                    }
+                }
+            }
         }
     }
 }
