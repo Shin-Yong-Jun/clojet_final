@@ -1,2 +1,4 @@
-package com.example.clojet.domain;public class Categorybot {
+package com.example.clojet.domain;
+
+public class Categorybot {
 }
