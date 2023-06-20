@@ -18,12 +18,13 @@ import lombok.NoArgsConstructor;
 public class Categorysize {
 
     @Id
-    @Column(name="csType", nullable = false)
+    @Column(name="csType")
     private String csType;
 
-    @Column(name="csValMean")
+    @Column(name="csValMean", nullable = false)
     private String csValMean;
 
+    @Column(nullable = false)
     private int index;
 
 
