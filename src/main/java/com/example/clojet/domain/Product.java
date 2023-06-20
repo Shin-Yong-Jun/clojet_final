@@ -14,7 +14,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "p_seq")
-    private Long productSeq;
+    private Long pSeq;
 
     @Column(name = "ct_grp")
     private char ctGrp;
@@ -35,23 +35,23 @@ public class Product {
     private char genderCode;
 
     @Column(name = "p_name")
-    private String productName;
+    private String pName;
 
     @Column(name = "p_price")
-    private String productPrice;
+    private String pPrice;
 
     @Column(name = "p_enroll")
-    private String productEnroll;
+    private String pEnroll;
 
     @Column(name = "p_size")
-    private String productSize;
+    private String pSize;
 
     @Column(name = "p_stock")
-    private int productStock;
+    private int pStock;
 
     @Column(name = "p_thum_url")
-    private String productThumUrl;
+    private String pThumUrl;
 
     @Column(name = "p_detail")
-    private String productDetail;
+    private String pDetail;
 }

@@ -16,16 +16,17 @@ import { useState, useEffect } from "react";
 
 
 function App() {
-    // 테스트용코드
-    // const [checkLogin, setCheckLogin] = useState({
-    //     userIdx: "2",
-    //     userName : 'test',
-    //     userGender : 'f',
-    //     userEmail : "hakro1@gmail.com",
-    //     userPhone : "01089456515"
-    // });
-
-    const [checkLogin, setCheckLogin] = useState(false);
+    // 테스트용코드 (더미데이터 ON!)
+    const [checkLogin, setCheckLogin] = useState({
+            userIdx: "2",
+            userName : 'test',
+            userGender : 'f',
+            userEmail : "hakro1@gmail.com",
+            userPhone : "01089456515"
+        });
+        
+    // 테스트용코드 (더미데이터 OFF!)
+    // const [checkLogin, setCheckLogin] = useState(false);
         
         useEffect(() => {
             // 페이지 로드 시 sessionStorage에서 checkLogin 값 가져오기
