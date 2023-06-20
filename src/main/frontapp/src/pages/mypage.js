@@ -2,13 +2,34 @@ import { Route, Routes, Outlet, Link } from "react-router-dom";
 import WishList from "../components/mypage/wishList/wishList";
 import RecentList from "../components/mypage/recentList/recentList";
 import "../styles/mypage.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Newpost from "../components/mypage/Newpost";
 import { MpQnA } from "../components/mypage/MpQnA";
 import MpMyInfo from "../components/mypage/MpMyInfo";
-
+import axios from "axios";
 export default function Mypage({ checkLogin, setCheckLogin }) {
+
+
     const [page, setPage] = useState("qna");
+    //-------------- 세션 정보 가져오기 ------------
+    const [userInfo, setUserInfo] = useState({});
+
+    useEffect(() => {
+        async function fetchUserInfo() {
+            try {
+                const response = await axios.get(`/member/list/${checkLogin}`);
+                const data = response.data;
+                setUserInfo(data);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    
+        if (checkLogin) {
+            fetchUserInfo();
+        }
+    }, [checkLogin]);
+    
 
     //--------------사이드 서브메뉴 구성 ------------
     const sideMenu_orderPages = [
@@ -34,7 +55,7 @@ export default function Mypage({ checkLogin, setCheckLogin }) {
                 <Routes>
                     <Route path="/main" element={<MpMain />} />
                     <Route
-                        path="/myqna"
+                        path="/myqna/*"
                         element={
                             <MpQnA
                                 page={page}
@@ -58,7 +79,8 @@ export default function Mypage({ checkLogin, setCheckLogin }) {
                         path="/myinfo"
                         element={
                             <MpMyInfo
-                                checkLogin={checkLogin}
+                                userInfo={userInfo}
+                                setUserInfo={setUserInfo}
                                 setCheckLogin={setCheckLogin}
                             />
                         }
@@ -82,7 +104,7 @@ export default function Mypage({ checkLogin, setCheckLogin }) {
                                 <strong>마이페이지</strong>
                             </Link>
                             <li>
-                                <b>{checkLogin.userName}</b>님 안녕하세요
+                                <b>{userInfo.userName}</b>님 안녕하세요
                             </li>
                         </ul>
                         <ul className="myOrder">

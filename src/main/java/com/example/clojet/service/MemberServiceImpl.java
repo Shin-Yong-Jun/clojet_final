@@ -36,13 +36,12 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public ResponseEntity<?> loginMember(Member memberLogin, HttpSession session) {
+    public ResponseEntity<?> loginMember(Member memberLogin) {
         Optional<Member> memberOptional = memberRepository.findByUserEmail(memberLogin.getUserEmail());
         if (memberOptional.isPresent()) {
             Member storedMember = memberOptional.get();
             boolean passwordMatches = passwordEncoder.matches(memberLogin.getUserPw(), storedMember.getUserPw());
             if (passwordMatches) {
-                session.setAttribute("loggedInMember", storedMember);
                 return ResponseEntity.ok().build();
             }
         }
@@ -92,6 +91,7 @@ public class MemberServiceImpl implements MemberService {
         }
         return ResponseEntity.badRequest().body("비밀번호 찾기 에러");
     }
+
 
     @Override
     public List<Member> getAllMembers() {

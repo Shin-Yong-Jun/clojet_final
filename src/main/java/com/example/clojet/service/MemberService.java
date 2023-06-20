@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface MemberService {
     Member createMember(Member member);
-    ResponseEntity<?> loginMember(Member memberLogin, HttpSession session);
+    ResponseEntity<?> loginMember(Member memberLogin);
     String generateRandomPassword();
     ResponseEntity<?> findMember(Member memberFindPw);
     List<Member> getAllMembers();
