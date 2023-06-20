@@ -182,7 +182,7 @@ function Detail() {
             <div className='detail_bottom'>
                 <div className='detail_bottom_header' ref={detail_bottom_header}>
                     <ul>
-                        <li className='checked' onClick={() => scrollToElement('detail_bottom_information')}>
+                        <li className='check' onClick={() => scrollToElement('detail_bottom_information')}>
                             상품정보
                         </li>
                         <li onClick={() => scrollToElement('detail_bottom_review')}> 상품후기</li>
