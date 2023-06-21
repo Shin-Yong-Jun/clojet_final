@@ -26,9 +26,9 @@ public class ProductController {
     }
 
 
-    @GetMapping("/list")
-    public List<Product> readAll() {return productService.getAllProducts();}
-
+//    @GetMapping("/list")
+//    public List<Product> readAll() {return productService.getAllProducts();}
+//
 
 
 }

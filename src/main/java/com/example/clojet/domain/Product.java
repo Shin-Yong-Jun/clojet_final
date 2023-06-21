@@ -17,13 +17,10 @@ public class Product {
     private Long productSeq;
 
     @Column(name = "ctGrp", nullable = false)
-    private char ctGrp;
+    private String ctGrp;
 
     @Column(name = "cmGrp", nullable = false)
-    private char cmGrp;
-
-    @Column(name = "cbType", nullable = false)
-    private char cbType;
+    private String cmGrp;
 
     @Column(name = "ccType", nullable = false)
     private String ccType;
@@ -32,7 +29,7 @@ public class Product {
     private String csType;
 
     @Column(name = "genderCode", nullable = false)
-    private char genderCode;
+    private String genderCode;
 
     @Column(name = "productName", nullable = false)
     private String productName;
