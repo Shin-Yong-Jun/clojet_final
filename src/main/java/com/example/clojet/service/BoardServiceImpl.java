@@ -4,7 +4,6 @@ import com.example.clojet.domain.Board;
 import com.example.clojet.repository.BoardRepository;
 import com.example.clojet.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,13 +30,6 @@ public class BoardServiceImpl implements BoardService {
     public Optional<List<Board>> getUserPosts(Long uId) {
         String userEmail = memberRepository.getReferenceById(uId).getUserEmail();
 
-//        Optional<List<Board>> optionalBoards = Optional.ofNullable(
-//                boardRepository.findAll().stream()
-//                .filter(i -> i.getUserEmail() == userEmail)
-//                .toList()
-//        );
-//
-//        return ResponseEntity.ok(optionalBoards);
         return Optional.ofNullable(
                 boardRepository.findAll().stream()
                         .filter(i -> i.getUserEmail().equals(userEmail))

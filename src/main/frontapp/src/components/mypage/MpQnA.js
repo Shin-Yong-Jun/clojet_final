@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { BoardHeader } from "./BoardHeader";
-import { Link, Route, Routes, useSearchParams } from "react-router-dom";
+import { Link, Route, Routes, redirect, useSearchParams } from "react-router-dom";
 import InquiryForm from "./InquiryForm";
-import axios from "axios";
 
 export function MpQnA({ page, setPage, userInfo }) {
     const boardList = ["작성자", "제목", "작성일"];
@@ -11,14 +10,36 @@ export function MpQnA({ page, setPage, userInfo }) {
     const [testData, setTestData] = useState([]);
 
     useEffect(() => {
-        async function requestData() {
+        function requestData() {
+            const response = new XMLHttpRequest();
+
             try {
-                const response = await axios.get(`/mypage/myqna/list/${sessionStorage.getItem('checkLogin')}`);
-                setTestData(response.data);
+                response.open(
+                    "GET",
+                    `/mypage/myqna/list/${sessionStorage.getItem('checkLogin')}`,
+                    true
+                );
+
+                response.responseType = "json";
+                response.setRequestHeader(
+                    "checkLogin",
+                    sessionStorage.getItem("checkLogin")
+                );
+
+                response.onreadystatechange = function () {
+                    if (this.readyState === this.DONE) {
+                        if (this.status === 200) {
+                            setTestData(response.response);
+                        }
+                    }
+                }
             } catch (error) {
-                console.log(error);
+                alert(error);
+                redirect('/');
             }
-        };
+
+            response.send();
+        }
 
         requestData();
     }, []);
