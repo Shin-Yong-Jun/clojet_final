@@ -4,7 +4,7 @@ import axios from "axios";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { paresDate } from "../../utils/parseDate";
 
-export default function InquiryForm({ checkLogin, selectData }) {
+export default function InquiryForm({ selectData, userInfo }) {
     const [typeOfInquiry, setTypeOfInquiry] = useState(false);
     const [ment, setMent] = useState(selectData ? true : false);
     const [getParam, setParam] = useSearchParams();
@@ -41,8 +41,8 @@ export default function InquiryForm({ checkLogin, selectData }) {
                     axios
                         .post('/mypage/createpost', {
                             typeOfInquiry: typeOfInquiry,
-                            userName: checkLogin.userName,
-                            userEmail: checkLogin.userEmail,
+                            userName: userInfo.userName,
+                            userEmail: userInfo.userEmail,
                             title: title,
                             content: content,
                             date: paresDate(),
@@ -58,8 +58,8 @@ export default function InquiryForm({ checkLogin, selectData }) {
                     axios
                         .put('/mypage/updatepost/' + getParam.get('boardSeq'), {
                             typeOfInquiry: typeOfInquiry,
-                            userName: checkLogin.userName,
-                            userEmail: checkLogin.userEmail,
+                            userName: userInfo.userName,
+                            userEmail: userInfo.userEmail,
                             title: title,
                             content: content,
                             date: paresDate(),
@@ -112,13 +112,13 @@ export default function InquiryForm({ checkLogin, selectData }) {
                         <tr>
                             <span className="titleOfQuestion">ID</span>
                             <td>
-                                <input type="text" name="userEmail" value={checkLogin.userEmail} style={{ border: 'none' }} readOnly />
+                                <input type="text" name="userEmail" value={userInfo.userEmail} style={{ border: 'none' }} readOnly />
                             </td>
                         </tr>
                         <tr>
                             <span className="titleOfQuestion">고객명</span>
                             <td>
-                                <input type="text" name="userName" value={checkLogin.userName} style={{ border: 'none' }} readOnly />
+                                <input type="text" name="userName" value={userInfo.userName} style={{ border: 'none' }} readOnly />
                             </td>
                         </tr>
                         <tr>

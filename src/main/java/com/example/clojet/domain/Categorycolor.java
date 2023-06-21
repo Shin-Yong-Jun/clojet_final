@@ -18,11 +18,11 @@ import lombok.NoArgsConstructor;
 public class Categorycolor {
 
     @Id
-    @Column(name="cc_type", nullable = false)
-    private String cc_type;
+    @Column(name="ccType", nullable = false)
+    private String ccType;
 
-    @Column(name="cc_valmean")
-    private String cc_valmean;
+    @Column(name="ccValMean")
+    private String ccValMean;
 
 
 }

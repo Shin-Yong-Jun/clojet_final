@@ -12,11 +12,11 @@ import lombok.*;
 public class Categorymid {
 
     @Id
-    @Column(name="cm_grp", nullable = false, length = 1)
-    private String cm_grp;
+    @Column(name="cmGrp", nullable = false, length = 1)
+    private String cmGrp;
 
-    @Column(name="cm_valmean")
-    private String cm_valmean;
+    @Column(name="cmValMean")
+    private String cmValMean;
 
 
 }

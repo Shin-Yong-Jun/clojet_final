@@ -1,27 +1,31 @@
-import './dashboard.scss';
-import { Route, Routes } from 'react-router-dom';
+import "./dashboard.scss";
+import { Route, Routes } from "react-router-dom";
 
-import Navbar from '../../../components/navbar/navbar';
-import Sidebar from '../../../components/sidebar/sidebar';
-import Widget from '../../../components/widget/widget';
-import Featured from '../../../components/featured/featured';
-import Chart from '../../../components/chart/chart';
-import TableList from '../../../components/table/table';
-import Prepar from '../../../components/prepar/prepar';
-import User from '../user/user';
-import Single from '../single/single';
+import Navbar from "../../../components/navbar/navbar";
+import Sidebar from "../../../components/sidebar/sidebar";
+import Widget from "../../../components/widget/widget";
+import Featured from "../../../components/featured/featured";
+import Chart from "../../../components/chart/chart";
+import TableList from "../../../components/table/table";
+import Prepar from "../../../components/prepar/prepar";
+import User from "../user/user";
+import Single from "../single/single";
+import Product from "../product/product";
+import ProductSingle from "../productsingle/productsingle";
+import ProductCreate from "../productcreate/productcreate";
+// import ProductCreate from '../productcreate/productcreate';
 
 function DashBoardMain() {
     return (
         <>
-            <div className='widgets'>
-                <Widget type='user' />
-                <Widget type='order' />
-                <Widget type='earning' />
+            <div className="widgets">
+                <Widget type="user" />
+                <Widget type="order" />
+                <Widget type="earning" />
             </div>
-            <div className='charts'>
+            <div className="charts">
                 <Featured />
-                <Chart aspect={4 / 1} title={'최근 6개월 매출'} />
+                <Chart aspect={4 / 1} title={"최근 6개월 매출"} />
             </div>
             <TableList />
         </>
@@ -32,21 +36,33 @@ function UserMain() {
     return (
         <Routes>
             <Route index element={<User />} />
-            <Route path='/*' element={<Single />} />
+            <Route path="/*" element={<Single />} />
+        </Routes>
+    );
+}
+
+function ProductMain() {
+    return (
+        <Routes>
+            <Route index element={<Product />} />
+            {/* <Route path="/*" element={<ProductSingle />} /> */}
+            <Route path='/*/new' element={<ProductCreate />} />
         </Routes>
     );
 }
 
 const DashBoard = () => {
     return (
-        <div className='dashBoard'>
+        <div className="dashBoard">
             <Sidebar />
-            <div className='dashBoardContainer'>
+            <div className="dashBoardContainer">
                 <Navbar />
                 <Routes>
                     <Route index element={<DashBoardMain />} />
-                    <Route path='/user/*' element={<UserMain />} />
-                    <Route path='/prepar' element={<Prepar />} />
+                    <Route path="/user/*" element={<UserMain />} />
+                    <Route path="/product/*" element={<ProductMain />} />
+                    <Route path="/prepar" element={<Prepar />} />
+                    {/* <Route path="/product" element={<ProductMain />} /> */}
                 </Routes>
             </div>
         </div>

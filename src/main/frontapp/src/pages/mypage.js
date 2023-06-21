@@ -7,26 +7,26 @@ import Newpost from "../components/mypage/Newpost";
 import { MpQnA } from "../components/mypage/MpQnA";
 import MpMyInfo from "../components/mypage/MpMyInfo";
 import axios from "axios";
-export default function Mypage({ checkLogin, setCheckLogin }) {
+export default function Mypage({ setCheckLogin }) {
+
+
     const [page, setPage] = useState("qna");
     //-------------- 세션 정보 가져오기 ------------
     const [userInfo, setUserInfo] = useState({});
 
     useEffect(() => {
-        if (checkLogin) {
-            fetchUserInfo();
+        async function fetchUserInfo() {
+            try {
+                const response = await axios.get(`/member/list/${sessionStorage.getItem("checkLogin")}`);
+                setUserInfo(response.data);
+            } catch (error) {
+                console.log(error);
+            }
         }
-    }, [checkLogin]);
 
-    async function fetchUserInfo() {
-        try {
-            const response = await axios.get("/member/session");
-            const data = response.data;
-            setUserInfo(data);
-        } catch (error) {
-            console.log(error);
-        }
-    }
+        fetchUserInfo();
+    }, []);
+
 
     //--------------사이드 서브메뉴 구성 ------------
     const sideMenu_orderPages = [
@@ -35,7 +35,7 @@ export default function Mypage({ checkLogin, setCheckLogin }) {
     ];
 
     const sideMenu_askPages = [
-        { id: 1, title: "1:1문의 내역", url: "/mypage/myqna" },
+        { id: 1, title: "1:1문의 내역", url: `/mypage/myqna` },
         { id: 2, title: "리뷰작성 내역", url: "/mypage/myreview" },
     ];
 
@@ -57,7 +57,7 @@ export default function Mypage({ checkLogin, setCheckLogin }) {
                             <MpQnA
                                 page={page}
                                 setPage={setPage}
-                                checkLogin={checkLogin}
+                                userInfo={userInfo}
                             />
                         }
                     />
@@ -65,9 +65,9 @@ export default function Mypage({ checkLogin, setCheckLogin }) {
                         path="/newpost"
                         element={
                             <Newpost
-                                checkLogin={checkLogin}
                                 page={page}
                                 setPage={setPage}
+                                userInfo={userInfo}
                             />
                         }
                     />
