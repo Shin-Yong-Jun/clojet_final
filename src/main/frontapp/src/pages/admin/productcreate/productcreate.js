@@ -10,39 +10,35 @@ function ProductCreate() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const data = new FormData(e.currentTarget);
-        const thumUrl = data.get("productThumUrl");
-        const Name = data.get("productName");
-        const gender = data.get("genderCode");
-        const price = data.get("productPrice");
-        const color = data.get("ccType");
-        const size = data.get("csType");
-        const stock = data.get("productStock");
-        const cTop = data.get("ctGrp");
-        const cMid = data.get("cmGrp");
-        const detail = data.get("productDetail");
 
+        const formData = new FormData();
+        formData.append("productName", data.get("productName"));
+        formData.append("genderCode", data.get("genderCode"));
+        formData.append("productPrice", data.get("productPrice"));
+        formData.append("ccType", data.get("ccType"));
+        formData.append("csType", data.get("csType"));
+        formData.append("productStock", data.get("productStock"));
+        formData.append("ctGrp", data.get("ctGrp"));
+        formData.append("cmGrp", data.get("cmGrp"));
+        formData.append("productEnroll", paresDate());
+
+        const thumUrlFile = data.get("productThumUrl");
+        if (thumUrlFile) {
+            formData.append("productThumUrl", thumUrlFile);
+        }
+
+        const detailFile = data.get("productDetail");
+        if (detailFile) {
+            formData.append("productDetail", detailFile);
+        }
 
         try{
-            const productData = {
-                productThumUrl: thumUrl,
-                productName: Name,
-                genderCode: gender,
-                productPrice: price,
-                ccType: color,
-                csType: size,
-                productStock: stock,
-                ctGrp: cTop,
-                cmGrp: cMid,
-                productDetail: detail,
-                productEnroll: paresDate(),
-            }
+            console.log(formData);
             axios
-                .post("/product/create", productData)
-                .then((response) => {
-                    if(response.status === 200) {
+                .post("/product/create", formData)
+                .then(() => {
                         alert("상품이 등록되었습니다.");
                         navigate("/product");
-                    }
                 })
                 .catch((error)=>{
                     alert("이미 등록되어있는 상품명입니다.")
@@ -62,6 +58,7 @@ function ProductCreate() {
                     method="post"
                     className="productEditForm"
                     onSubmit={handleSubmit}
+                    encType="multipart/form-data"
                 >
                     <div className="productColumnTitle">
                         상품 썸네일 링크주소
