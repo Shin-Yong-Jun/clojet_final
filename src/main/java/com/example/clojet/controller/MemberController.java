@@ -52,13 +52,17 @@ public class MemberController {
         return memberService.getAllMembers();
     }
 
-    @GetMapping("/list/{id}")
-    public ResponseEntity<?> readMember(@PathVariable Long id) {
-        try {
-            Member member = memberService.getMemberById(id);
-            return ResponseEntity.ok(member);
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.notFound().build();
+    @GetMapping("/list/{uid}")
+    public ResponseEntity<?> readMember(@PathVariable Long uid, @RequestHeader("checkLogin") Long getSessionId) {
+        if (uid == getSessionId) {
+            try {
+                Member member = memberService.getMemberById(uid);
+                return ResponseEntity.ok(member);
+            } catch (IllegalArgumentException e) {
+                return ResponseEntity.notFound().build();
+            }
+        } else {
+            throw new IllegalArgumentException();
         }
     }
 

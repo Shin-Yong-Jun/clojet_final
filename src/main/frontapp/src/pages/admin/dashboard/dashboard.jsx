@@ -11,7 +11,7 @@ import Prepar from "../../../components/prepar/prepar";
 import User from "../user/user";
 import Single from "../single/single";
 import Product from "../product/product";
-import ProductSingle from "../productsingle/productsingle";
+// import ProductSingle from "../productsingle/productsingle";
 import ProductCreate from "../productcreate/productcreate";
 // import ProductCreate from '../productcreate/productcreate';
 
