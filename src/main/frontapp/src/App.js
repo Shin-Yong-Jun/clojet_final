@@ -1,18 +1,18 @@
-import './App.css';
-import Footer from './components/footer';
-import Header from './components/header';
-import Main from './pages/main';
-import Login from './pages/login';
-import Signup from './pages/signup';
-import Findpw from './pages/findpw';
-import Cart from './pages/cart';
-import Purchase from './pages/purchase';
-import Mypage from './pages/mypage';
-import Detail from './pages/detail';
-import Category from './pages/category';
-import Dashboard from './pages/admin/dashboard/dashboard';
-import { Route, Routes } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import "./App.css";
+import Footer from "./components/footer";
+import Header from "./components/header";
+import Main from "./pages/main";
+import Login from "./pages/login";
+import Signup from "./pages/signup";
+import Findpw from "./pages/findpw";
+import Cart from "./pages/cart";
+import Purchase from "./pages/purchase";
+import Mypage from "./pages/mypage";
+import Detail from "./pages/detail";
+import Category from "./pages/category";
+import Dashboard from "./pages/admin/dashboard/dashboard";
+import { Route, Routes } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 function App() {
     // 테스트용코드 (더미데이터 ON!)
@@ -29,7 +29,7 @@ function App() {
 
     useEffect(() => {
         // 페이지 로드 시 sessionStorage에서 checkLogin 값 가져오기
-        const storedCheckLogin = sessionStorage.getItem('checkLogin');
+        const storedCheckLogin = sessionStorage.getItem("checkLogin");
         if (storedCheckLogin !== null) {
             setCheckLogin(JSON.parse(storedCheckLogin));
         }
@@ -37,13 +37,13 @@ function App() {
 
     useEffect(() => {
         // checkLogin 값이 변경될 때마다 sessionStorage에 저장
-        sessionStorage.setItem('checkLogin', JSON.stringify(checkLogin));
+        sessionStorage.setItem("checkLogin", JSON.stringify(checkLogin));
     }, [checkLogin]);
 
     return (
         <Routes>
             <Route
-                path='/*'
+                path="/*"
                 element={
                     <>
                         <Header
@@ -54,24 +54,24 @@ function App() {
                             <Routes>
                                 <Route index element={<Main />} />
                                 <Route
-                                    path='/category/*'
+                                    path="/category/*"
                                     element={<Category />}
                                 />
                                 <Route
-                                    path='/login'
+                                    path="/login"
                                     element={
                                         <Login setCheckLogin={setCheckLogin} />
                                     }
                                 />
-                                <Route path='/signup' element={<Signup />} />
-                                <Route path='/findpw' element={<Findpw />} />
-                                <Route path='/cart' element={<Cart />} />
+                                <Route path="/signup" element={<Signup />} />
+                                <Route path="/findpw" element={<Findpw />} />
+                                <Route path="/cart" element={<Cart />} />
                                 <Route
-                                    path='/purchase'
+                                    path="/purchase"
                                     element={<Purchase />}
                                 />
                                 <Route
-                                    path='/mypage/*'
+                                    path="/mypage/*"
                                     element={
                                         <Mypage
                                             checkLogin={checkLogin}
@@ -87,7 +87,7 @@ function App() {
                     </>
                 }
             />
-            <Route path='/admin' element={<Dashboard />} />
+            <Route path="/admin/*" element={<Dashboard />} />
         </Routes>
     );
 }
