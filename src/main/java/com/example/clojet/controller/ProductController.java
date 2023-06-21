@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -29,19 +30,19 @@ public class ProductController {
         try{
             Product createdProduct = productService.createProduct(product);
 
-            String[] makeType = product.getCcType().split(",");
+            String[] makeColor = product.getCcType().split(",");
             String[] makeSize = product.getCsType().split(",");
 
+            List<ProductAll> list = new ArrayList<>(makeSize.length * makeColor.length);
 
-            for(int i = 0; i < makeType.length; i++){
-                for(int j = 0; j < makeSize.length; j++){
-                    productAllRepository.save(new ProductAll(
-                            product.getProductSeq(),
-                            makeType[i],
-                            makeSize[j])
-                    );
+            Long seq = product.getProductSeq();
+            for(String color : makeColor){
+                for(String size : makeSize){
+                    list.add(new ProductAll(seq, color, size));
                 }
             }
+
+            productAllRepository.saveAll(list);
             return ResponseEntity.ok(createdProduct);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
