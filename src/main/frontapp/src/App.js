@@ -79,7 +79,8 @@ function App() {
                                         />
                                     }
                                 />
-                                <Route path="/detail" element={<Detail />} />
+                                <Route path='/detail' element={<Detail />} />
+                                <Route path='/*' errorElement={<ErrorPage />} />
                             </Routes>
                         </main>
                         <Footer />
@@ -91,3 +92,14 @@ function App() {
     );
 }
 export default App;
+
+
+function ErrorPage() {
+    return (
+        <>
+            <div>
+                잘못된 페이지 요청 입니다.
+            </div>
+        </>
+    )
+}
