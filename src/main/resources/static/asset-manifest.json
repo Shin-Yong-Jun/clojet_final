@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.c632bc2b.css",
-    "main.js": "/static/js/main.1d29665c.js",
+    "main.css": "/static/css/main.49aeca0b.css",
+    "main.js": "/static/js/main.ce0142d9.js",
     "static/media/detail.jpg": "/static/media/detail.428321f5da8a5cd64460.jpg",
     "static/media/clojet-mainss-slider3.png": "/static/media/clojet-mainss-slider3.cfe8a1f5af09cc813d16.png",
     "static/media/clojet-mainss-slider2.png": "/static/media/clojet-mainss-slider2.8f1de4962370a822f973.png",
@@ -26,11 +26,11 @@
     "static/media/right-arrow.svg": "/static/media/right-arrow.8b8fb639d7ed68731e5b073c0700d3bf.svg",
     "static/media/arrow_forward_ios_FILL0_wght400_GRAD0_opsz48.svg": "/static/media/arrow_forward_ios_FILL0_wght400_GRAD0_opsz48.7b13c9ac5e7c53fc2f3af0ae9afcc4d1.svg",
     "static/media/arrow_back_ios_FILL0_wght400_GRAD0_opsz48.svg": "/static/media/arrow_back_ios_FILL0_wght400_GRAD0_opsz48.bc24e9e3061ccb03a6e13a55760da701.svg",
-    "main.c632bc2b.css.map": "/static/css/main.c632bc2b.css.map",
-    "main.1d29665c.js.map": "/static/js/main.1d29665c.js.map"
+    "main.49aeca0b.css.map": "/static/css/main.49aeca0b.css.map",
+    "main.ce0142d9.js.map": "/static/js/main.ce0142d9.js.map"
   },
   "entrypoints": [
-    "static/css/main.c632bc2b.css",
-    "static/js/main.1d29665c.js"
+    "static/css/main.49aeca0b.css",
+    "static/js/main.ce0142d9.js"
   ]
 }

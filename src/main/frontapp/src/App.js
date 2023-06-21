@@ -16,16 +16,16 @@ import { useState, useEffect } from 'react';
 
 function App() {
     // 테스트용코드 (더미데이터 ON!)
-    const [checkLogin, setCheckLogin] = useState({
-        userIdx: '2',
-        userName: 'test',
-        userGender: 'f',
-        userEmail: 'hakro1@gmail.com',
-        userPhone: '01089456515',
-    });
+    // const [checkLogin, setCheckLogin] = useState({
+    //     userIdx: '2',
+    //     userName: 'test',
+    //     userGender: 'f',
+    //     userEmail: 'hakro1@gmail.com',
+    //     userPhone: '01089456515',
+    // });
 
     // 테스트용코드 (더미데이터 OFF!)
-    // const [checkLogin, setCheckLogin] = useState(false);
+    const [checkLogin, setCheckLogin] = useState(false);
 
     useEffect(() => {
         // 페이지 로드 시 sessionStorage에서 checkLogin 값 가져오기
@@ -80,6 +80,7 @@ function App() {
                                     }
                                 />
                                 <Route path='/detail' element={<Detail />} />
+                                <Route path='/*' errorElement={<ErrorPage />} />
                             </Routes>
                         </main>
                         <Footer />
@@ -91,3 +92,14 @@ function App() {
     );
 }
 export default App;
+
+
+function ErrorPage() {
+    return (
+        <>
+            <div>
+                잘못된 페이지 요청 입니다.
+            </div>
+        </>
+    )
+}
