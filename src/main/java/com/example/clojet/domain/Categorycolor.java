@@ -24,5 +24,4 @@ public class Categorycolor {
     @Column(name="ccValMean")
     private String ccValMean;
 
-
 }
