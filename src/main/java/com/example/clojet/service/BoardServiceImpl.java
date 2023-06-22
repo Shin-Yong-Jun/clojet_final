@@ -43,8 +43,13 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public void deletePost(Long boardSeq) {
-        boardRepository.deleteById(boardSeq);
+    public void deletePost(Long boardSeq, Long getSessionUid) {
+        String boardUser = boardRepository.getReferenceById(boardSeq).getUserEmail();
+        String memberUser = memberRepository.findById(getSessionUid).get().getUserEmail();
+
+        if (boardUser.equals(memberUser)) {
+            boardRepository.deleteById(boardSeq);
+        }
     }
 
 }
