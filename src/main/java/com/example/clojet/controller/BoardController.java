@@ -3,7 +3,11 @@ package com.example.clojet.controller;
 import com.example.clojet.domain.Board;
 import com.example.clojet.repository.BoardRepository;
 import com.example.clojet.service.BoardServiceImpl;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,8 +32,8 @@ public class BoardController {
         return boardService.getAllPosts();
     }
 
-    @GetMapping(value = "/myqna/list/{uId}")
-    public Optional<List<Board>> getUserPost(@PathVariable Long uId, @RequestHeader("checkLogin") Long user) {
+    @GetMapping(path = "/myqna/list/{uId}")
+    public Optional<List<Board>> getUserPost(@PathVariable Long uId, @RequestHeader(value = "checkLogin") Long user) {
         if (user == uId) {
             return boardService.getUserPosts(uId);
         } else {
@@ -56,7 +60,7 @@ public class BoardController {
     public void deletepost(@PathVariable Long boardSeq) {
         try {
             boardRepository.deleteById(boardSeq);
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e);
         }
     }

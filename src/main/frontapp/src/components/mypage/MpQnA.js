@@ -9,38 +9,39 @@ export function MpQnA({ page, setPage, userInfo }) {
     const btnText = "문의하기";
     const [testData, setTestData] = useState([]);
 
-    useEffect(() => {
-        function requestData() {
-            const response = new XMLHttpRequest();
+    function requestData() {
+        const response = new XMLHttpRequest();
 
-            try {
-                response.open(
-                    "GET",
-                    `/mypage/myqna/list/${sessionStorage.getItem('checkLogin')}`,
-                    true
-                );
-
-                response.responseType = "json";
-                response.setRequestHeader(
-                    "checkLogin",
-                    sessionStorage.getItem("checkLogin")
-                );
-
-                response.onreadystatechange = function () {
-                    if (this.readyState === this.DONE) {
-                        if (this.status === 200) {
-                            setTestData(response.response);
-                        }
+        try {
+            response.onreadystatechange = function () {
+                if (this.readyState === this.DONE) {
+                    if (this.status === 200) {
+                        setTestData(response.response);
                     }
                 }
-            } catch (error) {
-                alert(error);
-                redirect('/');
-            }
+            };
+
+            response.open(
+                "GET",
+                `/mypage/myqna/list/${sessionStorage.getItem('checkLogin')}`,
+                true
+            );
+
+            response.responseType = "json";
+            response.setRequestHeader(
+                "checkLogin",
+                sessionStorage.getItem("checkLogin")
+            );
 
             response.send();
+        } catch (error) {
+            alert(error);
+            redirect('/');
         }
 
+    }
+
+    useEffect(() => {
         requestData();
     }, []);
 
