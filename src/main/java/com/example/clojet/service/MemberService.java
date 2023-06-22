@@ -12,7 +12,7 @@ public interface MemberService {
     String generateRandomPassword();
     ResponseEntity<?> findMember(Member memberFindPw);
     List<Member> getAllMembers();
-    Member getMemberById(Long id);
+    Member getMemberById(Long uid);
     ResponseEntity<Object> updateMember(Long id, Member memberNewData);
 
     void deleteMember(Long id);

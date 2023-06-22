@@ -1,52 +1,44 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./productcreate.scss";
 import axios from "axios";
 import { paresDate } from "../../../utils/parseDate";
 
+
 function ProductCreate() {
     const navigate = useNavigate();
-
     const handleSubmit = async (e) => {
         e.preventDefault();
+        
         const data = new FormData(e.currentTarget);
 
-        const formData = new FormData();
-        formData.append("productName", data.get("productName"));
-        formData.append("genderCode", data.get("genderCode"));
-        formData.append("productPrice", data.get("productPrice"));
-        formData.append("ccType", data.get("ccType"));
-        formData.append("csType", data.get("csType"));
-        formData.append("productStock", data.get("productStock"));
-        formData.append("ctGrp", data.get("ctGrp"));
-        formData.append("cmGrp", data.get("cmGrp"));
-        formData.append("productEnroll", paresDate());
+        const productData = {
+            productName: data.get("productName"),
+            genderCode: data.get("genderCode"),
+            productPrice: data.get("productPrice"),
+            ccType: Array.from(data.getAll("ccType")).toString(),
+            csType: Array.from(data.getAll("csType")).toString(),
+            productStock: data.get("productStock"),
+            ctGrp: data.get("ctGrp"),
+            cmGrp: data.get("cmGrp"),
+            productEnroll: paresDate(),
+        };
 
-        const thumUrlFile = data.get("productThumUrl");
-        if (thumUrlFile) {
-            formData.append("productThumUrl", thumUrlFile);
-        }
+        console.log(productData);
+        
 
-        const detailFile = data.get("productDetail");
-        if (detailFile) {
-            formData.append("productDetail", detailFile);
-        }
-
-        try{
-            console.log(formData);
-            axios
-                .post("/product/create", formData)
-                .then(() => {
-                        alert("상품이 등록되었습니다.");
-                        navigate("/product");
-                })
-                .catch((error)=>{
-                    alert("이미 등록되어있는 상품명입니다.")
-                    console.log(error)
-                })
-        }catch{
-            alert("상품등록 실패")
-        }
+        axios
+            .post("/product/create", productData)
+            .then((response) => {
+                if (response.status === 200) {
+                    alert("상품이 등록되었습니다.");
+                    navigate("/admin/product");
+                }
+            })
+            .catch((error) => {
+                alert("상품등록실패");
+                console.log(error);
+            });
     };
 
     return (
@@ -58,12 +50,11 @@ function ProductCreate() {
                     method="post"
                     className="productEditForm"
                     onSubmit={handleSubmit}
-                    encType="multipart/form-data"
                 >
-                    <div className="productColumnTitle">
+                    {/* <div className="productColumnTitle">
                         상품 썸네일 링크주소
                     </div>
-                    <input type="file" name="productThumUrl" />
+                    <input type="file" name="productThumUrl" /> */}
 
                     <div className="productColumnTitle">상품명</div>
                     <input type="text" name="productName" />
@@ -79,23 +70,18 @@ function ProductCreate() {
                     <input type="text" name="productPrice" />
 
                     <div className="productColumnTitle">상품색상</div>
-                    <select name="ccType" defaultValue="white">
-                        <option value="white">흰색</option>
-                        <option value="ivory">아이보리</option>
-                        <option value="khaki">카키</option>
-                        <option value="grey">그레이</option>
-                        <option value="black">블랙</option>
-                        <option value="red">레드</option>
-                    </select>
+                        <label><input type="checkbox" name="ccType" value="white"/> 흰색</label>
+                        <label><input type="checkbox" name="ccType" value="ivory"/> 아이보리</label>
+                        <label><input type="checkbox" name="ccType" value="khaki"/> 카키</label>
+                        <label><input type="checkbox" name="ccType" value="grey"/> 그레이</label>
+                        <label><input type="checkbox" name="ccType" value="black"/> 블랙</label>
+
                     <div className="productColumnTitle">상품사이즈</div>
-                    <select name="csType" defaultValue="m">
-                        <option value="xs">XS</option>
-                        <option value="s">S</option>
-                        <option value="m">M</option>
-                        <option value="l">L</option>
-                        <option value="xl">XL</option>
-                        <option value="xxl">XXL</option>
-                    </select>
+                        <label><input type="checkbox" name="csType" value="S"/> S</label>
+                        <label><input type="checkbox" name="csType" value="XS"/> XS</label>
+                        <label><input type="checkbox" name="csType" value="M"/> M</label>
+                        <label><input type="checkbox" name="csType" value="L"/> L</label>
+                        <label><input type="checkbox" name="csType" value="XL"/> XL</label>
 
                     <div className="productColumnTitle">상품재고량</div>
                     <input type="number" name="productStock" />
@@ -119,14 +105,16 @@ function ProductCreate() {
                         <option value="l">양말</option>
                     </select>
 
-                    <div className="productColumnTitle">상품상세이미지</div>
+                    {/* <div className="productColumnTitle">상품상세이미지</div>
                     <input
                         type="file"
                         name="productDetail"
                         multiple
-                    />
-                    
-                    <button className="editProductBtn" type="submit">제출</button>
+                    /> */}
+
+                    <button className="editProductBtn" type="submit">
+                        제출
+                    </button>
                 </form>
             </div>
         </div>

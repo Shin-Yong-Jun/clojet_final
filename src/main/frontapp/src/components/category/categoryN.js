@@ -34,7 +34,10 @@ function CategoryN() {
         axios
             .get('/category')
             .then((result) => {
+<<<<<<< HEAD
                 // console.log(result);
+=======
+>>>>>>> 2ea1ff6f05c1578fac3967ff6acb9fa1bd6c28b6
                 setSize(result.data.csType);
                 setItem(result.data.cmValMean);
                 setColor(result.data.ccType);
