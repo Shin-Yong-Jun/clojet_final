@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 public class Categorytop {
     @Id
     @Column(name="ctGrp", nullable = false )
-    private char ctGrp;
+    private String ctGrp;
 
     @Column(name="ctValMean", nullable = false)
     private String ctValMean;
