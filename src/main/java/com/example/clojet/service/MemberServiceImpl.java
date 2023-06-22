@@ -99,8 +99,8 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public Member getMemberById(Long id) {
-        return memberRepository.findById(id)
+    public Member getMemberById(Long uid) {
+        return memberRepository.findById(uid)
                 .orElseThrow(() -> new IllegalArgumentException());
     }
 

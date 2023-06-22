@@ -8,8 +8,6 @@ import { MpQnA } from "../components/mypage/MpQnA";
 import MpMyInfo from "../components/mypage/MpMyInfo";
 import axios from "axios";
 export default function Mypage({ setCheckLogin }) {
-
-
     const [page, setPage] = useState("qna");
     //-------------- 세션 정보 가져오기 ------------
     const [userInfo, setUserInfo] = useState({});
@@ -17,7 +15,14 @@ export default function Mypage({ setCheckLogin }) {
     useEffect(() => {
         async function fetchUserInfo() {
             try {
-                const response = await axios.get(`/member/list/${sessionStorage.getItem("checkLogin")}`);
+                const getSessionId = sessionStorage.getItem("checkLogin");
+
+                const response = await axios.get(
+                    `/member/list/${getSessionId}`,
+                    {
+                        headers: { checkLogin: getSessionId },
+                    }
+                );
                 setUserInfo(response.data);
             } catch (error) {
                 console.log(error);
@@ -26,7 +31,6 @@ export default function Mypage({ setCheckLogin }) {
 
         fetchUserInfo();
     }, []);
-
 
     //--------------사이드 서브메뉴 구성 ------------
     const sideMenu_orderPages = [

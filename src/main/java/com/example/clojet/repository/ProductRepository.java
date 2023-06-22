@@ -11,7 +11,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     //상품 등록용
     Optional<Product> findByProductName(String productName);
 
-
     //검색용
     Optional<Product> findByProductNameContaining(String productName);
 
