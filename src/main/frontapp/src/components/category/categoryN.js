@@ -34,9 +34,9 @@ function CategoryN() {
         axios
             .get('/category')
             .then((result) => {
-                setSize(result.data.cs_type);
-                setItem(result.data.cm_valmean);
-                setColor(result.data.cc_type);
+                setSize(result.data.csType);
+                setItem(result.data.cmValMean);
+                setColor(result.data.ccType);
             })
             .catch((err) => {
                 console.log(err);

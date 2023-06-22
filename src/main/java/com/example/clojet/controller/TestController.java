@@ -46,8 +46,8 @@ public class TestController {
         return Categorydto.builder()
                 .cmValMean(cmValmeanList)
                 .ccType(ccType)
-                .csType(ccValMean)
-                .ccValMean(csType)
+                .csType(csType)
+                .ccValMean(ccValMean)
                 .build();
     }
 }
