@@ -26,9 +26,7 @@ function CategoryN() {
     const [value, setValue] = useState([0, 1000000]);
     const [foldState, setFoldState] = useState(Array(4).fill(false));
     const [sizeState, setSizeState] = useState(Array(size.length).fill(false));
-    const [colorState, setColorState] = useState(
-        Array(color.length).fill(false),
-    );
+    const [colorState, setColorState] = useState(Array(color.length).fill(false));
 
     useEffect(() => {
         axios
@@ -131,8 +129,7 @@ function CategoryN() {
                                     onChange={handleChange}
                                 />
                                 <p className='priceC'>
-                                    선택가격 : <span>{value[0]}</span> 원 ~{' '}
-                                    <span>{value[1]}</span> 원
+                                    선택가격 : <span>{value[0]}</span> 원 ~ <span>{value[1]}</span> 원
                                 </p>
                             </div>
                         </div>
@@ -154,15 +151,11 @@ function CategoryN() {
                                     <div className='color_box'>
                                         <div
                                             key={colorV}
-                                            onClick={() =>
-                                                clickE(setColorState, index)
-                                            }
+                                            onClick={() => clickE(setColorState, index)}
                                             className={`color ${colorV}
                                             ${colorState[index] && 'active'}`}
                                         ></div>
-                                        <div className='color_name'>
-                                            {colorV}
-                                        </div>
+                                        <div className='color_name'>{colorV}</div>
                                     </div>
                                 );
                             })}
@@ -184,12 +177,8 @@ function CategoryN() {
                                 return (
                                     <div
                                         key={sizeV}
-                                        onClick={() =>
-                                            clickE(setSizeState, index)
-                                        }
-                                        className={`size ${
-                                            sizeState[index] && 'active'
-                                        }`}
+                                        onClick={() => clickE(setSizeState, index)}
+                                        className={`size ${sizeState[index] && 'active'}`}
                                     >
                                         <span>{sizeV}</span>
                                     </div>
@@ -202,10 +191,7 @@ function CategoryN() {
 
             <div className='category_right'>
                 <div className='category_banner'>
-                    <img
-                        src={require('../../image/clojet-category-new-banner.png')}
-                        alt={'categoryN_banner'}
-                    />
+                    <img src={require('../../image/clojet-category-new-banner.png')} alt={'categoryN_banner'} />
                 </div>
                 <div className='category_item'>
                     <h1>아이템</h1>
@@ -214,18 +200,14 @@ function CategoryN() {
                             <div key={value.productName} className='pd_box'>
                                 <div className='pd_img'>
                                     <a href='/'>
-                                        <img
-                                            src={require(`/${value.productThumUrl}`)}
-                                            alt={value.productName}
-                                        />
+                                        <img src={`/${value.productThumUrl}`} alt={value.productName} />
                                     </a>
                                 </div>
                                 <div className='pd_info'>
                                     <p>{value.productName}</p>
                                     <p>{value.productStock}</p>
                                     <p>
-                                        <del>{value.productPrice}</del>{' '}
-                                        <strong>{value.productPrice}</strong>
+                                        <del>{value.productPrice}</del> <strong>{value.productPrice}</strong>
                                     </p>
                                 </div>
                             </div>
