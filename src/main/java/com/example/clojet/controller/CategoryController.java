@@ -20,6 +20,7 @@ public class CategoryController {
     private final GenderService genderService;
 
 
+
     @GetMapping("/category")
     public Categorydto getFindAll(){
         List<Categorytop> categorytopList = categorytopService.findTop();

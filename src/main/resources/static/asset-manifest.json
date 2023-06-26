@@ -1,53 +1,29 @@
 {
   "files": {
-<<<<<<< HEAD
-    "main.css": "/static/css/main.ba4ebdb1.css",
-    "main.js": "/static/js/main.3b685c44.js",
-=======
-    "main.css": "/static/css/main.796bdd1d.css",
-    "main.js": "/static/js/main.4042a809.js",
->>>>>>> c7bf650e3909fd23b97c38d26df43ff6e956a5a2
+    "main.css": "/static/css/main.a807148e.css",
+    "main.js": "/static/js/main.03284221.js",
     "static/media/detail.jpg": "/static/media/detail.428321f5da8a5cd64460.jpg",
     "static/media/clojet-mainss-slider3.png": "/static/media/clojet-mainss-slider3.cfe8a1f5af09cc813d16.png",
     "static/media/clojet-mainss-slider2.png": "/static/media/clojet-mainss-slider2.8f1de4962370a822f973.png",
     "static/media/clojet-mainss-slider1.png": "/static/media/clojet-mainss-slider1.cc6955d6dad90959c611.png",
     "static/media/0.jpg": "/static/media/0.f4b33838ae8e46878cc8.jpg",
-    "static/media/product1.jpg": "/static/media/product1.f4b33838ae8e46878cc8.jpg",
     "static/media/clojet-mainfw-foot_banner.png": "/static/media/clojet-mainfw-foot_banner.4c98d5ac4c73348380b4.png",
     "static/media/1.jpg": "/static/media/1.08c528c1dbed9351f7bf.jpg",
     "static/media/clojet-mainfw-middle_banner.png": "/static/media/clojet-mainfw-middle_banner.f99369bd1a5e114093b9.png",
     "static/media/clojet-category-new-banner.png": "/static/media/clojet-category-new-banner.25db47bc53c1baf354f9.png",
     "static/media/3.jpg": "/static/media/3.0571611718e63a8c8545.jpg",
     "static/media/2.jpg": "/static/media/2.39b0544ddf8a29f77553.jpg",
-    "static/media/product2.jpg": "/static/media/product2.39b0544ddf8a29f77553.jpg",
-    "static/media/product8.jpg": "/static/media/product8.78b6f2d00929e5554b4e.jpg",
-    "static/media/product10.jpg": "/static/media/product10.7924aeb58db0b905cc77.jpg",
-    "static/media/product3.jpg": "/static/media/product3.78d5595f30c6f50bfc7a.jpg",
-    "static/media/product6.jpg": "/static/media/product6.58d1171e089f19a18c54.jpg",
-    "static/media/product7.jpg": "/static/media/product7.80c2bb8e9dd2c8a6120e.jpg",
-    "static/media/product9.jpg": "/static/media/product9.9e3b4cf78d4b404901b0.jpg",
-    "static/media/product5.jpg": "/static/media/product5.b2623c0228b6a23b545e.jpg",
-    "static/media/product4.jpg": "/static/media/product4.b95d5a40a6a9576a100f.jpg",
     "static/media/clojet_logo_final_black.png": "/static/media/clojet_logo_final_black.329e727d1930b7db2a83.png",
     "index.html": "/index.html",
     "static/media/left-arrow.svg": "/static/media/left-arrow.da21225bcf530088451874c9e21c215a.svg",
     "static/media/right-arrow.svg": "/static/media/right-arrow.d19ce8f87764b5901ed2ca6f0ff22d03.svg",
     "static/media/arrow_forward_ios_FILL0_wght400_GRAD0_opsz48.svg": "/static/media/arrow_forward_ios_FILL0_wght400_GRAD0_opsz48.7b13c9ac5e7c53fc2f3af0ae9afcc4d1.svg",
     "static/media/arrow_back_ios_FILL0_wght400_GRAD0_opsz48.svg": "/static/media/arrow_back_ios_FILL0_wght400_GRAD0_opsz48.bc24e9e3061ccb03a6e13a55760da701.svg",
-<<<<<<< HEAD
-    "main.ba4ebdb1.css.map": "/static/css/main.ba4ebdb1.css.map",
-    "main.3b685c44.js.map": "/static/js/main.3b685c44.js.map"
+    "main.a807148e.css.map": "/static/css/main.a807148e.css.map",
+    "main.03284221.js.map": "/static/js/main.03284221.js.map"
   },
   "entrypoints": [
-    "static/css/main.ba4ebdb1.css",
-    "static/js/main.3b685c44.js"
-=======
-    "main.796bdd1d.css.map": "/static/css/main.796bdd1d.css.map",
-    "main.4042a809.js.map": "/static/js/main.4042a809.js.map"
-  },
-  "entrypoints": [
-    "static/css/main.796bdd1d.css",
-    "static/js/main.4042a809.js"
->>>>>>> c7bf650e3909fd23b97c38d26df43ff6e956a5a2
+    "static/css/main.a807148e.css",
+    "static/js/main.03284221.js"
   ]
 }
