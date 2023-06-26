@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
-import cNdata from './cNdata';
+import React, { useEffect, useState } from 'react';
 import './categoryN.scss';
 import { Link } from 'react-router-dom';
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
@@ -22,6 +21,7 @@ function CategoryN() {
     const [size, setSize] = useState([]);
     const [item, setItem] = useState([]);
     const [color, setColor] = useState([]);
+    const [product, setProduct] = useState([]);
 
     const [value, setValue] = useState([0, 1000000]);
     const [foldState, setFoldState] = useState(Array(4).fill(false));
@@ -38,6 +38,16 @@ function CategoryN() {
                 setSize(result.data.csType);
                 setItem(result.data.cmValMean);
                 setColor(result.data.ccType);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+
+        axios
+            .get('/product/list')
+            .then((result) => {
+                console.log(result);
+                setProduct(result.data);
             })
             .catch((err) => {
                 console.log(err);
@@ -200,24 +210,22 @@ function CategoryN() {
                 <div className='category_item'>
                     <h1>아이템</h1>
                     <div className='containerC'>
-                        {cNdata.map((product, index) => (
-                            <div key={product.id} className='pd_box'>
+                        {product.map((value, index) => (
+                            <div key={value.productName} className='pd_box'>
                                 <div className='pd_img'>
                                     <a href='/'>
                                         <img
-                                            src={require(`../../image/product${
-                                                index + 1
-                                            }.jpg`)}
-                                            alt={`product${index + 1}`}
+                                            src={require(`/${value.productThumUrl}`)}
+                                            alt={value.productName}
                                         />
                                     </a>
                                 </div>
                                 <div className='pd_info'>
-                                    <p>{product.title}</p>
-                                    <p>{product.PercentS}</p>
+                                    <p>{value.productName}</p>
+                                    <p>{value.productStock}</p>
                                     <p>
-                                        <del>{product.basicP}</del>{' '}
-                                        <strong>{product.saleP}</strong>
+                                        <del>{value.productPrice}</del>{' '}
+                                        <strong>{value.productPrice}</strong>
                                     </p>
                                 </div>
                             </div>
