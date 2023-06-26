@@ -22,14 +22,17 @@ public class ProductAll {
     @Column(name = "ccType")
     private String ccType;
 
-
     @Column(name = "csType")
     private String csType;
 
-    public ProductAll(Long productSeq, String ccType, String csType) {
+    @Column(name = "eachStock")
+    private int eachStock;
+
+    public ProductAll(Long productSeq, String ccType, String csType, int eachStock) {
         this.productSeq = productSeq;
         this.ccType = ccType;
         this.csType = csType;
+        this.eachStock = eachStock;
     }
 
 }
