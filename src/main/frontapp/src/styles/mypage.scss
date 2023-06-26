@@ -50,52 +50,56 @@
         .myInfoPage {
             width: 1050px;
 
-            input, select {
+            input,
+            select {
                 width: 100%;
                 height: 50px;
                 font-size: 20px;
                 padding: 10px;
             }
+
             .myInfoTitle {
                 font-weight: bold;
                 font-size: 22px;
                 margin-bottom: 0.4rem;
             }
+
             .myInfoEditableTitle {
-              margin-top: 30px;
-              margin-bottom: 8px;
-              font-weight: bold; 
-              font-size: 18px;
+                margin-top: 30px;
+                margin-bottom: 8px;
+                font-weight: bold;
+                font-size: 18px;
             }
 
-            .btnBox{
-              display: flex;
-              gap: 14px;
-
-              button {
-                margin-top: 40px;
-                width: 200px;
-                height: 70px;
-                font-size: 20px;
-                font-weight: bold;
+            .btnBox {
                 display: flex;
-                justify-content: center;
-                align-items: center;
-                transition: 0.2s;
-                border-radius: 5%;
-                border: 0;
-                cursor: pointer;
+                gap: 14px;
 
-              }
-              .editMyinfo {
-                color: white;
-                background-color: black;
-              }
+                button {
+                    margin-top: 40px;
+                    width: 200px;
+                    height: 70px;
+                    font-size: 20px;
+                    font-weight: bold;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    transition: 0.2s;
+                    border-radius: 5%;
+                    border: 0;
+                    cursor: pointer;
 
-              .delMyinfo {
-                color: rgb(157, 157, 157);
-                background-color: #eeeeee;
-              }
+                }
+
+                .editMyinfo {
+                    color: white;
+                    background-color: black;
+                }
+
+                .delMyinfo {
+                    color: rgb(157, 157, 157);
+                    background-color: #eeeeee;
+                }
             }
 
         }
@@ -131,20 +135,32 @@
                     padding-left: 0.5rem;
                 }
 
-                tr > td:not(:last-child) {
+                tr>td:not(:last-child) {
                     border-right: solid black 0.05rem;
                 }
 
-                tr > td:nth-of-type(1) {
+                tr>td:nth-of-type(1) {
                     flex: 2;
                 }
 
-                tr > td:nth-of-type(2) {
+                tr>td:nth-of-type(2) {
                     flex: 5.5;
                 }
 
-                tr > td:nth-of-type(3) {
+                tr>td:nth-of-type(3) {
                     flex: 2.5;
+                }
+
+                tr>td:nth-of-type(4) {
+                    width: 2.4rem;
+                    text-align: center;
+                    padding: 0;
+
+                    button {
+                        width: 80%;
+                        cursor: pointer;
+                    }
+
                 }
             }
 
@@ -170,7 +186,7 @@
                 line-height: 2.3rem;
             }
 
-            tr > span {
+            tr>span {
                 display: inline-block;
                 width: 5rem;
                 margin-right: 1rem;
@@ -191,7 +207,7 @@
                 }
             }
 
-            td > span {
+            td>span {
                 margin-right: 0.6rem;
                 display: flex;
                 align-items: center;
@@ -241,22 +257,18 @@
                     4px 4px 5px 0px rgba(0, 0, 0, 0.1);
                 outline: none;
                 background: rgb(0, 172, 238);
-                background: linear-gradient(
-                    0deg,
-                    rgba(0, 172, 238, 1) 0%,
-                    rgba(2, 126, 251, 1) 100%
-                );
+                background: linear-gradient(0deg,
+                        rgba(0, 172, 238, 1) 0%,
+                        rgba(2, 126, 251, 1) 100%);
                 padding: 0;
                 border: none;
             }
 
             button:hover {
                 background: rgb(0, 3, 255);
-                background: linear-gradient(
-                    0deg,
-                    rgba(0, 3, 255, 1) 0%,
-                    rgba(2, 126, 251, 1) 100%
-                );
+                background: linear-gradient(0deg,
+                        rgba(0, 3, 255, 1) 0%,
+                        rgba(2, 126, 251, 1) 100%);
             }
         }
     }
@@ -271,12 +283,12 @@
         margin-top: 1.25rem;
 
         .hello {
-            > li:first-child {
+            >li:first-child {
                 font-size: 20px;
                 font-weight: bold;
             }
 
-            > li:nth-child(2) {
+            >li:nth-child(2) {
                 font-size: 15px;
                 margin: 5px 0 20px 0;
             }
@@ -303,6 +315,7 @@
                 }
             }
         }
+
         .list:last-child {
             padding-bottom: 30px;
         }
@@ -480,12 +493,12 @@
         opacity: 1;
     }
 
-    .btn_forward > img {
+    .btn_forward>img {
         width: 50px;
         display: block;
     }
 
-    .btn_back > img {
+    .btn_back>img {
         width: 50px;
         display: none;
     }
@@ -580,12 +593,12 @@
         opacity: 1;
     }
 
-    .btn_forward > img {
+    .btn_forward>img {
         width: 50px;
         display: block;
     }
 
-    .btn_back > img {
+    .btn_back>img {
         width: 50px;
         display: none;
     }

@@ -1,7 +1,6 @@
 package com.example.clojet.service;
 
 import com.example.clojet.domain.Board;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -20,6 +19,6 @@ public interface BoardService {
      * 밑에 만들어야 할 것
      */
 
-    void deletePost (Long boardSeq);
+    void deletePost (Long boardSeq, Long getSessionUid);
 
 }
