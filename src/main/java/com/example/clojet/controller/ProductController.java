@@ -82,12 +82,26 @@ public class ProductController {
 
             List<ProductAll> list = new ArrayList<>(makeSize.length * makeColor.length);
 
-            Long seq = product.getProductSeq();
+
+            Long seq = createdProduct.getProductSeq(); // 수정: productSeq 대신 createdProduct.getProductSeq() 사용
             for (String color : makeColor) {
                 for (String size : makeSize) {
-                    list.add(new ProductAll(seq, color, size));
+                    int eachStock = 0;
+                    for (int i = 0; i < ccCsText.length; i++) {
+                        if (ccCsText[i].equals(color + "-" + size)) {
+                            eachStock = ccCsQty[i];
+                            break;
+                        }
+                    }
+                    list.add(new ProductAll(seq, color, size, eachStock)); // 수정: eachStock 값도 함께 저장
                 }
             }
+//            Long seq = product.getProductSeq();
+//            for (String color : makeColor) {
+//                for (String size : makeSize) {
+//                    list.add(new ProductAll(seq, color, size));
+//                }
+//            }
 
             productAllRepository.saveAll(list);
             return ResponseEntity.ok(createdProduct);
