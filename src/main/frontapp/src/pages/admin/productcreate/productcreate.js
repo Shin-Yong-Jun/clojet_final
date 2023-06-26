@@ -12,8 +12,8 @@ function ProductCreate() {
     const [top, setTop] = useState([]);
     const [mid, setMid] = useState([]);
     const [gender, setGender] = useState([]);
-    const [selectedCcTypes] = useState([]);
-    const [selectedCsTypes] = useState([]);
+    const [selectedCcTypes, setSelectedCcTypes] = useState([]);
+    const [selectedCsTypes, setSelectedCsTypes] = useState([]);
 
     useEffect(() => {
         axios
@@ -53,18 +53,9 @@ function ProductCreate() {
             document.querySelectorAll('input[name="csType"]:checked')
         ).map((checkbox) => checkbox.value);
 
-        if (selectedCcTypes.length > 0 && selectedCsTypes.length > 0) {
-            const newCcCsText = selectedCcTypes.flatMap((ccType) =>
-                selectedCsTypes.map((csType) => ccType + "," + csType)
-            );
-
-            setNewCcCsText(newCcCsText);
-        } else {
-            setNewCcCsText([]);
-        }
+        setSelectedCcTypes(selectedCcTypes);
+        setSelectedCsTypes(selectedCsTypes);
     };
-
-    const [newCcCsText, setNewCcCsText] = useState([]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -87,19 +78,28 @@ function ProductCreate() {
         const productName = e.currentTarget.elements.productName.value;
         const genderCode = e.currentTarget.elements.genderCode.value;
         const productPrice = e.currentTarget.elements.productPrice.value;
-        
+        const ctGrp = e.currentTarget.elements.ctGrp.value;
+        const cmGrp = e.currentTarget.elements.cmGrp.value;
+
         formData.append("productName", productName);
         formData.append("genderCode", genderCode);
         formData.append("productPrice", productPrice);
-        
-        const ccCsInputs = Array.from(e.currentTarget.elements.ccCsInputContainer.getElementsByTagName("input"));
+        formData.append("ctGrp", ctGrp);
+        formData.append("cmGrp", cmGrp);
 
-        for (let i = 0; i < ccCsInputs.length; i++) {
-            const ccCsText = ccCsInputs[i].name;
-            const ccCsQty = ccCsInputs[i].value;
-            formData.append(ccCsText, ccCsQty);
-        }
+        // ccCsInputs를 가져올 때 오류가 발생하는 부분 수정
+        const ccCsInputs = Array.from(
+            document
+                .getElementById("ccCsInputContainer")
+                .getElementsByTagName("input")
+        );
 
+        ccCsInputs.forEach((ccCsInput) => {
+            formData.append("ccCsText", ccCsInput.name);
+            formData.append("ccCsQty", ccCsInput.value);
+        });
+
+//---------------------- 서버로 쏘기 ---------------------------------
         axios
             .post("/product/create", formData)
             .then((response) => {
@@ -110,7 +110,7 @@ function ProductCreate() {
             })
             .catch((error) => {
                 alert("상품등록실패");
-                console.log(error);
+                console.log(error.response);
             });
     };
 
@@ -183,16 +183,22 @@ function ProductCreate() {
                     })}
 
                     <div id="ccCsInputContainer" className="productColumnTitle">
-                        {newCcCsText.map((ccCsText, index) => (
-                            <React.Fragment key={index}>
-                                <div>{ccCsText} 수량</div>
-                                <input
-                                    type="number"
-                                    name={ccCsText}
-                                    placeholder="수량기재"
-                                />
-                            </React.Fragment>
-                        ))}
+                        {selectedCcTypes.length > 0 &&
+                            selectedCsTypes.length > 0 &&
+                            selectedCcTypes.flatMap((ccType) =>
+                                selectedCsTypes.map((csType) => (
+                                    <>
+                                        <div>
+                                            {ccType},{csType} 수량
+                                        </div>
+                                        <input
+                                            type="number"
+                                            name={`${ccType}-${csType}`}
+                                            placeholder="수량기재"
+                                        />
+                                    </>
+                                ))
+                            )}
                     </div>
 
                     <div className="productColumnTitle">상품대분류</div>
@@ -223,8 +229,19 @@ function ProductCreate() {
                         );
                     })}
 
-                    <button className="editProductBtn" type="submit">
-                        제출
+                    <div className="productColumnTitle">상품구성</div>
+                    <div id="ccCsTextContainer">
+                        {selectedCcTypes.map((ccType) =>
+                            selectedCsTypes.map((csType) => (
+                                <div key={`${ccType}-${csType}`}>
+                                    {ccType},{csType}
+                                </div>
+                            ))
+                        )}
+                    </div>
+
+                    <button type="submit" className="productEditSubmit">
+                        상품추가하기
                     </button>
                 </form>
             </div>
@@ -233,7 +250,6 @@ function ProductCreate() {
 }
 
 export default ProductCreate;
-
 
 // import React, { useEffect, useState } from "react";
 // import { useNavigate } from "react-router-dom";
