@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
-
 @RestController
 @RequestMapping("/product")
 @RequiredArgsConstructor
@@ -37,7 +36,9 @@ public class ProductController {
                                            @RequestParam("csType") String csType,
                                            @RequestParam("ctGrp") String ctGrp,
                                            @RequestParam("cmGrp") String cmGrp,
-                                           @RequestParam("productEnroll") String productEnroll) {
+                                           @RequestParam("productEnroll") String productEnroll,
+                                           @RequestParam("ccCsText") String[] ccCsText,
+                                           @RequestParam("ccCsQty") int[] ccCsQty) {
         try {
             // 파일 저장 처리
             String uploadedThumImgPath = saveUpThumFile(productThumUrl);
@@ -56,7 +57,24 @@ public class ProductController {
             product.setCmGrp(cmGrp);
             product.setProductEnroll(productEnroll);
 
-            // ... (기존 코드)
+            // productStock 처리
+            int totalQty = 0; // ccCsQty의 합을 저장할 변수
+            StringBuilder productStockBuilder = new StringBuilder();
+
+            for (int i = 0; i < ccCsText.length; i++) {
+                productStockBuilder.append(ccCsText[i]).append(":").append(ccCsQty[i]);
+
+                // ccCsQty의 값을 totalQty에 더해줍니다.
+                totalQty += ccCsQty[i];
+
+                if (i < ccCsText.length - 1) {
+                    productStockBuilder.append(",");
+                }
+            }
+
+            String productStock = productStockBuilder.toString();
+            product.setProductStock(totalQty); // 합계 값을 product의 productStock에 설정합니다.
+
             Product createdProduct = productService.createProduct(product);
 
             String[] makeColor = product.getCcType().split(",");
@@ -65,8 +83,8 @@ public class ProductController {
             List<ProductAll> list = new ArrayList<>(makeSize.length * makeColor.length);
 
             Long seq = product.getProductSeq();
-            for(String color : makeColor){
-                for(String size : makeSize){
+            for (String color : makeColor) {
+                for (String size : makeSize) {
                     list.add(new ProductAll(seq, color, size));
                 }
             }
@@ -77,6 +95,7 @@ public class ProductController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
 
     private String saveUpThumFile(MultipartFile file) {
 
