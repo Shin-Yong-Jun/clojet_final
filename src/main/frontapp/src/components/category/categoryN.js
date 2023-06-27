@@ -12,8 +12,8 @@ const marks = [
     },
 
     {
-        value: 1000000,
-        label: '100만원',
+        value: 10000000,
+        label: '1000만원',
     },
 ];
 
@@ -125,7 +125,7 @@ function CategoryN() {
                                     getAriaLabel={() => 'Temperature range'}
                                     valueLabelDisplay='auto'
                                     marks={marks}
-                                    max={1000000}
+                                    max={10000000}
                                     step={10000}
                                     value={value}
                                     onChange={handleChange}
