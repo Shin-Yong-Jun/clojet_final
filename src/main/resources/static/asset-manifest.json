@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.ba4ebdb1.css",
-    "main.js": "/static/js/main.3b685c44.js",
+    "main.js": "/static/js/main.4c5b9d65.js",
     "static/media/detail.jpg": "/static/media/detail.428321f5da8a5cd64460.jpg",
     "static/media/clojet-mainss-slider3.png": "/static/media/clojet-mainss-slider3.cfe8a1f5af09cc813d16.png",
     "static/media/clojet-mainss-slider2.png": "/static/media/clojet-mainss-slider2.8f1de4962370a822f973.png",
@@ -27,10 +27,10 @@
     "static/media/arrow_forward_ios_FILL0_wght400_GRAD0_opsz48.svg": "/static/media/arrow_forward_ios_FILL0_wght400_GRAD0_opsz48.7b13c9ac5e7c53fc2f3af0ae9afcc4d1.svg",
     "static/media/arrow_back_ios_FILL0_wght400_GRAD0_opsz48.svg": "/static/media/arrow_back_ios_FILL0_wght400_GRAD0_opsz48.bc24e9e3061ccb03a6e13a55760da701.svg",
     "main.ba4ebdb1.css.map": "/static/css/main.ba4ebdb1.css.map",
-    "main.3b685c44.js.map": "/static/js/main.3b685c44.js.map"
+    "main.4c5b9d65.js.map": "/static/js/main.4c5b9d65.js.map"
   },
   "entrypoints": [
     "static/css/main.ba4ebdb1.css",
-    "static/js/main.3b685c44.js"
+    "static/js/main.4c5b9d65.js"
   ]
 }
