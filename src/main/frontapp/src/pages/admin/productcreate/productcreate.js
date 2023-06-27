@@ -117,7 +117,6 @@ function ProductCreate() {
     return (
         <div className="productEditContainer">
             <div className="productEditTitle">상품추가하기</div>
-            <hr />
             <div className="productEditBox">
                 <form
                     method="post"
@@ -129,12 +128,18 @@ function ProductCreate() {
                         상품 썸네일 링크주소
                     </div>
                     <input type="file" name="productThumUrl" />
-
+                    <hr/>
                     <div className="productColumnTitle">상품상세이미지</div>
                     <input type="file" name="productDetail" />
+                    <hr/>
 
                     <div className="productColumnTitle">상품명</div>
-                    <input type="text" name="productName" />
+                    <input 
+                    type="text"
+                    name="productName"
+                    placeholder="상품명을 적어주세요"
+                    className="tb"/>
+                    <hr/>
 
                     <div className="productColumnTitle">상품성별구분</div>
                     {gender.map((itemV) => {
@@ -144,13 +149,19 @@ function ProductCreate() {
                                     type="radio"
                                     name="genderCode"
                                     value={itemV.genderCode}
-                                />
+                                    />
                                 {itemV.genderMean}
                             </label>
                         );
                     })}
+                    <hr/>
                     <div className="productColumnTitle">상품가격</div>
-                    <input type="text" name="productPrice" />
+                    <input 
+                    type="text" 
+                    name="productPrice" 
+                    className="tb"
+                    placeholder="회계점 제외, 숫자만 입력해주세요. 159,000원 -> 159000 " />
+                    <hr/>
 
                     <div className="productColumnTitle">상품색상</div>
                     {color.map((itemV) => {
@@ -160,12 +171,15 @@ function ProductCreate() {
                                     type="checkbox"
                                     name="ccType"
                                     value={itemV}
+                                    className="cb"
                                     onChange={handleCheckboxChange}
-                                />
-                                {itemV}
-                            </label>
+                                    />
+                                    {itemV}
+                                    </label>
                         );
                     })}
+                    <hr/>
+
 
                     <div className="productColumnTitle">상품사이즈</div>
                     {size.map((itemV) => {
@@ -175,31 +189,35 @@ function ProductCreate() {
                                     type="checkbox"
                                     name="csType"
                                     value={itemV}
+                                    className="cb"
                                     onChange={handleCheckboxChange}
-                                />
+                                    />
                                 {itemV}
                             </label>
                         );
                     })}
 
+                    <hr/>
                     <div id="ccCsInputContainer" className="productColumnTitle">
+                    <div className="productColumnTitle">색상별 사이즈 재고량</div>
                         {selectedCcTypes.length > 0 &&
                             selectedCsTypes.length > 0 &&
                             selectedCcTypes.flatMap((ccType) =>
                                 selectedCsTypes.map((csType) => (
                                     <>
-                                        <div>
+                                        <div className="cxsTitle">
                                             {ccType},{csType} 수량
                                         </div>
                                         <input
                                             type="number"
                                             name={`${ccType}-${csType}`}
                                             placeholder="수량기재"
-                                        />
+                                            />
                                     </>
                                 ))
-                            )}
+                                )}
                     </div>
+                    <hr/>
 
                     <div className="productColumnTitle">상품대분류</div>
                     {top.map((itemV) => {
@@ -209,11 +227,13 @@ function ProductCreate() {
                                     type="radio"
                                     name="ctGrp"
                                     value={itemV.ctGrp}
+                                    className="cb"
                                 />
                                 {itemV.ctValMean}
                             </label>
                         );
                     })}
+                    <hr/>
 
                     <div className="productColumnTitle">상품중분류</div>
                     {mid.map((itemV) => {
@@ -223,13 +243,15 @@ function ProductCreate() {
                                     type="radio"
                                     name="cmGrp"
                                     value={itemV.cmGrp}
-                                />
+                                    className="cb"
+                                    />
                                 {itemV.cmValMean}
                             </label>
                         );
                     })}
+                    <hr/>
 
-                    <div className="productColumnTitle">상품구성</div>
+                    <div className="productColumnTitle">상품구성 확인리스트</div>
                     <div id="ccCsTextContainer">
                         {selectedCcTypes.map((ccType) =>
                             selectedCsTypes.map((csType) => (
@@ -237,7 +259,7 @@ function ProductCreate() {
                                     {ccType},{csType}
                                 </div>
                             ))
-                        )}
+                            )}
                     </div>
 
                     <button type="submit" className="productEditSubmit">
