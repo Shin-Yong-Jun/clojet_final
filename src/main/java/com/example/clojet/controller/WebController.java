@@ -3,8 +3,10 @@ package com.example.clojet.controller;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,7 +16,7 @@ import java.nio.file.Files;
 
 @RestController
 public class WebController {
-    @RequestMapping("/*")
+    @RequestMapping({"/*"})
     public ResponseEntity<String> getIndex() {
         // "/index"에 대한 요청을 처리하는 메서드입니다.
 
@@ -32,4 +34,5 @@ public class WebController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
 }
