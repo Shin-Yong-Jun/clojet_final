@@ -213,12 +213,12 @@ function CategoryN() {
                         {product.map((value, index) => (
                             <div key={value.productName} className='pd_box'>
                                 <div className='pd_img'>
-                                    <a href='/'>
+                                    <Link to={'/detail'}>
                                         <img
                                             src={`/${value.productThumUrl}`}
                                             alt={value.productName}
                                         />
-                                    </a>
+                                    </Link>
                                 </div>
                                 <div className='pd_info'>
                                     <p>{value.productName}</p>
