@@ -1,7 +1,6 @@
 package com.example.clojet.service;
 
 import com.example.clojet.domain.Member;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;

@@ -72,7 +72,7 @@ public class ProductController {
                 }
             }
 
-            String productStock = productStockBuilder.toString();
+//            String productStock = productStockBuilder.toString();
             product.setProductStock(totalQty); // 합계 값을 product의 productStock에 설정합니다.
 
             Product createdProduct = productService.createProduct(product);
@@ -113,9 +113,6 @@ public class ProductController {
 
     private String saveUpThumFile(MultipartFile file) {
 
-        // 파일을 저장하고 저장된 파일 경로를 반환하는 로직을 구현합니다.
-        // 예를 들어, Spring의 MultipartFile.transferTo() 메서드를 사용하여 저장할 수 있습니다.
-        // 저장된 파일 경로를 반환합니다.
         // 저장할 폴더 경로
         String folderPath = "src/main/resources/productThumImage";
 
