@@ -62,6 +62,7 @@ function ProductCreate() {
 
         const formData = new FormData();
 
+        // 파일첨부 요소
         const fileThumInput = e.currentTarget.elements.productThumUrl;
         if (fileThumInput.files && fileThumInput.files.length > 0) {
             formData.append("productThumUrl", fileThumInput.files[0]);
@@ -70,24 +71,24 @@ function ProductCreate() {
         if (fileDetailInput.files && fileDetailInput.files.length > 0) {
             formData.append("productDetail", fileDetailInput.files[0]);
         }
-
-        formData.append("ccType", selectedCcTypes.join(","));
-        formData.append("csType", selectedCsTypes.join(","));
-        formData.append("productEnroll", paresDate());
-
+        
+        // 상품명, 성별, 가격, 대분류, 중분류 요소
         const productName = e.currentTarget.elements.productName.value;
         const genderCode = e.currentTarget.elements.genderCode.value;
         const productPrice = e.currentTarget.elements.productPrice.value;
         const ctGrp = e.currentTarget.elements.ctGrp.value;
         const cmGrp = e.currentTarget.elements.cmGrp.value;
-
+        
+        formData.append("ccType", selectedCcTypes.join(","));
+        formData.append("csType", selectedCsTypes.join(","));
+        formData.append("productEnroll", paresDate());
         formData.append("productName", productName);
         formData.append("genderCode", genderCode);
         formData.append("productPrice", productPrice);
         formData.append("ctGrp", ctGrp);
         formData.append("cmGrp", cmGrp);
 
-        // ccCsInputs를 가져올 때 오류가 발생하는 부분 수정
+        // 컬러x사이즈 타이틀과 각각의 재고량 요소
         const ccCsInputs = Array.from(
             document
                 .getElementById("ccCsInputContainer")

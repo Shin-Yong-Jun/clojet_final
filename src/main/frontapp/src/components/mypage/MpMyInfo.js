@@ -122,7 +122,7 @@ function MpMyInfo({ userInfo, setUserInfo, setCheckLogin }) {
                         alert("회원정보 변경이 실패하였습니다.");
                     });
             } catch {
-                alert("뭔가 이상합니데이");
+                alert("회원정보 수정불가, 관리자에게 문의요망");
             }
         }
     };
