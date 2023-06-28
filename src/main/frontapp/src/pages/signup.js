@@ -52,24 +52,27 @@ function Signup() {
 
         //========유효성 검사=====================
 
+        // 이메일 유효성 검사
         const emailValidation = (email) => {
             const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
             return emailRegex.test(email);
         };
 
+        // 비밀번호 규칙 유효성 검사        
         const pwValidation = (password) => {
             const pwRegex =
                 /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&*()?!])[A-Za-z\d@#$%^&*()?!]{8,}$/;
             return pwRegex.test(password);
         };
-
+        // 이름 2~5자 유효성 검사
         const nameValidation = (name) => {
             const nameRegex = /^[가-힣]{2,5}$/;
             return nameRegex.test(name);
         };
 
+        // 휴대폰번호 숫자만 입력하는 유효성검사
         const pnValidation = (phoneNumber) => {
-            let hasNonNumeric = false; // 문자가 발견되었는지를 나타내는 변수
+            let hasNonNumeric = false; 
             phoneNumber.split("").forEach((char) => {
                 if (isNaN(char)) {
                     // 입력받은 값이 숫자가 아닌 경우
