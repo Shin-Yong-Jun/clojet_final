@@ -43,6 +43,9 @@ dependencies {
     //자바 이메일 추가
     implementation 'org.springframework.boot:spring-boot-starter-mail'
     implementation 'com.sun.mail:jakarta.mail:2.0.1'
+
+    // Apache Commons IO
+    implementation 'commons-io:commons-io:2.11.0'
 //	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.1' //mybatis사용시 활성화
 }
 
