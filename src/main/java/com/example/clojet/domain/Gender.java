@@ -16,11 +16,11 @@ import lombok.*;
 public class Gender {
 
     @Id
-    @Column(name="gender_code", nullable = false)
-    private char gender_code;
+    @Column(name="genderCode", nullable = false)
+    private String genderCode;
 
-    @Column(name="gender_mean", nullable = false)
-    private String gender_mean;
+    @Column(name="genderMean", nullable = false)
+    private String genderMean;
 
 
 }

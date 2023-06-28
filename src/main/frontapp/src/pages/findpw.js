@@ -78,15 +78,21 @@ function Findpw() {
                     );
 
                     if (response.status === 200) {
-                        const newRandomPw = response.data; // 서버 랜덤 패스워드
+                        // const newRandomPw = response.data; // 서버 랜덤 패스워드
+
                         alert(
-                            "임시 비밀번호 : " +
-                                newRandomPw +
-                                "\n임시 비밀번호로 재로그인 요망 "
+                            "임시 비밀번호를 메일로 확인하세요"
                         );
                         navigate("/login");
                     }
-                } catch {
+                } catch (error) {
+                    if (error.response) {
+                        // 서버 응답 오류인 경우
+                        console.log(error.response.data); // 서버에서 반환한 오류 메시지 출력
+                    } else {
+                        // 네트워크 오류 또는 기타 오류인 경우
+                        console.log(error.message); // 오류 메시지 출력
+                    }
                     alert("이메일 혹은 연락처를 다시 확인해주세요");
                 }
             }

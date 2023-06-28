@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
-import cNdata from './cNdata';
+import React, { useEffect, useState } from 'react';
 import './categoryN.scss';
 import { Link } from 'react-router-dom';
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
@@ -22,21 +21,31 @@ function CategoryN() {
     const [size, setSize] = useState([]);
     const [item, setItem] = useState([]);
     const [color, setColor] = useState([]);
+    const [product, setProduct] = useState([]);
 
     const [value, setValue] = useState([0, 1000000]);
     const [foldState, setFoldState] = useState(Array(4).fill(false));
     const [sizeState, setSizeState] = useState(Array(size.length).fill(false));
-    const [colorState, setColorState] = useState(
-        Array(color.length).fill(false),
-    );
+    const [colorState, setColorState] = useState(Array(color.length).fill(false));
 
     useEffect(() => {
         axios
             .get('/category')
             .then((result) => {
+                // console.log(result);
                 setSize(result.data.csType);
                 setItem(result.data.cmValMean);
                 setColor(result.data.ccType);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+
+        axios
+            .get('/product/list')
+            .then((result) => {
+                console.log(result);
+                setProduct(result.data);
             })
             .catch((err) => {
                 console.log(err);
@@ -120,8 +129,7 @@ function CategoryN() {
                                     onChange={handleChange}
                                 />
                                 <p className='priceC'>
-                                    선택가격 : <span>{value[0]}</span> 원 ~{' '}
-                                    <span>{value[1]}</span> 원
+                                    선택가격 : <span>{value[0]}</span> 원 ~ <span>{value[1]}</span> 원
                                 </p>
                             </div>
                         </div>
@@ -143,15 +151,11 @@ function CategoryN() {
                                     <div className='color_box'>
                                         <div
                                             key={colorV}
-                                            onClick={() =>
-                                                clickE(setColorState, index)
-                                            }
+                                            onClick={() => clickE(setColorState, index)}
                                             className={`color ${colorV}
                                             ${colorState[index] && 'active'}`}
                                         ></div>
-                                        <div className='color_name'>
-                                            {colorV}
-                                        </div>
+                                        <div className='color_name'>{colorV}</div>
                                     </div>
                                 );
                             })}
@@ -173,12 +177,8 @@ function CategoryN() {
                                 return (
                                     <div
                                         key={sizeV}
-                                        onClick={() =>
-                                            clickE(setSizeState, index)
-                                        }
-                                        className={`size ${
-                                            sizeState[index] && 'active'
-                                        }`}
+                                        onClick={() => clickE(setSizeState, index)}
+                                        className={`size ${sizeState[index] && 'active'}`}
                                     >
                                         <span>{sizeV}</span>
                                     </div>
@@ -191,32 +191,23 @@ function CategoryN() {
 
             <div className='category_right'>
                 <div className='category_banner'>
-                    <img
-                        src={require('../../image/clojet-category-new-banner.png')}
-                        alt={'categoryN_banner'}
-                    />
+                    <img src={require('../../image/clojet-category-new-banner.png')} alt={'categoryN_banner'} />
                 </div>
                 <div className='category_item'>
                     <h1>아이템</h1>
                     <div className='containerC'>
-                        {cNdata.map((product, index) => (
-                            <div key={product.id} className='pd_box'>
+                        {product.map((value, index) => (
+                            <div key={value.productName} className='pd_box'>
                                 <div className='pd_img'>
                                     <a href='/'>
-                                        <img
-                                            src={require(`../../image/product${
-                                                index + 1
-                                            }.jpg`)}
-                                            alt={`product${index + 1}`}
-                                        />
+                                        <img src={`/${value.productThumUrl}`} alt={value.productName} />
                                     </a>
                                 </div>
                                 <div className='pd_info'>
-                                    <p>{product.title}</p>
-                                    <p>{product.PercentS}</p>
+                                    <p>{value.productName}</p>
+                                    <p>{value.productStock}</p>
                                     <p>
-                                        <del>{product.basicP}</del>{' '}
-                                        <strong>{product.saleP}</strong>
+                                        <del>{value.productPrice}</del> <strong>{value.productPrice}</strong>
                                     </p>
                                 </div>
                             </div>

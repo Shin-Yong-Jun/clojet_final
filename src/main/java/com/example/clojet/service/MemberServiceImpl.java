@@ -2,10 +2,8 @@ package com.example.clojet.service;
 
 import com.example.clojet.domain.Member;
 import com.example.clojet.repository.MemberRepository;
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -22,7 +20,7 @@ public class MemberServiceImpl implements MemberService {
 
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
-
+    private final EmailService emailService; // EmailService 주입
 
     @Override
     public Member createMember(Member member) {
@@ -84,14 +82,19 @@ public class MemberServiceImpl implements MemberService {
         if (memberOptional.isPresent()) {
             Member member = memberOptional.get();
             String newRandomPw = generateRandomPassword();
+            //이메일 임시비번
+            String emailContent = "임시 비밀번호 : " + newRandomPw;
+            emailService.sendEmail(memberFindPw.getUserEmail(), "클로젯 쇼핑몰 임시 비밀번호 발급", emailContent);
+            //----
             String encryptedPassword = passwordEncoder.encode(newRandomPw);
             member.setUserPw(encryptedPassword);
             memberRepository.save(member);
-            return ResponseEntity.ok(newRandomPw);
+
+//            return ResponseEntity.ok(newRandomPw);
+            return ResponseEntity.ok().build();
         }
         return ResponseEntity.badRequest().body("비밀번호 찾기 에러");
     }
-
 
     @Override
     public List<Member> getAllMembers() {

@@ -10,12 +10,59 @@ import LooksTwoRoundedIcon from '@mui/icons-material/LooksTwoRounded';
 
 function Detail() {
     // DB
-    const size = [80, 110];
     const color = ['red', 'blue'];
+    const size = [80, 110];
 
     const [sizeState, setSizeState] = useState(Array(size.length).fill(false));
     const [colorState, setColorState] = useState(Array(size.length).fill(false));
-    const [divCount, setDivCount] = useState(0);
+    const [scrollPosition, setScrollPosition] = useState(0);
+    const [activeSection, setActiveSection] = useState('detail_bottom_information');
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentPosition = window.pageYOffset;
+            setScrollPosition(currentPosition);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
+    useEffect(() => {
+        const detailSections = [
+            'detail_bottom_information',
+            'detail_bottom_review',
+            'detail_bottom_Inquiry',
+            'detail_bottom_etc_info',
+        ];
+
+        const handleActiveSection = () => {
+            const windowHeight = window.innerHeight;
+            const sectionPositions = {};
+
+            detailSections.forEach((section) => {
+                const element = document.getElementById(section);
+
+                if (element) {
+                    sectionPositions[section] = element.offsetTop;
+                }
+            });
+
+            const currentSection = Object.entries(sectionPositions).reduce((acc, [section, position]) => {
+                if (scrollPosition >= position - windowHeight / 2) {
+                    return section;
+                }
+                return acc;
+            }, '');
+
+            setActiveSection(currentSection);
+        };
+
+        handleActiveSection();
+    }, [scrollPosition]);
 
     function hasTrueValue() {
         if (!sizeState.some((value) => value === true) || !colorState.some((value) => value === true)) {
@@ -23,14 +70,6 @@ function Detail() {
         } else {
             alert('구매페이지로 이동하기');
         }
-    }
-
-    function renderDivs() {
-        const divs = [];
-        for (let i = 0; i < divCount; i++) {
-            divs.push(<div key={i}>Div {i + 1}</div>);
-        }
-        return divs;
     }
 
     function clickE(setState, index) {
@@ -73,7 +112,6 @@ function Detail() {
     }, []);
 
     const handleWheel = (e) => {
-        if (e.target.closest('.agreeterm')) return;
         let wheel = e.deltaY;
         if (wheel > 0) {
             detail_bottom_header.current.style.top = '55px';
@@ -96,11 +134,18 @@ function Detail() {
                         {/* DB */}
                     </div>
                     <div className='detail_top_sub_thumnail'>
-                        <img src={require('../image/detailImages/product_0/0.jpg')} alt='thum' />
-                        <img src={require('../image/detailImages/product_0/0.jpg')} alt='thum' />
-                        <img src={require('../image/detailImages/product_0/0.jpg')} alt='thum' />
-                        <img src={require('../image/detailImages/product_0/0.jpg')} alt='thum' />
-                        <img src={require('../image/detailImages/product_0/0.jpg')} alt='thum' />
+                        <div>
+                            <img src={require('../image/detailImages/product_0/0.jpg')} alt='thum' />
+                        </div>
+                        <div>
+                            <img src={require('../image/detailImages/product_0/1.jpg')} alt='thum' />
+                        </div>
+                        <div>
+                            <img src={require('../image/detailImages/product_0/2.jpg')} alt='thum' />
+                        </div>
+                        <div>
+                            <img src={require('../image/detailImages/product_0/3.jpg')} alt='thum' />
+                        </div>
                         {/* DB */}
                     </div>
                 </div>
@@ -117,30 +162,10 @@ function Detail() {
                         <p>2,000,000원</p>
                     </div>
 
-                    <div className='size'>
-                        <span>
-                            <LooksOneRoundedIcon />
-                            SIZE
-                        </span>
-                        <div className='select'>
-                            {size.map((value, index) => {
-                                return (
-                                    <div
-                                        className={sizeState[index] && 'check'}
-                                        key={index}
-                                        onClick={() => clickE(setSizeState, index)}
-                                    >
-                                        {value}
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    </div>
-
                     <div className='color'>
                         <span>
-                            <LooksTwoRoundedIcon />
-                            color
+                            <LooksOneRoundedIcon />
+                            COLOR
                         </span>
                         <div className='select'>
                             {color.map((value, index) => {
@@ -159,8 +184,27 @@ function Detail() {
                         </div>
                     </div>
 
+                    <div className='size'>
+                        <span>
+                            <LooksTwoRoundedIcon />
+                            SIZE
+                        </span>
+                        <div className='select'>
+                            {size.map((value, index) => {
+                                return (
+                                    <div
+                                        className={sizeState[index] && 'check'}
+                                        key={index}
+                                        onClick={() => clickE(setSizeState, index)}
+                                    >
+                                        {value}
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+
                     <div>
-                        {renderDivs()}
                         <h1>tititititititititit</h1>
                         <h1>300000000000원</h1>
                     </div>
@@ -171,10 +215,10 @@ function Detail() {
                     </div>
 
                     <div className='otherInformation'>
-                        {OtherInformation(<LocalShippingOutlinedIcon />, '설명문', '설명문')}
-                        {OtherInformation(<ReceiptLongRoundedIcon />, '설명문')}
-                        {OtherInformation(<CreditCardOffOutlinedIcon />, '설명문')}
-                        {OtherInformation(<PermPhoneMsgOutlinedIcon />, '설명문')}
+                        {OtherInformation(<LocalShippingOutlinedIcon />, '배송문의')}
+                        {OtherInformation(<ReceiptLongRoundedIcon />, '제품설명')}
+                        {OtherInformation(<CreditCardOffOutlinedIcon />, '환불문의')}
+                        {OtherInformation(<PermPhoneMsgOutlinedIcon />, '기타문의')}
                     </div>
                 </div>
             </div>
@@ -182,14 +226,33 @@ function Detail() {
             <div className='detail_bottom'>
                 <div className='detail_bottom_header' ref={detail_bottom_header}>
                     <ul>
-                        <li className='check' onClick={() => scrollToElement('detail_bottom_information')}>
+                        <li
+                            onClick={() => scrollToElement('detail_bottom_information')}
+                            className={activeSection === 'detail_bottom_information' ? 'check' : ''}
+                        >
                             상품정보
                         </li>
-                        <li onClick={() => scrollToElement('detail_bottom_review')}> 상품후기</li>
-                        <li onClick={() => scrollToElement('detail_bottom_Inquiry')}>상품문의</li>
-                        <li onClick={() => scrollToElement('detail_bottom_etc_info')}>배송/반품/교환</li>
+                        <li
+                            onClick={() => scrollToElement('detail_bottom_review')}
+                            className={activeSection === 'detail_bottom_review' ? 'check' : ''}
+                        >
+                            상품후기
+                        </li>
+                        <li
+                            onClick={() => scrollToElement('detail_bottom_Inquiry')}
+                            className={activeSection === 'detail_bottom_Inquiry' ? 'check' : ''}
+                        >
+                            상품문의
+                        </li>
+                        <li
+                            onClick={() => scrollToElement('detail_bottom_etc_info')}
+                            className={activeSection === 'detail_bottom_etc_info' ? 'check' : ''}
+                        >
+                            배송/반품/교환
+                        </li>
                     </ul>
                 </div>
+
                 <div className='detail_bottom_information' id='detail_bottom_information'>
                     <img src={require('../image/detailImages/product_0/detail.jpg')} alt='' />
                 </div>

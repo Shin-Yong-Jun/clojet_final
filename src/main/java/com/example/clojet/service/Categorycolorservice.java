@@ -14,7 +14,6 @@ public class Categorycolorservice {
 
     public List<Categorycolor> findColor(){
         return categorycolorRepository.findAll();
-
     }
 
 
