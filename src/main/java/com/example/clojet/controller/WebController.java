@@ -16,7 +16,7 @@ import java.nio.file.Files;
 
 @RestController
 public class WebController {
-    @RequestMapping({"/*, /*/*"})
+    @RequestMapping({"/*"})
     public ResponseEntity<String> getIndex() {
         // "/index"에 대한 요청을 처리하는 메서드입니다.
 
