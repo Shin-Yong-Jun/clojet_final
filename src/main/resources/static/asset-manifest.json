@@ -1,7 +1,16 @@
 {
   "files": {
+<<<<<<< HEAD
+    "main.css": "/static/css/main.508f3877.css",
+    "main.js": "/static/js/main.379a30ff.js",
+=======
     "main.css": "/static/css/main.a9770a97.css",
+<<<<<<< HEAD
+    "main.js": "/static/js/main.6517e7ce.js",
+>>>>>>> 8c9963ad308c8972718c2bbe209c4b38bfa54f1e
+=======
     "main.js": "/static/js/main.9e8514ba.js",
+>>>>>>> bd1988137f14083b898facd66427ad4be7c06c65
     "static/media/detail.jpg": "/static/media/detail.428321f5da8a5cd64460.jpg",
     "static/media/clojet-mainss-slider3.png": "/static/media/clojet-mainss-slider3.cfe8a1f5af09cc813d16.png",
     "static/media/clojet-mainss-slider2.png": "/static/media/clojet-mainss-slider2.8f1de4962370a822f973.png",
@@ -19,11 +28,24 @@
     "static/media/right-arrow.svg": "/static/media/right-arrow.d19ce8f87764b5901ed2ca6f0ff22d03.svg",
     "static/media/arrow_forward_ios_FILL0_wght400_GRAD0_opsz48.svg": "/static/media/arrow_forward_ios_FILL0_wght400_GRAD0_opsz48.7b13c9ac5e7c53fc2f3af0ae9afcc4d1.svg",
     "static/media/arrow_back_ios_FILL0_wght400_GRAD0_opsz48.svg": "/static/media/arrow_back_ios_FILL0_wght400_GRAD0_opsz48.bc24e9e3061ccb03a6e13a55760da701.svg",
+<<<<<<< HEAD
+    "main.508f3877.css.map": "/static/css/main.508f3877.css.map",
+    "main.379a30ff.js.map": "/static/js/main.379a30ff.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.508f3877.css",
+    "static/js/main.379a30ff.js"
+=======
     "main.a9770a97.css.map": "/static/css/main.a9770a97.css.map",
     "main.9e8514ba.js.map": "/static/js/main.9e8514ba.js.map"
   },
   "entrypoints": [
     "static/css/main.a9770a97.css",
+<<<<<<< HEAD
+    "static/js/main.6517e7ce.js"
+>>>>>>> 8c9963ad308c8972718c2bbe209c4b38bfa54f1e
+=======
     "static/js/main.9e8514ba.js"
+>>>>>>> bd1988137f14083b898facd66427ad4be7c06c65
   ]
 }
