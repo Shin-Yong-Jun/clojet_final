@@ -75,7 +75,8 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public ResponseEntity<?> findMember(Member memberFindPw) {
-        Optional<Member> memberOptional = memberRepository.findByUserEmailAndUserPhone(
+        Optional<Member> memberOptional = memberRepository
+                .findByUserEmailAndUserPhone(
                 memberFindPw.getUserEmail(),
                 memberFindPw.getUserPhone()
         );
@@ -84,13 +85,13 @@ public class MemberServiceImpl implements MemberService {
             String newRandomPw = generateRandomPassword();
             //이메일 임시비번
             String emailContent = "임시 비밀번호 : " + newRandomPw;
-            emailService.sendEmail(memberFindPw.getUserEmail(), "클로젯 쇼핑몰 임시 비밀번호 발급", emailContent);
+            emailService.sendEmail(memberFindPw.getUserEmail(),
+                    "클로젯 쇼핑몰 임시 비밀번호 발급", emailContent);
             //----
             String encryptedPassword = passwordEncoder.encode(newRandomPw);
             member.setUserPw(encryptedPassword);
             memberRepository.save(member);
 
-//            return ResponseEntity.ok(newRandomPw);
             return ResponseEntity.ok().build();
         }
         return ResponseEntity.badRequest().body("비밀번호 찾기 에러");

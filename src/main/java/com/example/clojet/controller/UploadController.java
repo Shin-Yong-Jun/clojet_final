@@ -1,6 +1,7 @@
 package com.example.clojet.controller;
 
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -15,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -83,13 +85,13 @@ public class UploadController {
         try {
             // 이미지 파일을 로드하기 위해 ClassPathResource를 사용합니다.
             Resource resource = new ClassPathResource("productThumImage/" + imageName);
-            File file = resource.getFile();
+            InputStream inputStream = resource.getInputStream();
 
             // 이미지 파일을 바이트 배열로 읽어옵니다.
-            byte[] imageBytes = Files.readAllBytes(file.toPath());
+            byte[] imageBytes = IOUtils.toByteArray(inputStream);
 
             // 이미지 파일의 MIME 타입을 확인합니다.
-            String contentType = Files.probeContentType(file.toPath());
+            String contentType = Files.probeContentType(Paths.get(imageName));
 
             // HTTP 응답에 바이트 배열과 MIME 타입을 설정하여 반환합니다.
             return ResponseEntity.ok()
@@ -101,5 +103,28 @@ public class UploadController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+//    @GetMapping("/productThumImage/{imageName:.+}")
+//    public ResponseEntity<byte[]> getProductThumImage(@PathVariable String imageName) {
+//        try {
+//            // 이미지 파일을 로드하기 위해 ClassPathResource를 사용합니다.
+//            Resource resource = new ClassPathResource("productThumImage/" + imageName);
+//            File file = resource.getFile();
+//
+//            // 이미지 파일을 바이트 배열로 읽어옵니다.
+//            byte[] imageBytes = Files.readAllBytes(file.toPath());
+//
+//            // 이미지 파일의 MIME 타입을 확인합니다.
+//            String contentType = Files.probeContentType(file.toPath());
+//
+//            // HTTP 응답에 바이트 배열과 MIME 타입을 설정하여 반환합니다.
+//            return ResponseEntity.ok()
+//                    .contentType(MediaType.parseMediaType(contentType))
+//                    .body(imageBytes);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            // 파일 로드 또는 읽기에 실패한 경우, 서버 오류로 응답합니다.
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+//        }
+//    }
 }
 
