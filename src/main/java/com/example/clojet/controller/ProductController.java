@@ -72,7 +72,6 @@ public class ProductController {
                 }
             }
 
-//            String productStock = productStockBuilder.toString();
             product.setProductStock(totalQty); // 합계 값을 product의 productStock에 설정합니다.
 
             Product createdProduct = productService.createProduct(product);
@@ -96,12 +95,6 @@ public class ProductController {
                     list.add(new ProductAll(seq, color, size, eachStock)); // 수정: eachStock 값도 함께 저장
                 }
             }
-//            Long seq = product.getProductSeq();
-//            for (String color : makeColor) {
-//                for (String size : makeSize) {
-//                    list.add(new ProductAll(seq, color, size));
-//                }
-//            }
 
             productAllRepository.saveAll(list);
             return ResponseEntity.ok(createdProduct);
@@ -170,30 +163,6 @@ public class ProductController {
         return "productDetailImage/" + newFileName;
     }
 
-
-//    @PostMapping("/create")
-//    public ResponseEntity<?> createProduct(@RequestBody Product product) {
-//        try{
-//            Product createdProduct = productService.createProduct(product);
-//
-//            String[] makeColor = product.getCcType().split(",");
-//            String[] makeSize = product.getCsType().split(",");
-//
-//            List<ProductAll> list = new ArrayList<>(makeSize.length * makeColor.length);
-//
-//            Long seq = product.getProductSeq();
-//            for(String color : makeColor){
-//                for(String size : makeSize){
-//                    list.add(new ProductAll(seq, color, size));
-//                }
-//            }
-//
-//            productAllRepository.saveAll(list);
-//            return ResponseEntity.ok(createdProduct);
-//        } catch (IllegalArgumentException e) {
-//            return ResponseEntity.badRequest().body(e.getMessage());
-//        }
-//    }
 
     @GetMapping("/list")
     public List<Product> readAll() {return productService.getAllProducts();}

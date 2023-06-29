@@ -45,30 +45,20 @@ function App() {
                         <main>
                             <Routes>
                                 <Route index element={<Main />} />
-                                <Route
-                                    path="/category/*"
-                                    element={<Category />}
+                                <Route path="/category/*" element={<Category />}
                                 />
-                                <Route
-                                    path="/login"
-                                    element={
+                                <Route path="/login" element={
                                         <Login setCheckLogin={setCheckLogin} />
                                     }
                                 />
                                 <Route path="/signup" element={<Signup />} />
                                 <Route path="/findpw" element={<Findpw />} />
                                 <Route path="/cart" element={<Cart />} />
-                                <Route
-                                    path="/purchase"
-                                    element={<Purchase />}
+                                <Route path="/purchase" element={<Purchase />}
                                 />
                                 <Route
-                                    path="/mypage/*"
-                                    element={
-                                        <Mypage
-                                            checkLogin={checkLogin}
-                                            setCheckLogin={setCheckLogin}
-                                        />
+                                    path="/mypage/*" element={
+                                        <Mypage checkLogin={checkLogin} setCheckLogin={setCheckLogin}/>
                                     }
                                 />
                                 <Route path='/detail' element={<Detail />} />
