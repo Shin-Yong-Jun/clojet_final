@@ -50,4 +50,5 @@ public class Product {
 
     @Column(name = "productDetail", nullable = true)
     private String productDetail;
+
 }

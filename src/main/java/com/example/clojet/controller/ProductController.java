@@ -46,6 +46,7 @@ public class ProductController {
 
             // Product 객체 생성
             Product product = new Product();
+
             product.setProductThumUrl(uploadedThumImgPath);
             product.setProductDetail(uploadedDetailImgPath);
             product.setProductName(productName);

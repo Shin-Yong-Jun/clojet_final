@@ -4,6 +4,7 @@ import com.example.clojet.domain.Board;
 import com.example.clojet.repository.BoardRepository;
 import com.example.clojet.service.BoardServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.SpringApplication;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -54,5 +55,6 @@ public class BoardController {
     public void deletePost(@PathVariable Long boardSeq, @RequestHeader(value = "checkLogin") Long getSessionUid) {
         boardService.deletePost(boardSeq, getSessionUid);
     }
+
 
 }

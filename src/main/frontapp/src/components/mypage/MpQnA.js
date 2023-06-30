@@ -10,11 +10,11 @@ export function MpQnA({ page, setPage, userInfo }) {
     const btnText = "문의하기";
     const navigate = useNavigate();
     const [testData, setTestData] = useState([]);
-    
+
     useEffect(() => {
         requestData();
     }, []);
-    
+
     function requestData() {
         const response = new XMLHttpRequest();
 
